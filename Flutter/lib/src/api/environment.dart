@@ -1,7 +1,7 @@
 import 'package:ardear_bakery/src/models/mercado_pago_credentials.dart';
 
 class Environment {
-  static const String API_DELIVERY = "192.168.1.100:3000";
+  static const String API_DELIVERY = "ardearbakery.herokuapp.com";
   static const String API_KEY_MAPS = "TU_API_KEY";
 
   static MercadoPagoCredentials mercadoPagoCredentials = MercadoPagoCredentials(
