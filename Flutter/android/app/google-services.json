@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "21217125489",
+    "project_id": "ardearbakeryapp",
+    "storage_bucket": "ardearbakeryapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:21217125489:android:8de41c9eb92e2d994767d0",
+        "android_client_info": {
+          "package_name": "com.sittichai.ardear_delivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "21217125489-792dkdncgjdm9j961s2799dj5tj4i2sp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVacTULdkLYz6qRMoqnfnRzk5xIRpYm0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "21217125489-792dkdncgjdm9j961s2799dj5tj4i2sp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
