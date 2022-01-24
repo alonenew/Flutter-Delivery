@@ -61,13 +61,8 @@ app.disable('x-powered-by');
 
 app.set('port', port);
 
-// LLAMAR A LOS SOCKETS
 orderDeliverySocket(io);
 
-
-/*
-* LLAMANDO A LA RUTAS
-*/
 users(app, upload);
 categories(app);
 address(app);
