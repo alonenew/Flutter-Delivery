@@ -75,8 +75,8 @@ orders(app);
 products(app, upload);
 mercadoPagoRoutes(app);
 
-server.listen(3000, '192.168.1.100' || 'localhost', function() {
-    console.log('Application on NodeJS PORT ' + port + ' successfull...')
+server.listen(port, () => {
+    console.log('Application on NodeJS PORT ' + port + ' successfull...');
 });
 
 // ERROR 

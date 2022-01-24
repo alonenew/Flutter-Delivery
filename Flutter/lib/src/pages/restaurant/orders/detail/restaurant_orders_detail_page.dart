@@ -66,7 +66,8 @@ class _RestaurantOrdersDetailPageState
                   : Container(),
               _textData('ลูกค้า:',
                   '${_con.order.client?.name ?? ''} ${_con.order.client?.lastname ?? ''}'),
-              _textData('ที่อยู่ลูกค้า : ', '${_con.order.address?.address ?? ''}'),
+              _textData(
+                  'ที่อยู่ลูกค้า : ', '${_con.order.address?.address ?? ''}'),
               _textData('วันที่สั่งซื้อ : ',
                   '${RelativeTimeUtil.getRelativeTime(_con.order.timestamp ?? 0)}'),
               _con.order.status == 'PAGADO' ? _buttonNext() : Container()
@@ -268,7 +269,7 @@ class _RestaurantOrdersDetailPageState
               ),
               SizedBox(height: 10),
               Text(
-                'Cantidad: ${product.quantity}',
+                'จำนวนสินค้า : ${product.quantity}',
                 style: TextStyle(fontSize: 13),
               ),
             ],

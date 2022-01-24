@@ -167,7 +167,7 @@ class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
     return GestureDetector(
       onTap: _con.openDrawer,
       child: Container(
-        margin: EdgeInsets.only(left: 20),
+        margin: EdgeInsets.only(left: 20, top: 25),
         alignment: Alignment.centerLeft,
         child: Image.asset('assets/img/menu.png', width: 20, height: 20),
       ),
