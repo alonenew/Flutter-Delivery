@@ -22,7 +22,6 @@ class LoginController {
 
     User user = User.fromJson(await _sharedPref.read('user') ?? {});
 
-
     if (user?.sessionToken != null) {
       if (user.roles.length > 1) {
         Navigator.pushNamedAndRemoveUntil(context, 'roles', (route) => false);
@@ -45,7 +44,7 @@ class LoginController {
     // print('Respuesta object: ${responseApi}');
     // print('Respuesta: ${responseApi.toJson()}');
 
-    if (responseApi.success) {
+    if (responseApi.success == true) {
       User user = User.fromJson(responseApi.data);
       _sharedPref.save('user', user.toJson());
 

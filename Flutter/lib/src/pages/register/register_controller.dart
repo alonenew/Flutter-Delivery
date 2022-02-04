@@ -87,7 +87,7 @@ class RegisterController {
       ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
       MySnackbar.show(context, responseApi.message);
 
-      if (responseApi.success) {
+      if (responseApi.success == false) {
         Future.delayed(Duration(seconds: 3), () {
           Navigator.pushReplacementNamed(context, 'login');
         });

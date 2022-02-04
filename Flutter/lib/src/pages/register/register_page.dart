@@ -11,7 +11,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-
   RegisterController _con = new RegisterController();
 
   @override
@@ -31,11 +30,7 @@ class _RegisterPageState extends State<RegisterPage> {
         width: double.infinity,
         child: Stack(
           children: [
-            Positioned(
-                top: -80,
-                left: -100,
-                child: _circle()
-            ),
+            Positioned(top: -80, left: -100, child: _circle()),
             Positioned(
               child: _textRegister(),
               top: 65,
@@ -87,20 +82,16 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget _iconBack() {
     return IconButton(
         onPressed: _con.back,
-        icon: Icon(Icons.arrow_back_ios, color: Colors.white)
-    );
+        icon: Icon(Icons.arrow_back_ios, color: Colors.white));
   }
 
   Widget _textRegister() {
-    return Text(
-        'สมัครสมาชิก',
+    return Text('สมัครสมาชิก',
         style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
-          fontFamily: 'NimbusSans'
-        )
-    );
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            fontFamily: 'NimbusSans'));
   }
 
   Widget _textFieldEmail() {
@@ -108,8 +99,7 @@ class _RegisterPageState extends State<RegisterPage> {
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 5),
       decoration: BoxDecoration(
           color: MyColors.primaryOpacityColor,
-          borderRadius: BorderRadius.circular(30)
-      ),
+          borderRadius: BorderRadius.circular(30)),
       child: TextField(
         controller: _con.emailController,
         keyboardType: TextInputType.emailAddress,
@@ -117,14 +107,11 @@ class _RegisterPageState extends State<RegisterPage> {
             hintText: 'อีเมล',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(
-                color: MyColors.primaryColorDark
-            ),
+            hintStyle: TextStyle(color: MyColors.primaryColorDark),
             prefixIcon: Icon(
               Icons.email,
               color: MyColors.primaryColor,
-            )
-        ),
+            )),
       ),
     );
   }
@@ -134,22 +121,18 @@ class _RegisterPageState extends State<RegisterPage> {
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 5),
       decoration: BoxDecoration(
           color: MyColors.primaryOpacityColor,
-          borderRadius: BorderRadius.circular(30)
-      ),
+          borderRadius: BorderRadius.circular(30)),
       child: TextField(
         controller: _con.nameController,
         decoration: InputDecoration(
             hintText: 'ชื่อ',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(
-                color: MyColors.primaryColorDark
-            ),
+            hintStyle: TextStyle(color: MyColors.primaryColorDark),
             prefixIcon: Icon(
               Icons.person,
               color: MyColors.primaryColor,
-            )
-        ),
+            )),
       ),
     );
   }
@@ -159,22 +142,18 @@ class _RegisterPageState extends State<RegisterPage> {
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 5),
       decoration: BoxDecoration(
           color: MyColors.primaryOpacityColor,
-          borderRadius: BorderRadius.circular(30)
-      ),
+          borderRadius: BorderRadius.circular(30)),
       child: TextField(
         controller: _con.lastnameController,
         decoration: InputDecoration(
             hintText: 'สกุล',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(
-                color: MyColors.primaryColorDark
-            ),
+            hintStyle: TextStyle(color: MyColors.primaryColorDark),
             prefixIcon: Icon(
               Icons.person_outline,
               color: MyColors.primaryColor,
-            )
-        ),
+            )),
       ),
     );
   }
@@ -184,8 +163,7 @@ class _RegisterPageState extends State<RegisterPage> {
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 5),
       decoration: BoxDecoration(
           color: MyColors.primaryOpacityColor,
-          borderRadius: BorderRadius.circular(30)
-      ),
+          borderRadius: BorderRadius.circular(30)),
       child: TextField(
         controller: _con.phoneController,
         keyboardType: TextInputType.phone,
@@ -193,14 +171,11 @@ class _RegisterPageState extends State<RegisterPage> {
             hintText: 'เบอร์โทรศัพท์',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(
-                color: MyColors.primaryColorDark
-            ),
+            hintStyle: TextStyle(color: MyColors.primaryColorDark),
             prefixIcon: Icon(
               Icons.phone,
               color: MyColors.primaryColor,
-            )
-        ),
+            )),
       ),
     );
   }
@@ -210,8 +185,7 @@ class _RegisterPageState extends State<RegisterPage> {
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 5),
       decoration: BoxDecoration(
           color: MyColors.primaryOpacityColor,
-          borderRadius: BorderRadius.circular(30)
-      ),
+          borderRadius: BorderRadius.circular(30)),
       child: TextField(
         controller: _con.passwordController,
         obscureText: true,
@@ -219,14 +193,11 @@ class _RegisterPageState extends State<RegisterPage> {
             hintText: 'รหัสผ่าน',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(
-                color: MyColors.primaryColorDark
-            ),
+            hintStyle: TextStyle(color: MyColors.primaryColorDark),
             prefixIcon: Icon(
               Icons.lock,
               color: MyColors.primaryColor,
-            )
-        ),
+            )),
       ),
     );
   }
@@ -236,8 +207,7 @@ class _RegisterPageState extends State<RegisterPage> {
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 5),
       decoration: BoxDecoration(
           color: MyColors.primaryOpacityColor,
-          borderRadius: BorderRadius.circular(30)
-      ),
+          borderRadius: BorderRadius.circular(30)),
       child: TextField(
         controller: _con.confirmPassswordController,
         obscureText: true,
@@ -245,14 +215,11 @@ class _RegisterPageState extends State<RegisterPage> {
             hintText: 'ยืนยันรหัสผ่าน',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(
-                color: MyColors.primaryColorDark
-            ),
+            hintStyle: TextStyle(color: MyColors.primaryColorDark),
             prefixIcon: Icon(
               Icons.lock_outline,
               color: MyColors.primaryColor,
-            )
-        ),
+            )),
       ),
     );
   }
@@ -262,15 +229,15 @@ class _RegisterPageState extends State<RegisterPage> {
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
       child: ElevatedButton(
-        onPressed: _con.isEnable ? _con.register : null,
+        onPressed: () {
+          _con.register();
+        },
         child: Text('ลงทะเบียน'),
         style: ElevatedButton.styleFrom(
             primary: MyColors.primaryColor,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30)
-            ),
-            padding: EdgeInsets.symmetric(vertical: 15)
-        ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            padding: EdgeInsets.symmetric(vertical: 15)),
       ),
     );
   }
@@ -281,14 +248,11 @@ class _RegisterPageState extends State<RegisterPage> {
       height: 230,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
-          color: MyColors.primaryColor
-      ),
+          color: MyColors.primaryColor),
     );
   }
 
   void refresh() {
-    setState(() {
-
-    });
+    setState(() {});
   }
 }
