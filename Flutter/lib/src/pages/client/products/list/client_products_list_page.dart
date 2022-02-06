@@ -33,16 +33,16 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
       child: Scaffold(
         key: _con.key,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(170),
+          preferredSize: Size.fromHeight(150),
           child: AppBar(
             automaticallyImplyLeading: false,
             backgroundColor: Colors.white,
             actions: [_shoppingBag()],
             flexibleSpace: Column(
               children: [
-                SizedBox(height: 40),
+                SizedBox(height: 55),
                 _menuDrawer(),
-                SizedBox(height: 20),
+                SizedBox(height: 15),
                 _textFieldSearch()
               ],
             ),
@@ -78,10 +78,10 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
                             return _cardProduct(snapshot.data[index]);
                           });
                     } else {
-                      return NoDataWidget(text: 'No hay productos');
+                      return NoDataWidget(text: 'ไม่มีสินค้า');
                     }
                   } else {
-                    return NoDataWidget(text: 'No hay productos');
+                    return NoDataWidget(text: 'ไม่มีสินค้า');
                   }
                 });
           }).toList(),
@@ -151,7 +151,7 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                     child: Text(
-                      '${product.price ?? 0}\$',
+                      '${product.price ?? 0} บาท',
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -245,16 +245,12 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
                   ),
                   Text(
                     _con.user?.email ?? '',
-                    style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey[200]),
+                    style: TextStyle(fontSize: 13, color: Colors.grey[200]),
                     maxLines: 1,
                   ),
                   Text(
                     _con.user?.phone ?? '',
-                    style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey[200]),
+                    style: TextStyle(fontSize: 13, color: Colors.grey[200]),
                     maxLines: 1,
                   ),
                   Container(

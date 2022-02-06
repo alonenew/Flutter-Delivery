@@ -30,7 +30,7 @@ class _ClientAddressMapPageState extends State<ClientAddressMapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ubica tu direccion en el mapa'),
+        title: Text('ค้นหาที่อยู่'),
       ),
       body: Stack(
         children: [
@@ -61,7 +61,7 @@ class _ClientAddressMapPageState extends State<ClientAddressMapPage> {
       child: ElevatedButton(
         onPressed: _con.selectRefPoint,
         child: Text(
-            'SELECCIONAR ESTE PUNTO'
+            'เลือกจุดนี้'
         ),
         style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(

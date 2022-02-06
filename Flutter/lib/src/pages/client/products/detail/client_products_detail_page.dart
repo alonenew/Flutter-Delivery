@@ -7,17 +7,16 @@ import 'package:ardear_bakery/src/utils/my_colors.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 class ClientProductsDetailPage extends StatefulWidget {
-
   Product product;
 
   ClientProductsDetailPage({Key key, @required this.product}) : super(key: key);
 
   @override
-  _ClientProductsDetailPageState createState() => _ClientProductsDetailPageState();
+  _ClientProductsDetailPageState createState() =>
+      _ClientProductsDetailPageState();
 }
 
 class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
-
   ClientProductsDetailController _con = new ClientProductsDetailController();
 
   @override
@@ -54,10 +53,7 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
       margin: EdgeInsets.only(right: 30, left: 30, top: 15),
       child: Text(
         _con.product?.description ?? '',
-        style: TextStyle(
-            fontSize: 13,
-            color: Colors.grey
-        ),
+        style: TextStyle(fontSize: 13, color: Colors.grey),
       ),
     );
   }
@@ -68,10 +64,7 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
       margin: EdgeInsets.only(right: 30, left: 30, top: 30),
       child: Text(
         _con.product?.name ?? '',
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold
-        ),
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -82,12 +75,10 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
       child: ElevatedButton(
         onPressed: _con.addToBag,
         style: ElevatedButton.styleFrom(
-          primary: MyColors.primaryColor,
-          padding: EdgeInsets.symmetric(vertical: 5),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12)
-          )
-        ),
+            primary: MyColors.primaryColor,
+            padding: EdgeInsets.symmetric(vertical: 5),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12))),
         child: Stack(
           children: [
             Align(
@@ -97,10 +88,7 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
                 alignment: Alignment.center,
                 child: Text(
                   'ใส่ตะกร้า',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold
-                  ),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -112,7 +100,6 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
                 child: Image.asset('assets/img/bag.png'),
               ),
             )
-
           ],
         ),
       ),
@@ -131,10 +118,7 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
           SizedBox(width: 7),
           Text(
             'จัดส่งแบบปกติ',
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.green
-            ),
+            style: TextStyle(fontSize: 12, color: Colors.green),
           )
         ],
       ),
@@ -152,15 +136,11 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
                 Icons.add_circle_outline,
                 color: Colors.grey,
                 size: 30,
-              )
-          ),
+              )),
           Text(
             '${_con.counter}',
             style: TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey
-            ),
+                fontSize: 17, fontWeight: FontWeight.bold, color: Colors.grey),
           ),
           IconButton(
               onPressed: _con.removeItem,
@@ -168,17 +148,13 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
                 Icons.remove_circle_outline,
                 color: Colors.grey,
                 size: 30,
-              )
-          ),
+              )),
           Spacer(),
           Container(
             margin: EdgeInsets.only(right: 10),
             child: Text(
-              '${_con.productPrice ?? 0}\$',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold
-              ),
+              '${_con.productPrice ?? 0} บาท',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           )
         ],
@@ -205,22 +181,6 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
                 fadeInDuration: Duration(milliseconds: 50),
                 placeholder: AssetImage('assets/img/no-image.png'),
               ),
-              FadeInImage(
-                image: _con.product?.image2 != null
-                    ? NetworkImage(_con.product.image2)
-                    : AssetImage('assets/img/no-image.png'),
-                fit: BoxFit.cover,
-                fadeInDuration: Duration(milliseconds: 50),
-                placeholder: AssetImage('assets/img/no-image.png'),
-              ),
-              FadeInImage(
-                image: _con.product?.image3 != null
-                    ? NetworkImage(_con.product.image3)
-                    : AssetImage('assets/img/no-image.png'),
-                fit: BoxFit.cover,
-                fadeInDuration: Duration(milliseconds: 50),
-                placeholder: AssetImage('assets/img/no-image.png'),
-              ),
             ],
             onPageChanged: (value) {
               print('Page changed: $value');
@@ -237,16 +197,13 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
                   color: Colors.black,
                   size: 35,
                 ),
-              )
-          )
+              ))
         ],
       ),
     );
   }
 
   void refresh() {
-    setState(() {
-
-    });
+    setState(() {});
   }
 }

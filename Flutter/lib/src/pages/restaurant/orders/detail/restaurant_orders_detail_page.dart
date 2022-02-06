@@ -60,8 +60,8 @@ class _RestaurantOrdersDetailPageState
               SizedBox(height: 10),
               _textDescription(),
               SizedBox(height: 15),
-              _con.order.status != 'PAGADO' ? _deliveryData() : Container(),
-              _con.order.status == 'PAGADO'
+              _con.order.status != 'ส่งสินค้า' ? _deliveryData() : Container(),
+              _con.order.status == 'ส่งสินค้า'
                   ? _dropDown(_con.users)
                   : Container(),
               _textData('ลูกค้า:',
@@ -70,7 +70,7 @@ class _RestaurantOrdersDetailPageState
                   'ที่อยู่ลูกค้า : ', '${_con.order.address?.address ?? ''}'),
               _textData('วันที่สั่งซื้อ : ',
                   '${RelativeTimeUtil.getRelativeTime(_con.order.timestamp ?? 0)}'),
-              _con.order.status == 'PAGADO' ? _buttonNext() : Container()
+              _con.order.status == 'ส่งสินค้า' ? _buttonNext() : Container()
             ],
           ),
         ),
@@ -92,7 +92,9 @@ class _RestaurantOrdersDetailPageState
       alignment: Alignment.centerLeft,
       margin: EdgeInsets.symmetric(horizontal: 30),
       child: Text(
-        _con.order == 'PAGADO' ? 'มอบหมายคนส่งของ' : 'คนส่งของที่ได้รับมอบหมาย',
+        _con.order == 'ส่งสินค้า'
+            ? 'มอบหมายคนส่งของ'
+            : 'คนส่งของที่ได้รับมอบหมาย',
         style: TextStyle(
             fontStyle: FontStyle.italic,
             color: MyColors.primaryColor,

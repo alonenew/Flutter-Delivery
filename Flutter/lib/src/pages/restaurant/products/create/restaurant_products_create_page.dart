@@ -40,19 +40,17 @@ class _RestaurantProductsCreatePageState
           _textFieldName(),
           _textFieldDescription(),
           _textFieldPrice(),
+          _dropDownCategories(_con.categories),
           Container(
             height: 100,
             margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _cardImage(_con.imageFile1, 1),
-                _cardImage(_con.imageFile2, 2),
-                _cardImage(_con.imageFile3, 3),
+                _cardImage(_con.imageFile, 1),
               ],
             ),
           ),
-          _dropDownCategories(_con.categories),
         ],
       ),
       bottomNavigationBar: _buttonCreate(),
@@ -100,7 +98,7 @@ class _RestaurantProductsCreatePageState
             contentPadding: EdgeInsets.all(15),
             hintStyle: TextStyle(color: MyColors.primaryColorDark),
             suffixIcon: Icon(
-              Icons.monetization_on,
+              Icons.price_change,
               color: MyColors.primaryColor,
             )),
       ),
@@ -109,11 +107,12 @@ class _RestaurantProductsCreatePageState
 
   Widget _dropDownCategories(List<Category> categories) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 33),
+      margin: EdgeInsets.symmetric(
+        horizontal: 33,
+      ),
       child: Material(
         elevation: 2.0,
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(5)),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
         child: Container(
           padding: EdgeInsets.all(10),
           child: Column(
@@ -126,8 +125,9 @@ class _RestaurantProductsCreatePageState
                   ),
                   SizedBox(width: 15),
                   Text(
-                    'หมวดหมู่',
-                    style: TextStyle(color: Colors.grey, fontSize: 16),
+                    'หมวดสินค้า',
+                    style: TextStyle(
+                        color: MyColors.primaryColor, fontSize: 16),
                   )
                 ],
               ),
@@ -144,15 +144,15 @@ class _RestaurantProductsCreatePageState
                   elevation: 3,
                   isExpanded: true,
                   hint: Text(
-                    'เลือกหมวดหมู่',
-                    style: TextStyle(color: Colors.grey, fontSize: 16),
+                    'เลือกหมวดสินค้า',
+                    style: TextStyle(
+                        color: MyColors.primaryColor, fontSize: 16),
                   ),
                   items: _dropDownItems(categories),
                   value: _con.idCategory,
                   onChanged: (option) {
                     setState(() {
-                      _con.idCategory =
-                          option; // ESTABLECIENDO EL VALOR SELECCIONADO
+                      _con.idCategory = option;
                     });
                   },
                 ),
@@ -188,7 +188,7 @@ class _RestaurantProductsCreatePageState
         maxLines: 3,
         maxLength: 255,
         decoration: InputDecoration(
-          hintText: 'คำอธิบายของหมวดหมู่',
+          hintText: 'คำอธิบายสินค้า',
           border: InputBorder.none,
           contentPadding: EdgeInsets.all(15),
           hintStyle: TextStyle(color: MyColors.primaryColorDark),
@@ -223,8 +223,10 @@ class _RestaurantProductsCreatePageState
               child: Container(
                 height: 140,
                 width: MediaQuery.of(context).size.width * 0.26,
-                child: Image(
-                  image: AssetImage('assets/img/add_image.png'),
+                child: Icon(
+                  Icons.add_a_photo_rounded,
+                  size: 80,
+                  color: MyColors.primaryColor,
                 ),
               ),
             ),

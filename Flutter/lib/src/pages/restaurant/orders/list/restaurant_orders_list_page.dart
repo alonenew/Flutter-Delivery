@@ -39,7 +39,7 @@ class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
             backgroundColor: Colors.white,
             flexibleSpace: Column(
               children: [
-                SizedBox(height: 40),
+                SizedBox(height: 55),
                 _menuDrawer(),
               ],
             ),

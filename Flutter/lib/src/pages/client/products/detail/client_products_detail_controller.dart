@@ -35,7 +35,7 @@ class ClientProductsDetailController {
   void addToBag() {
     int index = selectedProducts.indexWhere((p) => p.id == product.id);
 
-    if (index == -1) { // PRODUCTOS SELECCIONADOS NO EXISTE ESE PRODUCTO
+    if (index == -1) { 
       if (product.quantity == null) {
         product.quantity = 1;
       }

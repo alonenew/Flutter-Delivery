@@ -32,7 +32,7 @@ class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pagos'),
+        title: Text('การชำระเงิน'),
       ),
       body: ListView(
         children: [
@@ -46,7 +46,7 @@ class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
             obscureCardNumber: true,
             obscureCardCvv: true,
             animationDuration: Duration(milliseconds: 1000),
-            labelCardHolder: 'NOMBRE Y APELLIDO',
+            labelCardHolder: 'ชื่อและนามสกุล',
           ),
           CreditCardForm(
             cvvCode: '',
@@ -60,12 +60,12 @@ class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
             obscureNumber: true,
             cardNumberDecoration: const InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'Numero de la tarjeta',
+              labelText: 'Card number',
               hintText: 'XXXX XXXX XXXX XXXX',
             ),
             expiryDateDecoration: const InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'Fecha de expiracion',
+              labelText: 'Expiration date',
               hintText: 'XX/XX',
             ),
             cvvCodeDecoration: const InputDecoration(
@@ -75,7 +75,7 @@ class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
             ),
             cardHolderDecoration: const InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'Nombre del titular',
+              labelText: 'Name',
             ),
           ),
           _documentInfo(),
@@ -105,7 +105,7 @@ class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
                 height: 50,
                 alignment: Alignment.center,
                 child: Text(
-                  'CONTINUAR',
+                  'ดำเนินการต่อ',
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold
@@ -160,7 +160,7 @@ class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
                         elevation: 3,
                         isExpanded: true,
                         hint: Text(
-                          'Tipo doc',
+                          'เอกสาร',
                           style: TextStyle(
                               color: Colors.grey,
                               fontSize: 14
@@ -170,8 +170,8 @@ class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
                         value: _con.typeDocument,
                         onChanged: (option) {
                           setState(() {
-                            print('Reparidor selecciondo $option');
-                            _con.typeDocument = option; // ESTABLECIENDO EL VALOR SELECCIONADO
+                            print('ตัวแทนจำหน่าย $option');
+                            _con.typeDocument = option; 
                           });
                         },
                       ),
@@ -189,7 +189,7 @@ class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Numero de documento'
+                labelText: 'หมายเลขเอกสาร'
               ),
             ),
           )

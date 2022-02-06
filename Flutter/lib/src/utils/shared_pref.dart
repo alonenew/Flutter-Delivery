@@ -5,7 +5,6 @@ import 'package:ardear_bakery/src/provider/users_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPref {
-
   void save(String key, value) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(key, json.encode(value));
@@ -36,5 +35,4 @@ class SharedPref {
     await remove('user');
     Navigator.pushNamedAndRemoveUntil(context, 'login', (route) => false);
   }
-
 }

@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _textLogin() {
     return Text(
-      'LOGIN',
+      'เข้าสู่ระบบ',
       style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,

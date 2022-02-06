@@ -143,7 +143,7 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'รวม:',
+            'รวม : ',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
           ),
           Text(

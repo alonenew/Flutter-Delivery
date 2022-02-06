@@ -13,7 +13,6 @@ class ClientAddressListPage extends StatefulWidget {
 }
 
 class _ClientAddressListPageState extends State<ClientAddressListPage> {
-
   ClientAddressListController _con = new ClientAddressListController();
 
   @override
@@ -29,21 +28,13 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Direcciones'),
-        actions: [
-          _iconAdd()
-        ],
+        title: Text('ที่อยู่'),
+        actions: [_iconAdd()],
       ),
       body: Stack(
         children: [
-          Positioned(
-            top: 0,
-            child: _textSelectAddress()
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 50),
-            child: _listAddress()
-          )
+          Positioned(top: 0, child: _textSelectAddress()),
+          Container(margin: EdgeInsets.only(top: 50), child: _listAddress())
         ],
       ),
       bottomNavigationBar: _buttonAccept(),
@@ -54,9 +45,8 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
     return Column(
       children: [
         Container(
-            margin: EdgeInsets.only(top: 30),
-            child: NoDataWidget(text: 'No tienes ninguna direccion agrega una nueva')
-        ),
+            margin: EdgeInsets.only(top: 80, left: 70),
+            child: NoDataWidget(text: 'คุณไม่มีที่อยู่ เพิ่มที่อยู่ใหม่')),
         _buttonNewAddress()
       ],
     );
@@ -64,15 +54,12 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
 
   Widget _buttonNewAddress() {
     return Container(
+      margin: EdgeInsets.only(left: 70),
       height: 40,
       child: ElevatedButton(
         onPressed: _con.goToNewAddress,
-        child: Text(
-            'Nueva direccion'
-        ),
-        style: ElevatedButton.styleFrom(
-            primary: Colors.blue
-        ),
+        child: Text(' เพิ่มที่อยู่ใหม่ '),
+        style: ElevatedButton.styleFrom(primary: Colors.blue),
       ),
     );
   }
@@ -84,15 +71,11 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
       margin: EdgeInsets.symmetric(vertical: 30, horizontal: 50),
       child: ElevatedButton(
         onPressed: _con.createOrder,
-        child: Text(
-          'ACEPTAR'
-        ),
+        child: Text('ยืนยัน'),
         style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30)
-          ),
-          primary: MyColors.primaryColor
-        ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            primary: MyColors.primaryColor),
       ),
     );
   }
@@ -101,27 +84,21 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
     return FutureBuilder(
         future: _con.getAddress(),
         builder: (context, AsyncSnapshot<List<Address>> snapshot) {
-
           if (snapshot.hasData) {
-
             if (snapshot.data.length > 0) {
               return ListView.builder(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                   itemCount: snapshot.data?.length ?? 0,
                   itemBuilder: (_, index) {
                     return _radioSelectorAddress(snapshot.data[index], index);
-                  }
-              );
-            }
-            else {
+                  });
+            } else {
               return _noAddress();
             }
-          }
-          else {
+          } else {
             return _noAddress();
           }
-        }
-    );
+        });
   }
 
   Widget _radioSelectorAddress(Address address, int index) {
@@ -141,20 +118,16 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
                 children: [
                   Text(
                     address?.address ?? '',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold
-                    ),
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     address?.neighborhood ?? '',
                     style: TextStyle(
-                        fontSize: 12,
+                      fontSize: 12,
                     ),
                   )
                 ],
               ),
-
             ],
           ),
           Divider(
@@ -168,13 +141,10 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
   Widget _textSelectAddress() {
     return Container(
       alignment: Alignment.centerLeft,
-      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+      margin: EdgeInsets.symmetric(horizontal: 80, vertical: 30),
       child: Text(
-        'Elige donde recibir tus compras',
-        style: TextStyle(
-          fontSize: 19,
-          fontWeight: FontWeight.bold
-        ),
+        'เลือกสถานที่รับสินค้าของคุณ',
+        style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -182,8 +152,7 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
   Widget _iconAdd() {
     return IconButton(
         onPressed: _con.goToNewAddress,
-        icon: Icon(Icons.add, color: Colors.white)
-    );
+        icon: Icon(Icons.add, color: Colors.white));
   }
 
   void refresh() {

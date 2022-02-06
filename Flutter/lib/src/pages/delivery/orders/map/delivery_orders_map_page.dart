@@ -15,7 +15,6 @@ class DeliveryOrdersMapPage extends StatefulWidget {
 }
 
 class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
-
   DeliveryOrdersMapController _con = new DeliveryOrdersMapController();
 
   @override
@@ -40,9 +39,8 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
       body: Stack(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.6,
-              child: _googleMaps()
-          ),
+              height: MediaQuery.of(context).size.height * 0.6,
+              child: _googleMaps()),
           SafeArea(
             child: Column(
               children: [
@@ -52,16 +50,8 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
               ],
             ),
           ),
-          Positioned(
-            top: 40,
-            left: 15,
-            child: _iconGoogleMaps()
-          ),
-          Positioned(
-              top: 85,
-              left: 15,
-              child: _iconWaze()
-          )
+          Positioned(top: 40, left: 15, child: _iconGoogleMaps()),
+          Positioned(top: 85, left: 15, child: _iconWaze())
         ],
       ),
     );
@@ -72,25 +62,29 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
       height: MediaQuery.of(context).size.height * 0.4,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(20),
-          topLeft: Radius.circular(20),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3)
-          )
-        ]
-      ),
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20),
+            topLeft: Radius.circular(20),
+          ),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3))
+          ]),
       child: Column(
         children: [
-          _listTileAddress(_con.order?.address?.neighborhood, 'Barrio', Icons.my_location),
-          _listTileAddress(_con.order?.address?.address, 'Direccion', Icons.location_on),
-          Divider(color: Colors.grey[400], endIndent: 30, indent: 30,),
+          _listTileAddress(
+              _con.order?.address?.neighborhood, 'Barrio', Icons.my_location),
+          _listTileAddress(
+              _con.order?.address?.address, 'Direccion', Icons.location_on),
+          Divider(
+            color: Colors.grey[400],
+            endIndent: 30,
+            indent: 30,
+          ),
           _clientInfo(),
           _buttonNext()
         ],
@@ -119,30 +113,29 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
             margin: EdgeInsets.only(left: 10),
             child: Text(
               '${_con.order?.client?.name ?? ''} ${_con.order?.client?.lastname ?? ''}',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16
-              ),
+              style: TextStyle(color: Colors.black, fontSize: 16),
               maxLines: 1,
             ),
           ),
           Spacer(),
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              color: Colors.grey[200]
-            ),
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                color: Colors.grey[200]),
             child: IconButton(
               onPressed: _con.call,
-              icon: Icon(Icons.phone, color: Colors.black,),
+              icon: Icon(
+                Icons.phone,
+                color: Colors.black,
+              ),
             ),
           )
         ],
       ),
     );
   }
-  
-  Widget _iconGoogleMaps(){
+
+  Widget _iconGoogleMaps() {
     return GestureDetector(
       onTap: _con.launchGoogleMaps,
       child: Image.asset(
@@ -153,7 +146,7 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
     );
   }
 
-  Widget _iconWaze(){
+  Widget _iconWaze() {
     return GestureDetector(
       onTap: _con.launchWaze,
       child: Image.asset(
@@ -170,9 +163,7 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
       child: ListTile(
         title: Text(
           title ?? '',
-          style: TextStyle(
-            fontSize: 13
-          ),
+          style: TextStyle(fontSize: 13),
         ),
         subtitle: Text(subtitle),
         trailing: Icon(iconData),
@@ -189,9 +180,7 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
             primary: MyColors.primaryColor,
             padding: EdgeInsets.symmetric(vertical: 5),
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12)
-            )
-        ),
+                borderRadius: BorderRadius.circular(12))),
         child: Stack(
           children: [
             Align(
@@ -200,11 +189,8 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
                 height: 40,
                 alignment: Alignment.center,
                 child: Text(
-                  'ENTREGAR PRODUCTO',
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
+                  'ส่งสินค้า',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -220,7 +206,6 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
                 ),
               ),
             )
-
           ],
         ),
       ),

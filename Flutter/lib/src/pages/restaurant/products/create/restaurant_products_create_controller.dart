@@ -15,7 +15,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:sn_progress_dialog/sn_progress_dialog.dart';
 
 class RestaurantProductsCreateController {
-
   BuildContext context;
   Function refresh;
 
@@ -34,9 +33,7 @@ class RestaurantProductsCreateController {
 
   // IMAGENES
   PickedFile pickedFile;
-  File imageFile1;
-  File imageFile2;
-  File imageFile3;
+  File imageFile;
 
   ProgressDialog _progressDialog;
 
@@ -65,8 +62,8 @@ class RestaurantProductsCreateController {
       return;
     }
 
-    if (imageFile1 == null || imageFile2 == null || imageFile3 == null) {
-      MySnackbar.show(context, 'เลือก 3 ภาพ');
+    if (imageFile == null) {
+      MySnackbar.show(context, 'เลือกภาพ');
       return;
     }
 
@@ -76,39 +73,33 @@ class RestaurantProductsCreateController {
     }
 
     Product product = new Product(
-      name: name,
-      description: description,
-      price: price,
-      idCategory: int.parse(idCategory)
-    );
+        name: name,
+        description: description,
+        price: price,
+        idCategory: int.parse(idCategory));
 
     List<File> images = [];
-    images.add(imageFile1);
-    images.add(imageFile2);
-    images.add(imageFile3);
+    images.add(imageFile);
 
     _progressDialog.show(max: 100, msg: 'รอสักครู่...');
     Stream stream = await _productsProvider.create(product, images);
     stream.listen((res) {
-        _progressDialog.close();
+      _progressDialog.close();
 
-        ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
-        MySnackbar.show(context, responseApi.message);
+      ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
+      MySnackbar.show(context, responseApi.message);
 
-        if (responseApi.success) {
-          resetValues();
-        }
+      if (responseApi.success) {
+        resetValues();
+      }
     });
-
   }
 
   void resetValues() {
     nameController.text = '';
     descriptionController.text = '';
     priceController.text = '0.0';
-    imageFile1 = null;
-    imageFile2 = null;
-    imageFile3 = null;
+    imageFile = null;
     idCategory = null;
     refresh();
   }
@@ -116,15 +107,8 @@ class RestaurantProductsCreateController {
   Future selectImage(ImageSource imageSource, int numberFile) async {
     pickedFile = await ImagePicker().getImage(source: imageSource);
     if (pickedFile != null) {
-
       if (numberFile == 1) {
-        imageFile1 = File(pickedFile.path);
-      }
-      else if (numberFile == 2) {
-        imageFile2 = File(pickedFile.path);
-      }
-      else if (numberFile == 3) {
-        imageFile3 = File(pickedFile.path);
+        imageFile = File(pickedFile.path);
       }
     }
     Navigator.pop(context);
@@ -136,30 +120,23 @@ class RestaurantProductsCreateController {
         onPressed: () {
           selectImage(ImageSource.gallery, numberFile);
         },
-        child: Text('คลังภาพ')
-    );
+        child: Text('คลังภาพ'));
 
     Widget cameraButton = ElevatedButton(
         onPressed: () {
           selectImage(ImageSource.camera, numberFile);
         },
-        child: Text('กล้อง')
-    );
+        child: Text('กล้อง'));
 
     AlertDialog alertDialog = AlertDialog(
       title: Text('เลือกรูปภาพ'),
-      actions: [
-        galleryButton,
-        cameraButton
-      ],
+      actions: [galleryButton, cameraButton],
     );
 
     showDialog(
         context: context,
         builder: (BuildContext context) {
           return alertDialog;
-        }
-    );
+        });
   }
-
 }

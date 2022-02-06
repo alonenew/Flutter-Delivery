@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class NoDataWidget extends StatelessWidget {
-
   String text;
 
   NoDataWidget({Key key, this.text}) : super(key: key);
@@ -15,9 +14,7 @@ class NoDataWidget extends StatelessWidget {
         children: [
           Image.asset('assets/img/no_items.png'),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 50),
-            child: Text(text)
-          )
+              margin: EdgeInsets.symmetric(horizontal: 50), child: Text(text))
         ],
       ),
     );

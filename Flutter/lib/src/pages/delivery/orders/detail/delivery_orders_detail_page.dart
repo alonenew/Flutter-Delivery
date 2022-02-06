@@ -38,7 +38,7 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
           Container(
             margin: EdgeInsets.only(top: 18, right: 15),
             child: Text(
-              'Total: ${_con.total}\$',
+              'รวม : ${_con.total} บาท',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18
@@ -58,13 +58,13 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
                 indent: 30, //IZQUIERDA
               ),
               SizedBox(height: 10),
-              _textData('Cliente:', '${_con.order.client?.name ?? ''} ${_con.order.client?.lastname ?? ''}'),
-              _textData('Entregar en:', '${_con.order.address?.address ?? ''}'),
+              _textData('ลูกค้า :', '${_con.order.client?.name ?? ''} ${_con.order.client?.lastname ?? ''}'),
+              _textData('ผู้ส่ง :', '${_con.order.address?.address ?? ''}'),
               _textData(
-                  'Fecha de pedido:', 
+                  'วันที่สั่ง :', 
                   '${RelativeTimeUtil.getRelativeTime(_con.order.timestamp ?? 0)}'
               ),
-              _con.order.status != 'ENTREGADO' ? _buttonNext() : Container()
+              _con.order.status != 'จัดส่ง' ? _buttonNext() : Container()
             ],
           ),
         ),
@@ -75,7 +75,7 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
           return _cardProduct(product);
         }).toList(),
       )
-      : NoDataWidget(text: 'Ningun producto agregado',),
+      : NoDataWidget(text: 'ไม่มีสินค้า',),
     );
   }
 
@@ -98,7 +98,7 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
       child: ElevatedButton(
         onPressed: _con.updateOrder,
         style: ElevatedButton.styleFrom(
-            primary: _con.order?.status == 'DESPACHADO' ? Colors.blue : Colors.green,
+            primary: _con.order?.status == 'จัดส่งแล้ว' ? Colors.blue : Colors.green,
             padding: EdgeInsets.symmetric(vertical: 5),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12)
@@ -112,7 +112,7 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
                 height: 40,
                 alignment: Alignment.center,
                 child: Text(
-                  _con.order?.status == 'DESPACHADO' ? 'INICIAR ENTREGA' : 'IR AL MAPA',
+                  _con.order?.status == 'จัดส่งแล้ว' ? 'เริ่มจัดส่ง' : 'กำลังเดินทาง',
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold
@@ -157,7 +157,7 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Cantidad: ${product.quantity}',
+                  'จำนวน : ${product.quantity}',
                   style: TextStyle(
                       fontSize: 13
                   ),

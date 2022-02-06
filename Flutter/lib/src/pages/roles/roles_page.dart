@@ -11,7 +11,6 @@ class RolesPage extends StatefulWidget {
 }
 
 class _RolesPageState extends State<RolesPage> {
-
   RolesController _con = new RolesController();
 
   @override
@@ -28,15 +27,16 @@ class _RolesPageState extends State<RolesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Selecciona un rol'),
+        title: Text('เลือกหน้าที่'),
       ),
       body: Container(
         margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.14),
         child: ListView(
-          children: _con.user != null ? _con.user.roles.map((Rol rol) {
-            return _cardRol(rol);
-          }).toList() : []
-        ),
+            children: _con.user != null
+                ? _con.user.roles.map((Rol rol) {
+                    return _cardRol(rol);
+                  }).toList()
+                : []),
       ),
     );
   }
@@ -62,17 +62,13 @@ class _RolesPageState extends State<RolesPage> {
           SizedBox(height: 15),
           Text(
             rol.name ?? '',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.black
-            ),
+            style: TextStyle(fontSize: 16, color: Colors.black),
           ),
           SizedBox(height: 25),
         ],
       ),
     );
   }
-
 
   void refresh() {
     setState(() {});

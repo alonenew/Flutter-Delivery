@@ -104,7 +104,7 @@ class _ClientOrdersListPageState extends State<ClientOrdersListPage> {
                   width: double.infinity,
                   alignment: Alignment.center,
                   child: Text(
-                    'Orden #${order.id}',
+                    'คำสั่งซื้อ #${order.id}',
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.white,
@@ -121,7 +121,7 @@ class _ClientOrdersListPageState extends State<ClientOrdersListPage> {
                       margin: EdgeInsets.symmetric(vertical: 5),
                       width: double.infinity,
                       child: Text(
-                        'Pedido: 2015-05-23',
+                        'Order : 2015-05-23',
                         style: TextStyle(fontSize: 13),
                       ),
                     ),
@@ -130,7 +130,7 @@ class _ClientOrdersListPageState extends State<ClientOrdersListPage> {
                       width: double.infinity,
                       margin: EdgeInsets.symmetric(vertical: 5),
                       child: Text(
-                        'Repartidor: ${order.delivery?.name ?? 'No asignado'} ${order.delivery?.lastname ?? ''}',
+                        'ผู้จัดส่ง : ${order.delivery?.name ?? 'ไม่ได้รับมอบหมาย'} ${order.delivery?.lastname ?? ''}',
                         style: TextStyle(fontSize: 13),
                         maxLines: 1,
                       ),
@@ -140,7 +140,7 @@ class _ClientOrdersListPageState extends State<ClientOrdersListPage> {
                       width: double.infinity,
                       margin: EdgeInsets.symmetric(vertical: 5),
                       child: Text(
-                        'Entregar en: ${order.address?.address ?? ''}',
+                        'ปลายทาง : ${order.address?.address ?? ''}',
                         style: TextStyle(fontSize: 13),
                         maxLines: 2,
                       ),

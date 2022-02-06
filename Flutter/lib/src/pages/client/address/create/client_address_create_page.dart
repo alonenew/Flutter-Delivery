@@ -8,11 +8,11 @@ class ClientAddressCreatePage extends StatefulWidget {
   const ClientAddressCreatePage({Key key}) : super(key: key);
 
   @override
-  _ClientAddressCreatePageState createState() => _ClientAddressCreatePageState();
+  _ClientAddressCreatePageState createState() =>
+      _ClientAddressCreatePageState();
 }
 
 class _ClientAddressCreatePageState extends State<ClientAddressCreatePage> {
-
   ClientAddressCreateController _con = new ClientAddressCreateController();
 
   @override
@@ -28,7 +28,7 @@ class _ClientAddressCreatePageState extends State<ClientAddressCreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Nueva direccion'),
+        title: Text('ที่อยู่ใหม่'),
       ),
       bottomNavigationBar: _buttonAccept(),
       body: Column(
@@ -48,12 +48,11 @@ class _ClientAddressCreatePageState extends State<ClientAddressCreatePage> {
       child: TextField(
         controller: _con.addressController,
         decoration: InputDecoration(
-          labelText: 'Direccion',
-          suffixIcon: Icon(
-            Icons.location_on,
-            color: MyColors.primaryColor,
-          )
-        ),
+            labelText: 'ที่อยู่',
+            suffixIcon: Icon(
+              Icons.location_on,
+              color: MyColors.primaryColor,
+            )),
       ),
     );
   }
@@ -67,12 +66,11 @@ class _ClientAddressCreatePageState extends State<ClientAddressCreatePage> {
         autofocus: false,
         focusNode: AlwaysDisabledFocusNode(),
         decoration: InputDecoration(
-          labelText: 'Punto de referencia',
-          suffixIcon: Icon(
-            Icons.map,
-            color: MyColors.primaryColor,
-          )
-        ),
+            labelText: 'เลือกจาก MAP',
+            suffixIcon: Icon(
+              Icons.map,
+              color: MyColors.primaryColor,
+            )),
       ),
     );
   }
@@ -83,12 +81,11 @@ class _ClientAddressCreatePageState extends State<ClientAddressCreatePage> {
       child: TextField(
         controller: _con.neighborhoodController,
         decoration: InputDecoration(
-          labelText: 'Barrio',
-          suffixIcon: Icon(
-            Icons.location_city,
-            color: MyColors.primaryColor,
-          )
-        ),
+            labelText: 'รายละเอียดเพิ่มเติม',
+            suffixIcon: Icon(
+              Icons.location_city,
+              color: MyColors.primaryColor,
+            )),
       ),
     );
   }
@@ -99,10 +96,7 @@ class _ClientAddressCreatePageState extends State<ClientAddressCreatePage> {
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
       child: Text(
         'Completa estos datos',
-        style: TextStyle(
-            fontSize: 19,
-            fontWeight: FontWeight.bold
-        ),
+        style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -114,15 +108,11 @@ class _ClientAddressCreatePageState extends State<ClientAddressCreatePage> {
       margin: EdgeInsets.symmetric(vertical: 30, horizontal: 50),
       child: ElevatedButton(
         onPressed: _con.createAddress,
-        child: Text(
-            'CREAR DIRECCION'
-        ),
+        child: Text('เพิ่มที่อยู่'),
         style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30)
-            ),
-            primary: MyColors.primaryColor
-        ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            primary: MyColors.primaryColor),
       ),
     );
   }

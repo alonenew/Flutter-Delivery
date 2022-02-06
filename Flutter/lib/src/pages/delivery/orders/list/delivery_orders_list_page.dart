@@ -76,11 +76,11 @@ class _DeliveryOrdersListPageState extends State<DeliveryOrdersListPage> {
                       );
                     }
                     else {
-                      return NoDataWidget(text: 'No hay ordenes');
+                      return NoDataWidget(text: 'ไม่มีสินค้า');
                     }
                   }
                   else {
-                    return NoDataWidget(text: 'No hay ordenes');
+                    return NoDataWidget(text: 'ไม่มีสินค้า');
                   }
                 }
             );
@@ -139,7 +139,7 @@ class _DeliveryOrdersListPageState extends State<DeliveryOrdersListPage> {
                       margin: EdgeInsets.symmetric(vertical: 5),
                       width: double.infinity,
                       child: Text(
-                        'Pedido: 2015-05-23',
+                        'วันที่สั่ง : 2015-05-23',
                         style: TextStyle(
                             fontSize: 13
                         ),
@@ -150,7 +150,7 @@ class _DeliveryOrdersListPageState extends State<DeliveryOrdersListPage> {
                       width: double.infinity,
                       margin: EdgeInsets.symmetric(vertical: 5),
                       child: Text(
-                        'Cliente: ${order.client?.name ?? ''} ${order.client?.lastname ?? ''}',
+                        'ลูกค้า : ${order.client?.name ?? ''} ${order.client?.lastname ?? ''}',
                         style: TextStyle(
                             fontSize: 13
                         ),
@@ -162,7 +162,7 @@ class _DeliveryOrdersListPageState extends State<DeliveryOrdersListPage> {
                       width: double.infinity,
                       margin: EdgeInsets.symmetric(vertical: 5),
                       child: Text(
-                        'Entregar en: ${order.address?.address ?? ''}',
+                        'ที่อยู่ปลายทาง : ${order.address?.address ?? ''}',
                         style: TextStyle(
                             fontSize: 13
                         ),
@@ -251,12 +251,12 @@ class _DeliveryOrdersListPageState extends State<DeliveryOrdersListPage> {
           _con.user.roles.length > 1 ?
           ListTile(
             onTap: _con.goToRoles,
-            title: Text('Seleccionar rol'),
+            title: Text('เลือกหน้าที่'),
             trailing: Icon(Icons.person_outline),
           ) : Container() : Container(),
           ListTile(
             onTap: _con.logout,
-            title: Text('Cerrar sesion'),
+            title: Text('ออกจากระบบ'),
             trailing: Icon(Icons.power_settings_new),
           ),
         ],

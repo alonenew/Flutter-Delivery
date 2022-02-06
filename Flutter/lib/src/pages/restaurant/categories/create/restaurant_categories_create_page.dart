@@ -7,13 +7,14 @@ class RestaurantCategoriesCreatePage extends StatefulWidget {
   const RestaurantCategoriesCreatePage({Key key}) : super(key: key);
 
   @override
-  _RestaurantCategoriesCreatePageState createState() => _RestaurantCategoriesCreatePageState();
+  _RestaurantCategoriesCreatePageState createState() =>
+      _RestaurantCategoriesCreatePageState();
 }
 
-class _RestaurantCategoriesCreatePageState extends State<RestaurantCategoriesCreatePage> {
-
-  RestaurantCategoriesCreateController _con = new RestaurantCategoriesCreateController();
-
+class _RestaurantCategoriesCreatePageState
+    extends State<RestaurantCategoriesCreatePage> {
+  RestaurantCategoriesCreateController _con =
+      new RestaurantCategoriesCreateController();
 
   @override
   void initState() {
@@ -28,7 +29,7 @@ class _RestaurantCategoriesCreatePageState extends State<RestaurantCategoriesCre
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('หมวดหมู่ใหม่'),
+        title: Text('สร้างหมวดสินค้า'),
       ),
       body: Column(
         children: [
@@ -46,22 +47,18 @@ class _RestaurantCategoriesCreatePageState extends State<RestaurantCategoriesCre
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 5),
       decoration: BoxDecoration(
           color: MyColors.primaryOpacityColor,
-          borderRadius: BorderRadius.circular(30)
-      ),
+          borderRadius: BorderRadius.circular(30)),
       child: TextField(
         controller: _con.nameController,
         decoration: InputDecoration(
-            hintText: 'ชื่อหมวดหมู่',
+            hintText: 'ชื่อหมวดสินค้า',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(
-                color: MyColors.primaryColorDark
-            ),
+            hintStyle: TextStyle(color: MyColors.primaryColorDark),
             suffixIcon: Icon(
               Icons.list_alt,
               color: MyColors.primaryColor,
-            )
-        ),
+            )),
       ),
     );
   }
@@ -72,23 +69,20 @@ class _RestaurantCategoriesCreatePageState extends State<RestaurantCategoriesCre
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
           color: MyColors.primaryOpacityColor,
-          borderRadius: BorderRadius.circular(30)
-      ),
+          borderRadius: BorderRadius.circular(30)),
       child: TextField(
         controller: _con.descriptionController,
         maxLines: 3,
         maxLength: 255,
         decoration: InputDecoration(
-            hintText: 'คำอธิบายหมวดหมู่',
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(
-                color: MyColors.primaryColorDark
-            ),
-            suffixIcon: Icon(
-              Icons.description,
-              color: MyColors.primaryColor,
-            ),
+          hintText: 'คำอธิบายหมวดสินค้า',
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.all(15),
+          hintStyle: TextStyle(color: MyColors.primaryColorDark),
+          suffixIcon: Icon(
+            Icons.description,
+            color: MyColors.primaryColor,
+          ),
         ),
       ),
     );
@@ -104,11 +98,9 @@ class _RestaurantCategoriesCreatePageState extends State<RestaurantCategoriesCre
         child: Text('สร้างหมวดหมู่'),
         style: ElevatedButton.styleFrom(
             primary: MyColors.primaryColor,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30)
-            ),
-            padding: EdgeInsets.symmetric(vertical: 15)
-        ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            padding: EdgeInsets.symmetric(vertical: 15)),
       ),
     );
   }
@@ -116,5 +108,4 @@ class _RestaurantCategoriesCreatePageState extends State<RestaurantCategoriesCre
   void refresh() {
     setState(() {});
   }
-
 }
