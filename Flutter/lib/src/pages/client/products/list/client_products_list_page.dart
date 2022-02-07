@@ -297,6 +297,6 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
   }
 
   void refresh() {
-    setState(() {}); // CTRL + S
+    setState(() {});
   }
 }
