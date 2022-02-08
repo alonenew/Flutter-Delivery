@@ -51,7 +51,7 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
                 return _cardProduct(product);
               }).toList(),
             )
-          : NoDataWidget(
+          : NoAddressWidget(
               text: 'ไม่มีสินค้า',
             ),
     );

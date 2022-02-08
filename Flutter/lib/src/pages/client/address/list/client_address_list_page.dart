@@ -34,8 +34,7 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
       body: Stack(
         children: [
           Positioned(top: 0, child: _textSelectAddress()),
-          Container(
-              margin: EdgeInsets.only(top: 50, left: 10), child: _listAddress())
+          Container(margin: EdgeInsets.only(top: 50), child: _listAddress())
         ],
       ),
       bottomNavigationBar: _buttonAccept(),
@@ -47,9 +46,9 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
       children: [
         Container(
             margin: EdgeInsets.only(
-              top: 100,
+              top: 130,
             ),
-            child: NoDataWidget(text: 'คุณไม่มีที่อยู่ เพิ่มที่อยู่ใหม่')),
+            child: NoDataWidget(text: 'กรุณาเพิ่มที่อยู่')),
         _buttonNewAddress()
       ],
     );
@@ -57,12 +56,16 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
 
   Widget _buttonNewAddress() {
     return Container(
-      margin: EdgeInsets.only(left: 80),
-      height: 40,
+      height: 50,
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(vertical: 30, horizontal: 130),
       child: ElevatedButton(
         onPressed: _con.goToNewAddress,
-        child: Text(' เพิ่มที่อยู่ใหม่ '),
-        style: ElevatedButton.styleFrom(primary: Colors.blue),
+        child: Text('เพิ่มที่อยู่'),
+        style: ElevatedButton.styleFrom(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        ),
       ),
     );
   }
@@ -143,7 +146,7 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
 
   Widget _textSelectAddress() {
     return Container(
-      margin: EdgeInsets.only(left: 150, top: 30),
+      margin: EdgeInsets.only(top: 30, left: 165),
       child: Text(
         'ที่อยู่รับสินค้า',
         style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
