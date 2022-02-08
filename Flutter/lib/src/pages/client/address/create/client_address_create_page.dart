@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:ardear_bakery/src/pages/client/address/create/client_address_create_controller.dart';
-import 'package:ardear_bakery/src/pages/client/address/list/client_address_list_controller.dart';
 import 'package:ardear_bakery/src/utils/my_colors.dart';
 
 class ClientAddressCreatePage extends StatefulWidget {
@@ -95,7 +94,7 @@ class _ClientAddressCreatePageState extends State<ClientAddressCreatePage> {
       alignment: Alignment.centerLeft,
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
       child: Text(
-        'Completa estos datos',
+        'รายละเอียดที่อยู่',
         style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
       ),
     );

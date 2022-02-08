@@ -21,7 +21,6 @@ class NoDataWidget extends StatelessWidget {
   }
 }
 
-
 class NoAddressWidget extends StatelessWidget {
   String text;
 

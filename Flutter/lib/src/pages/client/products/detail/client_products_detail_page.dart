@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:ardear_bakery/src/models/product.dart';
@@ -182,9 +181,9 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
                 placeholder: AssetImage('assets/img/no-image.png'),
               ),
             ],
-            onPageChanged: (value) {
-              print('Page changed: $value');
-            },
+            // onPageChanged: (value) {
+            //   print('Page changed: $value');
+            // },
             autoPlayInterval: 30000,
           ),
           Positioned(

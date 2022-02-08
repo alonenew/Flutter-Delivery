@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ardear_bakery/src/models/address.dart';
-import 'package:ardear_bakery/src/models/order.dart';
-import 'package:ardear_bakery/src/models/product.dart';
-import 'package:ardear_bakery/src/models/response_api.dart';
 import 'package:ardear_bakery/src/models/user.dart';
 import 'package:ardear_bakery/src/provider/address_provider.dart';
 import 'package:ardear_bakery/src/provider/orders_provider.dart';
 import 'package:ardear_bakery/src/utils/shared_pref.dart';
 
 class ClientAddressListController {
-
   BuildContext context;
   Function refresh;
 
@@ -37,14 +33,6 @@ class ClientAddressListController {
   }
 
   void createOrder() async {
-    // Address a = Address.fromJson(await _sharedPref.read('address') ?? {});
-    // List<Product> selectedProducts = Product.fromJsonList(await _sharedPref.read('order')).toList;
-    // Order order = new Order(
-    //   idClient: user.id,
-    //   idAddress: a.id,
-    //   products: selectedProducts
-    // );
-    // ResponseApi responseApi = await _ordersProvider.create(order);
     Navigator.pushNamed(context, 'client/payments/create');
   }
 
@@ -53,7 +41,6 @@ class ClientAddressListController {
     _sharedPref.save('address', address[value]);
 
     refresh();
-    print('Valor seleccioonado: $radioValue');
   }
 
   Future<List<Address>> getAddress() async {
@@ -65,7 +52,6 @@ class ClientAddressListController {
     if (index != -1) {
       radioValue = index;
     }
-    print('SE GUARDO LA DIRECCION: ${a.toJson()}');
 
     return address;
   }
@@ -79,5 +65,4 @@ class ClientAddressListController {
       }
     }
   }
-
 }

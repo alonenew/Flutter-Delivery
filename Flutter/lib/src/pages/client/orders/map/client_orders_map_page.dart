@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:ardear_bakery/src/pages/client/address/list/client_address_list_controller.dart';
-import 'package:ardear_bakery/src/pages/client/address/map/client_address_map_controller.dart';
 import 'package:ardear_bakery/src/pages/client/orders/map/client_orders_map_controller.dart';
-import 'package:ardear_bakery/src/pages/delivery/orders/map/delivery_orders_map_controller.dart';
-import 'package:ardear_bakery/src/utils/my_colors.dart';
-import 'package:ardear_bakery/src/widgets/no_data_widget.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ClientOrdersMapPage extends StatefulWidget {

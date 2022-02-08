@@ -4,7 +4,6 @@ import 'package:ardear_bakery/src/utils/shared_pref.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class ClientProductsDetailController {
-
   BuildContext context;
   Function refresh;
 
@@ -24,10 +23,10 @@ class ClientProductsDetailController {
     productPrice = product.price;
 
     // _sharedPref.remove('order');
-    selectedProducts = Product.fromJsonList(await _sharedPref.read('order')).toList;
+    selectedProducts =
+        Product.fromJsonList(await _sharedPref.read('order')).toList;
 
-    selectedProducts.forEach((p) {
-    });
+    selectedProducts.forEach((p) {});
 
     refresh();
   }
@@ -35,18 +34,16 @@ class ClientProductsDetailController {
   void addToBag() {
     int index = selectedProducts.indexWhere((p) => p.id == product.id);
 
-    if (index == -1) { 
+    if (index == -1) {
       if (product.quantity == null) {
         product.quantity = 1;
       }
-
       selectedProducts.add(product);
-    }
-    else {
+    } else {
       selectedProducts[index].quantity = counter;
     }
 
-    _sharedPref.save('คำสั่งซื้อ', selectedProducts);
+    _sharedPref.save('order', selectedProducts);
     Fluttertoast.showToast(msg: 'เพิ่มสินค้า');
   }
 
@@ -69,5 +66,4 @@ class ClientProductsDetailController {
   void close() {
     Navigator.pop(context);
   }
-
 }

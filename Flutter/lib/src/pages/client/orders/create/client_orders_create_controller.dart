@@ -3,7 +3,6 @@ import 'package:ardear_bakery/src/models/product.dart';
 import 'package:ardear_bakery/src/utils/shared_pref.dart';
 
 class ClientOrdersCreateController {
-
   BuildContext context;
   Function refresh;
 
@@ -21,7 +20,8 @@ class ClientOrdersCreateController {
     this.context = context;
     this.refresh = refresh;
 
-    selectedProducts = Product.fromJsonList(await _sharedPref.read('order')).toList;
+    selectedProducts =
+        Product.fromJsonList(await _sharedPref.read('order')).toList;
 
     getTotal();
     refresh();
@@ -60,5 +60,4 @@ class ClientOrdersCreateController {
   void goToAddress() {
     Navigator.pushNamed(context, 'client/address/list');
   }
-
 }

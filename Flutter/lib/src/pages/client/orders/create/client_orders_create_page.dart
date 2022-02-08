@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:ardear_bakery/src/models/product.dart';
@@ -160,7 +159,7 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
       margin: EdgeInsets.only(top: 10),
       child: Text(
         '${product.price * product.quantity}',
-        style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
       ),
     );
   }
