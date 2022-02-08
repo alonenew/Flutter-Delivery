@@ -131,9 +131,9 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
       child: Row(
         children: [
           IconButton(
-              onPressed: _con.addItem,
+              onPressed: _con.removeItem,
               icon: Icon(
-                Icons.add_circle_outline,
+                Icons.remove_circle_outline,
                 color: Colors.grey,
                 size: 30,
               )),
@@ -143,9 +143,9 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
                 fontSize: 17, fontWeight: FontWeight.bold, color: Colors.grey),
           ),
           IconButton(
-              onPressed: _con.removeItem,
+              onPressed: _con.addItem,
               icon: Icon(
-                Icons.remove_circle_outline,
+                Icons.add_circle_outline,
                 color: Colors.grey,
                 size: 30,
               )),
@@ -174,8 +174,8 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
             indicatorBackgroundColor: Colors.grey,
             children: [
               FadeInImage(
-                image: _con.product?.image != null
-                    ? NetworkImage(_con.product.image)
+                image: _con.product?.image1 != null
+                    ? NetworkImage(_con.product.image1)
                     : AssetImage('assets/img/no-image.png'),
                 fit: BoxFit.cover,
                 fadeInDuration: Duration(milliseconds: 50),
