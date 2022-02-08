@@ -22,7 +22,6 @@ class RestaurantProductsCreateController {
   TextEditingController descriptionController = new TextEditingController();
   MoneyMaskedTextController priceController = new MoneyMaskedTextController(
       decimalSeparator: '.', thousandSeparator: ',');
-
   CategoriesProvider _categoriesProvider = new CategoriesProvider();
   ProductsProvider _productsProvider = new ProductsProvider();
 
@@ -139,7 +138,7 @@ class RestaurantProductsCreateController {
         child: Text('กล้อง'));
 
     AlertDialog alertDialog = AlertDialog(
-      title: Text('เลือกรูป'),
+      title: Text('เลือกรูปภาพ'),
       actions: [galleryButton, cameraButton],
     );
 
