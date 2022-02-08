@@ -34,7 +34,8 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
       body: Stack(
         children: [
           Positioned(top: 0, child: _textSelectAddress()),
-          Container(margin: EdgeInsets.only(top: 50), child: _listAddress())
+          Container(
+              margin: EdgeInsets.only(top: 50, left: 10), child: _listAddress())
         ],
       ),
       bottomNavigationBar: _buttonAccept(),
@@ -45,7 +46,9 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
     return Column(
       children: [
         Container(
-            margin: EdgeInsets.only(top: 80, left: 70),
+            margin: EdgeInsets.only(
+              top: 100,
+            ),
             child: NoDataWidget(text: 'คุณไม่มีที่อยู่ เพิ่มที่อยู่ใหม่')),
         _buttonNewAddress()
       ],
@@ -54,7 +57,7 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
 
   Widget _buttonNewAddress() {
     return Container(
-      margin: EdgeInsets.only(left: 70),
+      margin: EdgeInsets.only(left: 80),
       height: 40,
       child: ElevatedButton(
         onPressed: _con.goToNewAddress,
@@ -140,10 +143,9 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
 
   Widget _textSelectAddress() {
     return Container(
-      alignment: Alignment.centerLeft,
-      margin: EdgeInsets.symmetric(horizontal: 80, vertical: 30),
+      margin: EdgeInsets.only(left: 150, top: 30),
       child: Text(
-        'เลือกสถานที่รับสินค้าของคุณ',
+        'ที่อยู่รับสินค้า',
         style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
       ),
     );

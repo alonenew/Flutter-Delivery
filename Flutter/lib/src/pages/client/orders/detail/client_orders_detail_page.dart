@@ -173,8 +173,8 @@ class _ClientOrdersDetailPageState extends State<ClientOrdersDetailPage> {
           borderRadius: BorderRadius.all(Radius.circular(20)),
           color: Colors.grey[200]),
       child: FadeInImage(
-        image: product.image1 != null
-            ? NetworkImage(product.image1)
+        image: product.image != null
+            ? NetworkImage(product.image)
             : AssetImage('assets/img/no-image.png'),
         fit: BoxFit.contain,
         fadeInDuration: Duration(milliseconds: 50),

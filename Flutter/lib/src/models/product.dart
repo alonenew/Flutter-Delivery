@@ -9,9 +9,7 @@ class Product {
   String id;
   String name;
   String description;
-  String image1;
-  String image2;
-  String image3;
+  String image;
   double price;
   int idCategory;
   int quantity;
@@ -21,9 +19,7 @@ class Product {
     this.id,
     this.name,
     this.description,
-    this.image1,
-    this.image2,
-    this.image3,
+    this.image,
     this.price,
     this.idCategory,
     this.quantity,
@@ -33,9 +29,7 @@ class Product {
     id: json["id"] is int ? json["id"].toString() : json['id'],
     name: json["name"],
     description: json["description"],
-    image1: json["image1"],
-    image2: json["image2"],
-    image3: json["image3"],
+    image: json["image"],
     price: json['price'] is String ? double.parse(json["price"]) : isInteger(json["price"]) ? json["price"].toDouble() : json['price'],
     idCategory: json["id_category"] is String ? int.parse(json["id_category"]) : json["id_category"],
     quantity: json["quantity"],
@@ -53,9 +47,7 @@ class Product {
     "id": id,
     "name": name,
     "description": description,
-    "image1": image1,
-    "image2": image2,
-    "image3": image3,
+    "image": image,
     "price": price,
     "id_category": idCategory,
     "quantity": quantity,

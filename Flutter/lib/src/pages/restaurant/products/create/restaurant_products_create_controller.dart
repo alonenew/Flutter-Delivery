@@ -20,7 +20,8 @@ class RestaurantProductsCreateController {
 
   TextEditingController nameController = new TextEditingController();
   TextEditingController descriptionController = new TextEditingController();
-  MoneyMaskedTextController priceController = new MoneyMaskedTextController();
+  MoneyMaskedTextController priceController = new MoneyMaskedTextController(
+      decimalSeparator: '.', thousandSeparator: ',');
 
   CategoriesProvider _categoriesProvider = new CategoriesProvider();
   ProductsProvider _productsProvider = new ProductsProvider();
@@ -29,11 +30,12 @@ class RestaurantProductsCreateController {
   SharedPref sharedPref = new SharedPref();
 
   List<Category> categories = [];
-  String idCategory; // ALAMCENAR EL ID DE LA CATEGORIA SELCCIONADA
+  String idCategory;
 
-  // IMAGENES
   PickedFile pickedFile;
-  File imageFile;
+  File imageFile1;
+  File imageFile2;
+  File imageFile3;
 
   ProgressDialog _progressDialog;
 
@@ -62,7 +64,7 @@ class RestaurantProductsCreateController {
       return;
     }
 
-    if (imageFile == null) {
+    if (imageFile1 == null) {
       MySnackbar.show(context, 'เลือกภาพ');
       return;
     }
@@ -79,7 +81,9 @@ class RestaurantProductsCreateController {
         idCategory: int.parse(idCategory));
 
     List<File> images = [];
-    images.add(imageFile);
+    images.add(imageFile1);
+    images.add(imageFile2);
+    images.add(imageFile3);
 
     _progressDialog.show(max: 100, msg: 'รอสักครู่...');
     Stream stream = await _productsProvider.create(product, images);
@@ -99,7 +103,9 @@ class RestaurantProductsCreateController {
     nameController.text = '';
     descriptionController.text = '';
     priceController.text = '0.0';
-    imageFile = null;
+    imageFile1 = null;
+    imageFile2 = null;
+    imageFile3 = null;
     idCategory = null;
     refresh();
   }
@@ -108,7 +114,11 @@ class RestaurantProductsCreateController {
     pickedFile = await ImagePicker().getImage(source: imageSource);
     if (pickedFile != null) {
       if (numberFile == 1) {
-        imageFile = File(pickedFile.path);
+        imageFile1 = File(pickedFile.path);
+      } else if (numberFile == 2) {
+        imageFile2 = File(pickedFile.path);
+      } else if (numberFile == 3) {
+        imageFile3 = File(pickedFile.path);
       }
     }
     Navigator.pop(context);
@@ -129,7 +139,7 @@ class RestaurantProductsCreateController {
         child: Text('กล้อง'));
 
     AlertDialog alertDialog = AlertDialog(
-      title: Text('เลือกรูปภาพ'),
+      title: Text('เลือกรูป'),
       actions: [galleryButton, cameraButton],
     );
 

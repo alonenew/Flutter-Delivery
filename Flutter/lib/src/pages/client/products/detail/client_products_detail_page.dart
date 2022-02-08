@@ -174,8 +174,8 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
             indicatorBackgroundColor: Colors.grey,
             children: [
               FadeInImage(
-                image: _con.product?.image1 != null
-                    ? NetworkImage(_con.product.image1)
+                image: _con.product?.image != null
+                    ? NetworkImage(_con.product.image)
                     : AssetImage('assets/img/no-image.png'),
                 fit: BoxFit.cover,
                 fadeInDuration: Duration(milliseconds: 50),

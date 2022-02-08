@@ -40,7 +40,7 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
             actions: [_shoppingBag()],
             flexibleSpace: Column(
               children: [
-                SizedBox(height: 55),
+                SizedBox(height: 15),
                 _menuDrawer(),
                 SizedBox(height: 15),
                 _textFieldSearch()
@@ -129,8 +129,8 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
                     width: MediaQuery.of(context).size.width * 0.45,
                     padding: EdgeInsets.all(20),
                     child: FadeInImage(
-                      image: product.image1 != null
-                          ? NetworkImage(product.image1)
+                      image: product.image != null
+                          ? NetworkImage(product.image)
                           : AssetImage('assets/img/pizza2.png'),
                       fit: BoxFit.contain,
                       fadeInDuration: Duration(milliseconds: 50),

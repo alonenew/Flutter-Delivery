@@ -14,8 +14,7 @@ class RolesController {
     this.context = context;
     this.refresh = refresh;
 
-    // OBTENER EL USUARIO DE SESION
-    user = User.fromJson(await sharedPref.read('user')); // PODRIA TARDAR UN TIEMPO EN OBTENERSE
+    user = User.fromJson(await sharedPref.read('user')); 
     refresh();
   }
 

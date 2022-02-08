@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:ardear_bakery/src/models/category.dart';
+import 'package:ardear_bakery/src/pages/restaurant/categories/create/restaurant_categories_create_controller.dart';
 import 'package:ardear_bakery/src/pages/restaurant/products/create/restaurant_products_create_controller.dart';
 import 'package:ardear_bakery/src/utils/my_colors.dart';
 
@@ -40,17 +42,19 @@ class _RestaurantProductsCreatePageState
           _textFieldName(),
           _textFieldDescription(),
           _textFieldPrice(),
-          _dropDownCategories(_con.categories),
           Container(
             height: 100,
             margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _cardImage(_con.imageFile, 1),
+                _cardImage(_con.imageFile1, 1),
+                _cardImage(_con.imageFile2, 2),
+                _cardImage(_con.imageFile3, 3),
               ],
             ),
           ),
+          _dropDownCategories(_con.categories),
         ],
       ),
       bottomNavigationBar: _buttonCreate(),
@@ -98,7 +102,7 @@ class _RestaurantProductsCreatePageState
             contentPadding: EdgeInsets.all(15),
             hintStyle: TextStyle(color: MyColors.primaryColorDark),
             suffixIcon: Icon(
-              Icons.price_change,
+              Icons.monetization_on,
               color: MyColors.primaryColor,
             )),
       ),
@@ -107,12 +111,11 @@ class _RestaurantProductsCreatePageState
 
   Widget _dropDownCategories(List<Category> categories) {
     return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: 33,
-      ),
+      margin: EdgeInsets.symmetric(horizontal: 33),
       child: Material(
         elevation: 2.0,
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(5)),
         child: Container(
           padding: EdgeInsets.all(10),
           child: Column(
@@ -125,9 +128,8 @@ class _RestaurantProductsCreatePageState
                   ),
                   SizedBox(width: 15),
                   Text(
-                    'หมวดสินค้า',
-                    style: TextStyle(
-                        color: MyColors.primaryColor, fontSize: 16),
+                    'เลือกหมวดสินค้า',
+                    style: TextStyle(color: Colors.grey, fontSize: 16),
                   )
                 ],
               ),
@@ -145,8 +147,7 @@ class _RestaurantProductsCreatePageState
                   isExpanded: true,
                   hint: Text(
                     'เลือกหมวดสินค้า',
-                    style: TextStyle(
-                        color: MyColors.primaryColor, fontSize: 16),
+                    style: TextStyle(color: Colors.grey, fontSize: 16),
                   ),
                   items: _dropDownItems(categories),
                   value: _con.idCategory,
@@ -223,10 +224,8 @@ class _RestaurantProductsCreatePageState
               child: Container(
                 height: 140,
                 width: MediaQuery.of(context).size.width * 0.26,
-                child: Icon(
-                  Icons.add_a_photo_rounded,
-                  size: 80,
-                  color: MyColors.primaryColor,
+                child: Image(
+                  image: AssetImage('assets/img/add_image.png'),
                 ),
               ),
             ),
