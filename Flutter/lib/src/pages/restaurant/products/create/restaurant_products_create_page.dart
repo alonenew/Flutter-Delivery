@@ -1,10 +1,8 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:ardear_bakery/src/models/category.dart';
-import 'package:ardear_bakery/src/pages/restaurant/categories/create/restaurant_categories_create_controller.dart';
 import 'package:ardear_bakery/src/pages/restaurant/products/create/restaurant_products_create_controller.dart';
 import 'package:ardear_bakery/src/utils/my_colors.dart';
 
@@ -42,19 +40,19 @@ class _RestaurantProductsCreatePageState
           _textFieldName(),
           _textFieldDescription(),
           _textFieldPrice(),
+          _dropDownCategories(_con.categories),
           Container(
-            height: 100,
-            margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+            height: 200,
+            margin: EdgeInsets.only(right: 30, left: 30, top: 10),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _cardImage(_con.imageFile1, 1),
-                _cardImage(_con.imageFile2, 2),
-                _cardImage(_con.imageFile3, 3),
+                // _cardImage(_con.imageFile2, 2),
+                // _cardImage(_con.imageFile3, 3),
               ],
             ),
           ),
-          _dropDownCategories(_con.categories),
         ],
       ),
       bottomNavigationBar: _buttonCreate(),
@@ -111,11 +109,11 @@ class _RestaurantProductsCreatePageState
 
   Widget _dropDownCategories(List<Category> categories) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 33),
+      margin: EdgeInsets.symmetric(horizontal: 33, vertical: 5),
       child: Material(
         elevation: 2.0,
         color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(5)),
+        borderRadius: BorderRadius.all(Radius.circular(30)),
         child: Container(
           padding: EdgeInsets.all(10),
           child: Column(
@@ -211,19 +209,19 @@ class _RestaurantProductsCreatePageState
           ? Card(
               elevation: 3.0,
               child: Container(
-                height: 100,
-                width: MediaQuery.of(context).size.width * 0.26,
+                height: 200,
+                width: MediaQuery.of(context).size.width * 0.7,
                 child: Image.file(
                   imageFile,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 ),
               ),
             )
           : Card(
               elevation: 3.0,
               child: Container(
-                height: 140,
-                width: MediaQuery.of(context).size.width * 0.26,
+                height: 200,
+                width: MediaQuery.of(context).size.width * 0.7,
                 child: Image(
                   image: AssetImage('assets/img/add_image.png'),
                 ),
@@ -236,7 +234,7 @@ class _RestaurantProductsCreatePageState
     return Container(
       height: 50,
       width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
+      margin: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
       child: ElevatedButton(
         onPressed: _con.createProduct,
         child: Text('เพิ่มสินค้า'),

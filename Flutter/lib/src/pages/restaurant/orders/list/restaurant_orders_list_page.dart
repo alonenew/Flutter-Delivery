@@ -1,3 +1,5 @@
+import 'package:ardear_bakery/src/pages/restaurant/orders/detail/restaurant_orders_detail_controller.dart';
+import 'package:ardear_bakery/src/utils/relative_time_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:ardear_bakery/src/models/order.dart';
@@ -15,6 +17,8 @@ class RestaurantOrdersListPage extends StatefulWidget {
 
 class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
   RestaurantOrdersListController _con = new RestaurantOrdersListController();
+  RestaurantOrdersDetailController _con2 =
+      new RestaurantOrdersDetailController();
 
   @override
   void initState() {
@@ -121,7 +125,7 @@ class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
                 ),
               )),
               Container(
-                margin: EdgeInsets.only(top: 40, left: 20, right: 20),
+                margin: EdgeInsets.only(top: 40, left: 20, right: 10),
                 child: Column(
                   children: [
                     Container(
@@ -129,9 +133,7 @@ class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
                       margin: EdgeInsets.symmetric(vertical: 5),
                       width: double.infinity,
                       child: Text(
-                        'วันที่สั่งซื้อ : 2015-05-23',
-                        style: TextStyle(fontSize: 13),
-                      ),
+                        'เวลาที่สั่งซื้อ : ${RelativeTimeUtil.getRelativeTime(order.timestamp ?? 0)}'),
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
@@ -158,6 +160,18 @@ class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
               )
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _textData(String title, String content) {
+    return Container(
+      child: ListTile(
+        title: Text(title),
+        subtitle: Text(
+          content,
+          maxLines: 1,
         ),
       ),
     );

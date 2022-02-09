@@ -6,6 +6,7 @@ import 'package:ardear_bakery/src/utils/shared_pref.dart';
 import 'package:ardear_bakery/src/models/order.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+
 class RestaurantOrdersListController {
   BuildContext context;
   SharedPref _sharedPref = new SharedPref();
@@ -14,12 +15,11 @@ class RestaurantOrdersListController {
   User user;
 
   List<String> status = [
-    'รายการสั่ง',
-    'กำลังทำอาหาร',
-    'ดำเนินการส่ง',
-    'ส่งแล้ว'
+    'รายการสั่งซื้อ',
+    'กำลังดำเนินการ',
+    'ระหว่างนำส่ง',
+    'เสร็จสิ้น'
   ];
-  // List<String> status = ['PAGADO', 'DESPACHADO', 'EN CAMINO', 'ENTREGADO'];
 
   OrdersProvider _ordersProvider = new OrdersProvider();
 

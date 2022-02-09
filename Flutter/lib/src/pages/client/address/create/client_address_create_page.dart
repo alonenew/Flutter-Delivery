@@ -47,7 +47,7 @@ class _ClientAddressCreatePageState extends State<ClientAddressCreatePage> {
       child: TextField(
         controller: _con.addressController,
         decoration: InputDecoration(
-            labelText: 'ที่อยู่',
+            labelText: 'บ้านเลขที่, ซอย',
             suffixIcon: Icon(
               Icons.location_on,
               color: MyColors.primaryColor,
@@ -65,7 +65,7 @@ class _ClientAddressCreatePageState extends State<ClientAddressCreatePage> {
         autofocus: false,
         focusNode: AlwaysDisabledFocusNode(),
         decoration: InputDecoration(
-            labelText: 'เลือกจาก MAP',
+            labelText: 'Google MAP',
             suffixIcon: Icon(
               Icons.map,
               color: MyColors.primaryColor,

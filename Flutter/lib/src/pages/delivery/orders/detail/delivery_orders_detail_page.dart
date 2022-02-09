@@ -7,17 +7,16 @@ import 'package:ardear_bakery/src/utils/relative_time_util.dart';
 import 'package:ardear_bakery/src/widgets/no_data_widget.dart';
 
 class DeliveryOrdersDetailPage extends StatefulWidget {
-
   Order order;
 
   DeliveryOrdersDetailPage({Key key, @required this.order}) : super(key: key);
 
   @override
-  _DeliveryOrdersDetailPageState createState() => _DeliveryOrdersDetailPageState();
+  _DeliveryOrdersDetailPageState createState() =>
+      _DeliveryOrdersDetailPageState();
 }
 
 class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
-
   DeliveryOrdersDetailController _con = new DeliveryOrdersDetailController();
 
   @override
@@ -39,10 +38,7 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
             margin: EdgeInsets.only(top: 18, right: 15),
             child: Text(
               'รวม : ${_con.total} บาท',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18
-              ),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
           )
         ],
@@ -58,24 +54,25 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
                 indent: 30, //IZQUIERDA
               ),
               SizedBox(height: 10),
-              _textData('ลูกค้า :', '${_con.order.client?.name ?? ''} ${_con.order.client?.lastname ?? ''}'),
+              _textData('ลูกค้า :',
+                  '${_con.order.client?.name ?? ''} ${_con.order.client?.lastname ?? ''}'),
               _textData('ผู้ส่ง :', '${_con.order.address?.address ?? ''}'),
-              _textData(
-                  'วันที่สั่ง :', 
-                  '${RelativeTimeUtil.getRelativeTime(_con.order.timestamp ?? 0)}'
-              ),
+              _textData('วันที่สั่ง :',
+                  '${RelativeTimeUtil.getRelativeTime(_con.order.timestamp ?? 0)}'),
               _con.order.status != 'จัดส่ง' ? _buttonNext() : Container()
             ],
           ),
         ),
       ),
       body: _con.order.products.length > 0
-      ? ListView(
-        children: _con.order.products.map((Product product) {
-          return _cardProduct(product);
-        }).toList(),
-      )
-      : NoDataWidget(text: 'ไม่มีสินค้า',),
+          ? ListView(
+              children: _con.order.products.map((Product product) {
+                return _cardProduct(product);
+              }).toList(),
+            )
+          : NoDataWidget(
+              text: 'ไม่มีสินค้า',
+            ),
     );
   }
 
@@ -98,12 +95,11 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
       child: ElevatedButton(
         onPressed: _con.updateOrder,
         style: ElevatedButton.styleFrom(
-            primary: _con.order?.status == 'จัดส่งแล้ว' ? Colors.blue : Colors.green,
+            primary:
+                _con.order?.status == 'ระหว่างนำส่ง' ? Colors.blue : Colors.green,
             padding: EdgeInsets.symmetric(vertical: 5),
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12)
-            )
-        ),
+                borderRadius: BorderRadius.circular(12))),
         child: Stack(
           children: [
             Align(
@@ -112,11 +108,10 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
                 height: 40,
                 alignment: Alignment.center,
                 child: Text(
-                  _con.order?.status == 'จัดส่งแล้ว' ? 'เริ่มจัดส่ง' : 'กำลังเดินทาง',
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
+                  _con.order?.status == 'ระหว่างนำส่ง'
+                      ? 'เริ่มจัดส่ง'
+                      : 'กำลังเดินทาง',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -132,7 +127,6 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
                 ),
               ),
             )
-
           ],
         ),
       ),
@@ -141,35 +135,29 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
 
   Widget _cardProduct(Product product) {
     return Container(
-        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Row(
-          children: [
-            _imageProduct(product),
-            SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  product?.name ?? '',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'จำนวน : ${product.quantity}',
-                  style: TextStyle(
-                      fontSize: 13
-                  ),
-                ),
-              ],
-            ),
-
-          ],
-        ),
+      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Row(
+        children: [
+          _imageProduct(product),
+          SizedBox(width: 10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                product?.name ?? '',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10),
+              Text(
+                'จำนวน : ${product.quantity}',
+                style: TextStyle(fontSize: 13),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
-  
 
   Widget _imageProduct(Product product) {
     return Container(
@@ -178,8 +166,7 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
       padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          color: Colors.grey[200]
-      ),
+          color: Colors.grey[200]),
       child: FadeInImage(
         image: product.image1 != null
             ? NetworkImage(product.image1)
@@ -191,7 +178,6 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
     );
   }
 
-  
   void refresh() {
     setState(() {});
   }

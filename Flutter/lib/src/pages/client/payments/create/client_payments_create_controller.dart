@@ -11,7 +11,6 @@ import 'package:ardear_bakery/src/utils/shared_pref.dart';
 import 'package:http/http.dart';
 
 class ClientPaymentsCreateController {
-
   BuildContext context;
   Function refresh;
   GlobalKey<FormState> keyForm = new GlobalKey();
@@ -30,12 +29,12 @@ class ClientPaymentsCreateController {
   SharedPref _sharedPref = new SharedPref();
 
   String typeDocument = 'CC';
-  
+
   String expirationYear;
   int expirationMonth;
 
   MercadoPagoCardToken cardToken;
-  
+
   Future init(BuildContext context, Function refresh) async {
     this.context = context;
     this.refresh = refresh;
@@ -48,14 +47,11 @@ class ClientPaymentsCreateController {
   void getIdentificationTypes() async {
     documentTypeList = await _mercadoPagoProvider.getIdentificationTypes();
 
-    documentTypeList.forEach((document) {
-      print('Documento: ${document.toJson()}');
-    });
+    documentTypeList.forEach((document) {});
     refresh();
   }
 
   void createCardToken() async {
-
     String documentNumber = documentNumberController.text;
 
     if (cardNumber.isEmpty) {
@@ -78,19 +74,19 @@ class ClientPaymentsCreateController {
       return;
     }
 
-    if (documentNumber.isEmpty) {
-      MySnackbar.show(context, 'Ingresa el numero del documento');
-      return;
-    }
-    
+    // if (documentNumber.isEmpty) {
+    //   MySnackbar.show(context, 'Ingresa el numero del documento');
+    //   return;
+    // }
+
     if (expireDate != null) {
       List<String> list = expireDate.split('/');
       if (list.length == 2) {
         expirationMonth = int.parse(list[0]);
         expirationYear = '20${list[1]}';
-      }
-      else {
-        MySnackbar.show(context, 'Inserta el mes y el año de expiracion de la tarjeta');
+      } else {
+        MySnackbar.show(
+            context, 'Inserta el mes y el año de expiracion de la tarjeta');
       }
     }
 
@@ -101,41 +97,37 @@ class ClientPaymentsCreateController {
     print('CVV: $cvvCode');
     print('Card Number: $cardNumber');
     print('cardHolderName: $cardHolderName');
-    print('documentId: $typeDocument');
-    print('documentNumber: $documentNumber');
+    // print('documentId: $typeDocument');
+    // print('documentNumber: $documentNumber');
     print('expirationYear: $expirationYear');
     print('expirationMonth: $expirationMonth');
 
     Response response = await _mercadoPagoProvider.createCardToken(
-      cvv: cvvCode,
-      cardNumber: cardNumber,
-      cardHolderName: cardHolderName,
-      documentId: typeDocument,
-      documentNumber: documentNumber,
-      expirationYear: expirationYear,
-      expirationMonth: expirationMonth
-    );
+        cvv: cvvCode,
+        cardNumber: cardNumber,
+        cardHolderName: cardHolderName,
+        // documentId: typeDocument,
+        // documentNumber: documentNumber,
+        expirationYear: expirationYear,
+        expirationMonth: expirationMonth);
 
     if (response != null) {
       final data = json.decode(response.body);
 
       if (response.statusCode == 201) {
         cardToken = new MercadoPagoCardToken.fromJsonMap(data);
-        Navigator.pushNamed(context, 'client/payments/installments', arguments: {
-          'identification_type': typeDocument,
-          'identification_number': documentNumber,
-          'card_token': cardToken.toJson(),
-        });
-
-      }
-      else {
-        print('HUBO UN ERROR GENERANDO EL TOKEN DE LA TARJETA');
+        Navigator.pushNamed(context, 'client/payments/installments',
+            arguments: {
+              'identification_type': typeDocument,
+              'identification_number': documentNumber,
+              'card_token': cardToken.toJson(),
+            });
+      } else {
         int status = int.tryParse(data['cause'][0]['code'] ?? data['status']);
         String message = data['message'] ?? 'Error al registrar la tarjeta';
         MySnackbar.show(context, 'Status code $status - $message');
       }
     }
-
   }
 
   void onCreditCardModelChanged(CreditCardModel creditCardModel) {
@@ -146,5 +138,4 @@ class ClientPaymentsCreateController {
     isCvvFocused = creditCardModel.isCvvFocused;
     refresh();
   }
-
 }

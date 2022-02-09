@@ -1,8 +1,15 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:ardear_bakery/src/models/order.dart';
 import 'package:ardear_bakery/src/models/product.dart';
+import 'package:ardear_bakery/src/models/user.dart';
+import 'package:ardear_bakery/src/pages/client/orders/create/client_orders_create_controller.dart';
 import 'package:ardear_bakery/src/pages/client/orders/detail/client_orders_detail_controller.dart';
+import 'package:ardear_bakery/src/pages/delivery/orders/detail/delivery_orders_detail_controller.dart';
+import 'package:ardear_bakery/src/pages/restaurant/orders/detail/restaurant_orders_detail_controller.dart';
+import 'package:ardear_bakery/src/utils/my_colors.dart';
 import 'package:ardear_bakery/src/utils/relative_time_util.dart';
 import 'package:ardear_bakery/src/widgets/no_data_widget.dart';
 
@@ -36,7 +43,7 @@ class _ClientOrdersDetailPageState extends State<ClientOrdersDetailPage> {
           Container(
             margin: EdgeInsets.only(top: 18, right: 15),
             child: Text(
-              'รวม : ${_con.total} บาท',
+              'Total: ${_con.total}\$',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
           )
@@ -53,14 +60,13 @@ class _ClientOrdersDetailPageState extends State<ClientOrdersDetailPage> {
                 indent: 30, //IZQUIERDA
               ),
               SizedBox(height: 10),
-              _textData('ผู้ส่ง :',
-                  '${_con.order?.delivery?.name ?? 'ไม่ได้รับมอบหมาย'} ${_con.order?.delivery?.lastname ?? ''}'),
-              _textData('ส่งมอบ :', '${_con.order?.address?.address ?? ''}'),
-              _textData('วันที่สั่ง :',
+              _textData('Repartidor:',
+                  '${_con.order?.delivery?.name ?? 'No asignado'} ${_con.order?.delivery?.lastname ?? ''}'),
+              _textData(
+                  'Entregar en:', '${_con.order?.address?.address ?? ''}'),
+              _textData('Fecha de pedido:',
                   '${RelativeTimeUtil.getRelativeTime(_con.order.timestamp ?? 0)}'),
-              _con.order?.status == 'ผู้ส่งกำลังเดินทาง'
-                  ? _buttonNext()
-                  : Container()
+              _con.order?.status == 'ระหว่างนำส่ง' ? _buttonNext() : Container()
             ],
           ),
         ),
@@ -72,7 +78,7 @@ class _ClientOrdersDetailPageState extends State<ClientOrdersDetailPage> {
               }).toList(),
             )
           : NoDataWidget(
-              text: 'ไม่มีสินค้า',
+              text: 'Ningun producto agregado',
             ),
     );
   }
@@ -108,7 +114,7 @@ class _ClientOrdersDetailPageState extends State<ClientOrdersDetailPage> {
                 height: 40,
                 alignment: Alignment.center,
                 child: Text(
-                  'ติดตามการจัดส่ง',
+                  'SEGUIR ENTREGA',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -147,7 +153,7 @@ class _ClientOrdersDetailPageState extends State<ClientOrdersDetailPage> {
               ),
               SizedBox(height: 10),
               Text(
-                'จำนวน : ${product.quantity}',
+                'Cantidad: ${product.quantity}',
                 style: TextStyle(fontSize: 13),
               ),
             ],

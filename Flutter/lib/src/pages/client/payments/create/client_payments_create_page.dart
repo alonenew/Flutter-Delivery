@@ -1,22 +1,24 @@
+import 'package:ardear_bakery/src/models/mercado_pago_document_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_credit_card/credit_card_form.dart';
 import 'package:flutter_credit_card/credit_card_widget.dart';
-import 'package:ardear_bakery/src/models/mercado_pago_document_type.dart';
-import 'package:ardear_bakery/src/models/user.dart';
 import 'package:ardear_bakery/src/pages/client/payments/create/client_payments_create_controller.dart';
+import 'package:ardear_bakery/src/pages/client/payments/installments/client_payments_installments_controller.dart';
 import 'package:ardear_bakery/src/utils/my_colors.dart';
 
 class ClientPaymentsCreatePage extends StatefulWidget {
   const ClientPaymentsCreatePage({Key key}) : super(key: key);
 
   @override
-  _ClientPaymentsCreatePageState createState() => _ClientPaymentsCreatePageState();
+  _ClientPaymentsCreatePageState createState() =>
+      _ClientPaymentsCreatePageState();
 }
 
 class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
-
   ClientPaymentsCreateController _con = new ClientPaymentsCreateController();
+  ClientPaymentsInstallmentsController _connect =
+      new ClientPaymentsInstallmentsController();
 
   @override
   void initState() {
@@ -78,8 +80,30 @@ class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
               labelText: 'Name',
             ),
           ),
-          _documentInfo(),
+          _textTotalPrice(),
+          // _documentInfo(),
           _buttonNext()
+        ],
+      ),
+    );
+  }
+
+  Widget _textTotalPrice() {
+    return Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: 30,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            'ค่าใช้จ่ายทั้งหมด:',
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            '${_connect.totalPayment}',
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
         ],
       ),
     );
@@ -94,9 +118,7 @@ class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
             primary: MyColors.primaryColor,
             padding: EdgeInsets.symmetric(vertical: 5),
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12)
-            )
-        ),
+                borderRadius: BorderRadius.circular(12))),
         child: Stack(
           children: [
             Align(
@@ -106,10 +128,7 @@ class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
                 alignment: Alignment.center,
                 child: Text(
                   'ดำเนินการต่อ',
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -125,7 +144,6 @@ class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
                 ),
               ),
             )
-
           ],
         ),
       ),
@@ -161,17 +179,14 @@ class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
                         isExpanded: true,
                         hint: Text(
                           'เอกสาร',
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 14
-                          ),
+                          style: TextStyle(color: Colors.grey, fontSize: 14),
                         ),
                         items: _dropDownItems(_con.documentTypeList),
                         value: _con.typeDocument,
                         onChanged: (option) {
                           setState(() {
-                            print('ตัวแทนจำหน่าย $option');
-                            _con.typeDocument = option; 
+                            
+                            _con.typeDocument = option;
                           });
                         },
                       ),
@@ -188,9 +203,7 @@ class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
               controller: _con.documentNumberController,
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'หมายเลขเอกสาร'
-              ),
+                  border: OutlineInputBorder(), labelText: 'หมายเลขเอกสาร'),
             ),
           )
         ],
@@ -198,7 +211,8 @@ class _ClientPaymentsCreatePageState extends State<ClientPaymentsCreatePage> {
     );
   }
 
-  List<DropdownMenuItem<String>> _dropDownItems(List<MercadoPagoDocumentType> documentType) {
+  List<DropdownMenuItem<String>> _dropDownItems(
+      List<MercadoPagoDocumentType> documentType) {
     List<DropdownMenuItem<String>> list = [];
     documentType.forEach((document) {
       list.add(DropdownMenuItem(

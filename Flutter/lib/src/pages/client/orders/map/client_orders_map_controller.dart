@@ -69,7 +69,7 @@ class ClientOrdersMapController {
           'delivery',
           data['lat'],
           data['lng'],
-          'Tu repartidor',
+          'คนส่งของของคุณ',
           '',
           deliveryMarker
       );

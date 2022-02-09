@@ -74,8 +74,8 @@ class _ClientOrdersMapPageState extends State<ClientOrdersMapPage> {
       ),
       child: Column(
         children: [
-          _listTileAddress(_con.order?.address?.neighborhood, 'Barrio', Icons.my_location),
-          _listTileAddress(_con.order?.address?.address, 'Direccion', Icons.location_on),
+          _listTileAddress(_con.order?.address?.neighborhood, 'Neighborhood', Icons.my_location),
+          _listTileAddress(_con.order?.address?.address, 'address', Icons.location_on),
           Divider(color: Colors.grey[400], endIndent: 30, indent: 30,),
           _clientInfo(),
         ],

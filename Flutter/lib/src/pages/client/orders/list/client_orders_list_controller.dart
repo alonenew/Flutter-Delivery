@@ -14,10 +14,10 @@ class ClientOrdersListController {
   User user;
 
   List<String> status = [
-    'ชำระเงินแล้ว',
-    'จัดส่งแล้ว',
-    'อยู่ระหว่างดำเนินการ',
-    'รับสินค้าแล้ว'
+    'รายการสั่งซื้อ',
+    'กำลังดำเนินการ',
+    'ระหว่างนำส่ง',
+    'เสร็จสิ้น'
   ];
   OrdersProvider _ordersProvider = new OrdersProvider();
 

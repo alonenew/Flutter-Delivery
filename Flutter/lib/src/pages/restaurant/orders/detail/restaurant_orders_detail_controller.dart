@@ -10,7 +10,6 @@ import 'package:ardear_bakery/src/utils/shared_pref.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class RestaurantOrdersDetailController {
-
   BuildContext context;
   Function refresh;
 
@@ -28,7 +27,8 @@ class RestaurantOrdersDetailController {
   List<User> users = [];
   UsersProvider _usersProvider = new UsersProvider();
   OrdersProvider _ordersProvider = new OrdersProvider();
-  PushNotificationsProvider pushNotificationsProvider = new PushNotificationsProvider();
+  PushNotificationsProvider pushNotificationsProvider =
+      new PushNotificationsProvider();
   String idDelivery;
 
   Future init(BuildContext context, Function refresh, Order order) async {
@@ -45,17 +45,10 @@ class RestaurantOrdersDetailController {
   }
 
   void sendNotification(String tokenDelivery) {
+    Map<String, dynamic> data = {'click_action': 'FLUTTER_NOTIFICATION_CLICK'};
 
-    Map<String, dynamic> data = {
-      'click_action': 'FLUTTER_NOTIFICATION_CLICK'
-    };
-
-    pushNotificationsProvider.sendMessage(
-        tokenDelivery,
-        data,
-        'คำสั่งที่ได้รับมอบหมาย',
-        'คุณได้รับมอบหมายคำสั่ง'
-    );
+    pushNotificationsProvider.sendMessage(tokenDelivery, data,
+        'คำสั่งที่ได้รับมอบหมาย', 'คุณได้รับมอบหมายคำสั่ง');
   }
 
   void updateOrder() async {
@@ -66,10 +59,10 @@ class RestaurantOrdersDetailController {
       User deliveryUser = await _usersProvider.getById(order.idDelivery);
       sendNotification(deliveryUser.notificationToken);
 
-      Fluttertoast.showToast(msg: responseApi.message, toastLength: Toast.LENGTH_LONG);
+      Fluttertoast.showToast(
+          msg: responseApi.message, toastLength: Toast.LENGTH_LONG);
       Navigator.pop(context, true);
-    }
-    else {
+    } else {
       Fluttertoast.showToast(msg: 'เลือกตัวแทนจำหน่าย');
     }
   }
@@ -86,5 +79,4 @@ class RestaurantOrdersDetailController {
     });
     refresh();
   }
-
 }

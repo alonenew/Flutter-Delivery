@@ -1,3 +1,6 @@
+import 'package:ardear_bakery/src/models/order.dart';
+import 'package:ardear_bakery/src/models/product.dart';
+import 'package:ardear_bakery/src/models/response_api.dart';
 import 'package:flutter/material.dart';
 import 'package:ardear_bakery/src/models/address.dart';
 import 'package:ardear_bakery/src/models/user.dart';
@@ -33,7 +36,14 @@ class ClientAddressListController {
   }
 
   void createOrder() async {
-    Navigator.pushNamed(context, 'client/payments/create');
+    Address a = Address.fromJson(await _sharedPref.read('address') ?? {});
+    List<Product> selectedProducts =
+        Product.fromJsonList(await _sharedPref.read('order')).toList;
+    Order order = new Order(
+        idClient: user.id, idAddress: a.id, products: selectedProducts);
+    ResponseApi responseApi = await _ordersProvider.create(order);
+
+    Navigator.pushNamed(context, 'client/orders/list');
   }
 
   void handleRadioValueChange(int value) async {

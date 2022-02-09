@@ -8,14 +8,13 @@ import 'package:ardear_bakery/src/models/order.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class DeliveryOrdersListController {
-
   BuildContext context;
   SharedPref _sharedPref = new SharedPref();
   GlobalKey<ScaffoldState> key = new GlobalKey<ScaffoldState>();
   Function refresh;
   User user;
 
-  List<String> status = ['DESPACHADO', 'EN CAMINO', 'ENTREGADO'];
+  List<String> status = ['กำลังดำเนินการ', 'ระหว่างนำส่ง', 'เสร็จสิ้น'];
   OrdersProvider _ordersProvider = new OrdersProvider();
 
   bool isUpdated;
@@ -36,8 +35,7 @@ class DeliveryOrdersListController {
   void openBottomSheet(Order order) async {
     isUpdated = await showMaterialModalBottomSheet(
         context: context,
-        builder: (context) => DeliveryOrdersDetailPage(order: order)
-    );
+        builder: (context) => DeliveryOrdersDetailPage(order: order));
 
     if (isUpdated) {
       refresh();
@@ -63,5 +61,4 @@ class DeliveryOrdersListController {
   void goToRoles() {
     Navigator.pushNamedAndRemoveUntil(context, 'roles', (route) => false);
   }
-
 }

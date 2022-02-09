@@ -8,12 +8,14 @@ class ClientPaymentsInstallmentsPage extends StatefulWidget {
   const ClientPaymentsInstallmentsPage({Key key}) : super(key: key);
 
   @override
-  _ClientPaymentsInstallmentsPageState createState() => _ClientPaymentsInstallmentsPageState();
+  _ClientPaymentsInstallmentsPageState createState() =>
+      _ClientPaymentsInstallmentsPageState();
 }
 
-class _ClientPaymentsInstallmentsPageState extends State<ClientPaymentsInstallmentsPage> {
-
-  ClientPaymentsInstallmentsController _con = new ClientPaymentsInstallmentsController();
+class _ClientPaymentsInstallmentsPageState
+    extends State<ClientPaymentsInstallmentsPage> {
+  ClientPaymentsInstallmentsController _con =
+      new ClientPaymentsInstallmentsController();
 
   @override
   void initState() {
@@ -33,10 +35,7 @@ class _ClientPaymentsInstallmentsPageState extends State<ClientPaymentsInstallme
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _textDescription(),
-          _dropDownInstallments()
-        ],
+        children: [_textDescription(), _dropDownInstallments()],
       ),
       bottomNavigationBar: Container(
         height: 140,
@@ -55,10 +54,7 @@ class _ClientPaymentsInstallmentsPageState extends State<ClientPaymentsInstallme
       margin: EdgeInsets.all(30),
       child: Text(
         'ผ่อนกี่งวด ?',
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold
-        ),
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -71,17 +67,11 @@ class _ClientPaymentsInstallmentsPageState extends State<ClientPaymentsInstallme
         children: [
           Text(
             'ค่าใช้จ่ายทั้งหมด:',
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold
-            ),
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           Text(
             '${_con.totalPayment}',
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold
-            ),
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -97,9 +87,7 @@ class _ClientPaymentsInstallmentsPageState extends State<ClientPaymentsInstallme
             primary: MyColors.primaryColor,
             padding: EdgeInsets.symmetric(vertical: 5),
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12)
-            )
-        ),
+                borderRadius: BorderRadius.circular(12))),
         child: Stack(
           children: [
             Align(
@@ -109,10 +97,7 @@ class _ClientPaymentsInstallmentsPageState extends State<ClientPaymentsInstallme
                 alignment: Alignment.center,
                 child: Text(
                   'ยืนยันการชำระเงิน',
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -128,7 +113,6 @@ class _ClientPaymentsInstallmentsPageState extends State<ClientPaymentsInstallme
                 ),
               ),
             )
-
           ],
         ),
       ),
@@ -160,10 +144,7 @@ class _ClientPaymentsInstallmentsPageState extends State<ClientPaymentsInstallme
                   isExpanded: true,
                   hint: Text(
                     'เลือกจำนวนการผ่อนชำระ',
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16
-                    ),
+                    style: TextStyle(color: Colors.grey, fontSize: 16),
                   ),
                   items: _dropDownItems(_con.installmentsList),
                   value: _con.selectedInstallment,
@@ -183,7 +164,8 @@ class _ClientPaymentsInstallmentsPageState extends State<ClientPaymentsInstallme
     );
   }
 
-  List<DropdownMenuItem<String>> _dropDownItems(List<MercadoPagoInstallment> installmentsList) {
+  List<DropdownMenuItem<String>> _dropDownItems(
+      List<MercadoPagoInstallment> installmentsList) {
     List<DropdownMenuItem<String>> list = [];
     installmentsList.forEach((installment) {
       list.add(DropdownMenuItem(

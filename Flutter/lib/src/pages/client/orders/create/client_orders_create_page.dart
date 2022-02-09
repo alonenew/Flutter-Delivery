@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:ardear_bakery/src/models/product.dart';
@@ -28,7 +29,7 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('รายการสินค้า'),
+        title: Text('Mi orden'),
       ),
       bottomNavigationBar: Container(
         height: MediaQuery.of(context).size.height * 0.235,
@@ -50,8 +51,8 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
                 return _cardProduct(product);
               }).toList(),
             )
-          : NoAddressWidget(
-              text: 'ไม่มีสินค้า',
+          : NoDataWidget(
+              text: 'Ningun producto agregado',
             ),
     );
   }
@@ -74,7 +75,7 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
                 height: 50,
                 alignment: Alignment.center,
                 child: Text(
-                  'ดำเนินการต่อ',
+                  'CONTINUAR',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -142,11 +143,11 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'รวม : ',
+            'Total:',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
           ),
           Text(
-            '${_con.total}\ บาท',
+            '${_con.total}\$',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           )
         ],
@@ -159,7 +160,7 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
       margin: EdgeInsets.only(top: 10),
       child: Text(
         '${product.price * product.quantity}',
-        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
       ),
     );
   }

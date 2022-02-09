@@ -1,3 +1,4 @@
+import 'package:ardear_bakery/src/utils/relative_time_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:ardear_bakery/src/models/order.dart';
@@ -104,7 +105,7 @@ class _ClientOrdersListPageState extends State<ClientOrdersListPage> {
                   width: double.infinity,
                   alignment: Alignment.center,
                   child: Text(
-                    'คำสั่งซื้อ #${order.id}',
+                    'Order #${order.id}',
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.white,
@@ -121,16 +122,14 @@ class _ClientOrdersListPageState extends State<ClientOrdersListPage> {
                       margin: EdgeInsets.symmetric(vertical: 5),
                       width: double.infinity,
                       child: Text(
-                        'Order : 2015-05-23',
-                        style: TextStyle(fontSize: 13),
-                      ),
+                          'เวลาที่สั่งซื้อ : ${RelativeTimeUtil.getRelativeTime(order.timestamp ?? 0)}'),
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
                       width: double.infinity,
                       margin: EdgeInsets.symmetric(vertical: 5),
                       child: Text(
-                        'ผู้จัดส่ง : ${order.delivery?.name ?? 'ไม่ได้รับมอบหมาย'} ${order.delivery?.lastname ?? ''}',
+                        'ผู้ส่ง : ${order.delivery?.name ?? 'รอยืนยันออเดอร์'} ${order.delivery?.lastname ?? ''}',
                         style: TextStyle(fontSize: 13),
                         maxLines: 1,
                       ),

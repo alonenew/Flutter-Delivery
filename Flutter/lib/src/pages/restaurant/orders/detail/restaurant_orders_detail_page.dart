@@ -60,17 +60,21 @@ class _RestaurantOrdersDetailPageState
               SizedBox(height: 10),
               _textDescription(),
               SizedBox(height: 15),
-              _con.order.status != 'ส่งสินค้า' ? _deliveryData() : Container(),
-              _con.order.status == 'ส่งสินค้า'
+              _con.order.status != 'รายการสั่งซื้อ'
+                  ? _deliveryData()
+                  : Container(),
+              _con.order.status == 'รายการสั่งซื้อ'
                   ? _dropDown(_con.users)
                   : Container(),
-              _textData('ลูกค้า:',
+              _textData('ชื่อลูกค้า:',
                   '${_con.order.client?.name ?? ''} ${_con.order.client?.lastname ?? ''}'),
               _textData(
                   'ที่อยู่ลูกค้า : ', '${_con.order.address?.address ?? ''}'),
-              _textData('วันที่สั่งซื้อ : ',
+              _textData('เวลาที่สั่งซื้อ : ',
                   '${RelativeTimeUtil.getRelativeTime(_con.order.timestamp ?? 0)}'),
-              _con.order.status == 'ส่งสินค้า' ? _buttonNext() : Container()
+              _con.order.status == 'รายการสั่งซื้อ'
+                  ? _buttonNext()
+                  : Container()
             ],
           ),
         ),
@@ -92,9 +96,7 @@ class _RestaurantOrdersDetailPageState
       alignment: Alignment.centerLeft,
       margin: EdgeInsets.symmetric(horizontal: 30),
       child: Text(
-        _con.order == 'ส่งสินค้า'
-            ? 'มอบหมายคนส่งของ'
-            : 'คนส่งของที่ได้รับมอบหมาย',
+        _con.order == 'รายการสั่งซื้อ' ? 'มอบหมายคนส่งของ' : 'เลือกพนักงานส่ง',
         style: TextStyle(
             fontStyle: FontStyle.italic,
             color: MyColors.primaryColor,
@@ -127,15 +129,14 @@ class _RestaurantOrdersDetailPageState
                   elevation: 3,
                   isExpanded: true,
                   hint: Text(
-                    'ผู้จำหน่าย',
+                    'เลือกพนักงานส่ง',
                     style: TextStyle(color: Colors.grey, fontSize: 16),
                   ),
                   items: _dropDownItems(users),
                   value: _con.idDelivery,
                   onChanged: (option) {
                     setState(() {
-                      _con.idDelivery =
-                          option; // ESTABLECIENDO EL VALOR SELECCIONADO
+                      _con.idDelivery = option;
                     });
                   },
                 ),

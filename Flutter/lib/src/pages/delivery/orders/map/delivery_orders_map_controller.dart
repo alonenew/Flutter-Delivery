@@ -19,9 +19,7 @@ import 'package:location/location.dart' as location;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
-
 class DeliveryOrdersMapController {
-
   BuildContext context;
   Function refresh;
   Position _position;
@@ -30,10 +28,8 @@ class DeliveryOrdersMapController {
   String addressName;
   LatLng addressLatLng;
 
-  CameraPosition initialPosition = CameraPosition(
-    target: LatLng(1.2125178, -77.2737861),
-    zoom: 14
-  );
+  CameraPosition initialPosition =
+      CameraPosition(target: LatLng(1.2125178, -77.2737861), zoom: 14);
 
   Completer<GoogleMapController> _mapController = Completer();
 
@@ -52,7 +48,8 @@ class DeliveryOrdersMapController {
 
   double _distanceBetween;
 
-  PushNotificationsProvider pushNotificationsProvider = new PushNotificationsProvider();
+  PushNotificationsProvider pushNotificationsProvider =
+      new PushNotificationsProvider();
 
   bool isClose = false;
 
@@ -61,11 +58,13 @@ class DeliveryOrdersMapController {
   Future init(BuildContext context, Function refresh) async {
     this.context = context;
     this.refresh = refresh;
-    order = Order.fromJson(ModalRoute.of(context).settings.arguments as Map<String, dynamic>);
+    order = Order.fromJson(
+        ModalRoute.of(context).settings.arguments as Map<String, dynamic>);
     deliveryMarker = await createMarkerFromAsset('assets/img/delivery2.png');
     homeMarker = await createMarkerFromAsset('assets/img/home.png');
 
-    socket = IO.io('http://${Environment.API_DELIVERY}/orders/delivery', <String, dynamic> {
+    socket = IO.io(
+        'http://${Environment.API_DELIVERY}/orders/delivery', <String, dynamic>{
       'transports': ['websocket'],
       'autoConnect': false
     });
@@ -78,17 +77,10 @@ class DeliveryOrdersMapController {
   }
 
   void sendNotification(String tokenDelivery) {
+    Map<String, dynamic> data = {'click_action': 'FLUTTER_NOTIFICATION_CLICK'};
 
-    Map<String, dynamic> data = {
-      'click_action': 'FLUTTER_NOTIFICATION_CLICK'
-    };
-
-    pushNotificationsProvider.sendMessage(
-        tokenDelivery,
-        data,
-        'REPARTIDOR ACERCANDOSE',
-        'Tu repartidor esta cerca al lugar de entrega'
-    );
+    pushNotificationsProvider.sendMessage(tokenDelivery, data,
+        'พนักงานส่งกำลังใกล้ถึงปลายทาง', 'พนักงานส่งอยู่สถานที่จัดส่งแล้ว');
   }
 
   void saveLocation() async {
@@ -106,12 +98,8 @@ class DeliveryOrdersMapController {
   }
 
   void isCloseToDeliveryPosition() {
-    _distanceBetween = Geolocator.distanceBetween(
-        _position.latitude,
-        _position.longitude,
-        order.address.lat,
-        order.address.lng
-    );
+    _distanceBetween = Geolocator.distanceBetween(_position.latitude,
+        _position.longitude, order.address.lat, order.address.lng);
 
     print('-------- DIOSTANCIA ${_distanceBetween} ----------');
 
@@ -121,17 +109,16 @@ class DeliveryOrdersMapController {
       sendNotification(order.client.notificationToken);
       isClose = true;
     }
-
-
   }
 
   void launchWaze() async {
-    var url = 'waze://?ll=${order.address.lat.toString()},${order.address.lng.toString()}';
+    var url =
+        'waze://?ll=${order.address.lat.toString()},${order.address.lng.toString()}';
     var fallbackUrl =
         'https://waze.com/ul?ll=${order.address.lat.toString()},${order.address.lng.toString()}&navigate=yes';
     try {
       bool launched =
-      await launch(url, forceSafariVC: false, forceWebView: false);
+          await launch(url, forceSafariVC: false, forceWebView: false);
       if (!launched) {
         await launch(fallbackUrl, forceSafariVC: false, forceWebView: false);
       }
@@ -141,12 +128,13 @@ class DeliveryOrdersMapController {
   }
 
   void launchGoogleMaps() async {
-    var url = 'google.navigation:q=${order.address.lat.toString()},${order.address.lng.toString()}';
+    var url =
+        'google.navigation:q=${order.address.lat.toString()},${order.address.lng.toString()}';
     var fallbackUrl =
         'https://www.google.com/maps/search/?api=1&query=${order.address.lat.toString()},${order.address.lng.toString()}';
     try {
       bool launched =
-      await launch(url, forceSafariVC: false, forceWebView: false);
+          await launch(url, forceSafariVC: false, forceWebView: false);
       if (!launched) {
         await launch(fallbackUrl, forceSafariVC: false, forceWebView: false);
       }
@@ -156,16 +144,16 @@ class DeliveryOrdersMapController {
   }
 
   void updateToDelivered() async {
-
     if (_distanceBetween <= 200) {
       ResponseApi responseApi = await _ordersProvider.updateToDelivered(order);
       if (responseApi.success) {
-        Fluttertoast.showToast(msg: responseApi.message, toastLength: Toast.LENGTH_LONG);
-        Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/list', (route) => false);
+        Fluttertoast.showToast(
+            msg: responseApi.message, toastLength: Toast.LENGTH_LONG);
+        Navigator.pushNamedAndRemoveUntil(
+            context, 'delivery/orders/list', (route) => false);
       }
-    }
-    else {
-      MySnackbar.show(context, 'Debes estar mas cerca a la posicion de entrega');
+    } else {
+      MySnackbar.show(context, 'คุณต้องอยู่ใกล้ตำแหน่งจัดส่ง');
     }
   }
 
@@ -173,12 +161,9 @@ class DeliveryOrdersMapController {
     PointLatLng pointFrom = PointLatLng(from.latitude, from.longitude);
     PointLatLng pointTo = PointLatLng(to.latitude, to.longitude);
     PolylineResult result = await PolylinePoints().getRouteBetweenCoordinates(
-        Environment.API_KEY_MAPS,
-        pointFrom,
-        pointTo
-    );
+        Environment.API_KEY_MAPS, pointFrom, pointTo);
 
-    for(PointLatLng point in result.points) {
+    for (PointLatLng point in result.points) {
       points.add(LatLng(point.latitude, point.longitude));
     }
 
@@ -186,29 +171,21 @@ class DeliveryOrdersMapController {
         polylineId: PolylineId('poly'),
         color: MyColors.primaryColor,
         points: points,
-        width: 6
-    );
+        width: 6);
 
     polylines.add(polyline);
 
     refresh();
   }
 
-  void addMarker(
-      String markerId,
-      double lat,
-      double lng,
-      String title,
-      String content,
-      BitmapDescriptor iconMarker) {
-
+  void addMarker(String markerId, double lat, double lng, String title,
+      String content, BitmapDescriptor iconMarker) {
     MarkerId id = MarkerId(markerId);
     Marker marker = Marker(
         markerId: id,
         icon: iconMarker,
         position: LatLng(lat, lng),
-        infoWindow: InfoWindow(title: title, snippet: content)
-    );
+        infoWindow: InfoWindow(title: title, snippet: content));
 
     markers[id] = marker;
 
@@ -221,18 +198,18 @@ class DeliveryOrdersMapController {
       'lat': addressLatLng.latitude,
       'lng': addressLatLng.longitude,
     };
-    
+
     Navigator.pop(context, data);
   }
 
   Future<BitmapDescriptor> createMarkerFromAsset(String path) async {
     ImageConfiguration configuration = ImageConfiguration();
-    BitmapDescriptor descriptor = await BitmapDescriptor.fromAssetImage(configuration, path);
+    BitmapDescriptor descriptor =
+        await BitmapDescriptor.fromAssetImage(configuration, path);
     return descriptor;
   }
 
   Future<Null> setLocationDraggableInfo() async {
-
     if (initialPosition != null) {
       double lat = initialPosition.target.latitude;
       double lng = initialPosition.target.longitude;
@@ -254,12 +231,12 @@ class DeliveryOrdersMapController {
           refresh();
         }
       }
-
     }
   }
 
   void onMapCreated(GoogleMapController controller) {
-    controller.setMapStyle('[{"elementType":"geometry","stylers":[{"color":"#f5f5f5"}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"elementType":"labels.text.fill","stylers":[{"color":"#616161"}]},{"elementType":"labels.text.stroke","stylers":[{"color":"#f5f5f5"}]},{"featureType":"administrative.land_parcel","elementType":"labels.text.fill","stylers":[{"color":"#bdbdbd"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#eeeeee"}]},{"featureType":"poi","elementType":"labels.text.fill","stylers":[{"color":"#757575"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#e5e5e5"}]},{"featureType":"poi.park","elementType":"labels.text.fill","stylers":[{"color":"#9e9e9e"}]},{"featureType":"road","elementType":"geometry","stylers":[{"color":"#ffffff"}]},{"featureType":"road.arterial","elementType":"labels.text.fill","stylers":[{"color":"#757575"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#dadada"}]},{"featureType":"road.highway","elementType":"labels.text.fill","stylers":[{"color":"#616161"}]},{"featureType":"road.local","elementType":"labels.text.fill","stylers":[{"color":"#9e9e9e"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"color":"#e5e5e5"}]},{"featureType":"transit.station","elementType":"geometry","stylers":[{"color":"#eeeeee"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#c9c9c9"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"color":"#9e9e9e"}]}]');
+    controller.setMapStyle(
+        '[{"elementType":"geometry","stylers":[{"color":"#f5f5f5"}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"elementType":"labels.text.fill","stylers":[{"color":"#616161"}]},{"elementType":"labels.text.stroke","stylers":[{"color":"#f5f5f5"}]},{"featureType":"administrative.land_parcel","elementType":"labels.text.fill","stylers":[{"color":"#bdbdbd"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#eeeeee"}]},{"featureType":"poi","elementType":"labels.text.fill","stylers":[{"color":"#757575"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#e5e5e5"}]},{"featureType":"poi.park","elementType":"labels.text.fill","stylers":[{"color":"#9e9e9e"}]},{"featureType":"road","elementType":"geometry","stylers":[{"color":"#ffffff"}]},{"featureType":"road.arterial","elementType":"labels.text.fill","stylers":[{"color":"#757575"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#dadada"}]},{"featureType":"road.highway","elementType":"labels.text.fill","stylers":[{"color":"#616161"}]},{"featureType":"road.local","elementType":"labels.text.fill","stylers":[{"color":"#9e9e9e"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"color":"#e5e5e5"}]},{"featureType":"transit.station","elementType":"geometry","stylers":[{"color":"#eeeeee"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#c9c9c9"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"color":"#9e9e9e"}]}]');
     _mapController.complete(controller);
   }
 
@@ -270,61 +247,38 @@ class DeliveryOrdersMapController {
 
   void updateLocation() async {
     try {
-
       await _determinePosition(); // OBTENER LA POSICION ACTUAL Y TAMBIEN SOLICITAR LOS PERMISOS
       _position = await Geolocator.getLastKnownPosition(); // LAT Y LNG
       saveLocation();
 
       animateCameraToPosition(_position.latitude, _position.longitude);
-      addMarker(
-          'delivery',
-          _position.latitude,
-          _position.longitude,
-          'Tu posicion',
-          '',
-          deliveryMarker
-      );
+      addMarker('delivery', _position.latitude, _position.longitude,
+          'Tu posicion', '', deliveryMarker);
 
-      addMarker(
-          'home',
-          order.address.lat,
-          order.address.lng,
-          'Lugar de entrega',
-          '',
-          homeMarker
-      );
+      addMarker('home', order.address.lat, order.address.lng,
+          'Lugar de entrega', '', homeMarker);
 
       LatLng from = new LatLng(_position.latitude, _position.longitude);
       LatLng to = new LatLng(order.address.lat, order.address.lng);
 
       setPolylines(from, to);
-      
+
       _positionStream = Geolocator.getPositionStream(
-          desiredAccuracy: LocationAccuracy.best,
-          distanceFilter: 1
-      ).listen((Position position) {
-        
+              desiredAccuracy: LocationAccuracy.best, distanceFilter: 1)
+          .listen((Position position) {
         _position = position;
 
         emitPosition();
-        
-        addMarker(
-            'delivery',
-            _position.latitude,
-            _position.longitude,
-            'Tu posicion',
-            '',
-            deliveryMarker
-        );
-        
+
+        addMarker('delivery', _position.latitude, _position.longitude,
+            'Tu posicion', '', deliveryMarker);
+
         animateCameraToPosition(_position.latitude, _position.longitude);
         isCloseToDeliveryPosition();
 
         refresh();
-        
       });
-
-    } catch(e) {
+    } catch (e) {
       print('Error: $e');
     }
   }
@@ -338,8 +292,7 @@ class DeliveryOrdersMapController {
 
     if (isLocationEnabled) {
       updateLocation();
-    }
-    else {
+    } else {
       bool locationGPS = await location.Location().requestService();
       if (locationGPS) {
         updateLocation();
@@ -351,12 +304,7 @@ class DeliveryOrdersMapController {
     GoogleMapController controller = await _mapController.future;
     if (controller != null) {
       controller.animateCamera(CameraUpdate.newCameraPosition(
-        CameraPosition(
-            target: LatLng(lat, lng),
-            zoom: 13,
-            bearing: 0
-        )
-      ));
+          CameraPosition(target: LatLng(lat, lng), zoom: 13, bearing: 0)));
     }
   }
 
@@ -366,23 +314,22 @@ class DeliveryOrdersMapController {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
+      return Future.error('ตำแหน่งถูกปิดใช้งาน');
     }
 
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
+        return Future.error('การขออนุญาตตำแหน่งถูกปฏิเสธ');
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return Future.error('Location permissions are permanently denied, we cannot request permissions.');
+      return Future.error(
+          'การอนุญาตตำแหน่งถูกปฏิเสธอย่างถาวร เราไม่สามารถขออนุญาตได้');
     }
 
     return await Geolocator.getCurrentPosition();
   }
-
-
 }

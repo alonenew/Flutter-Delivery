@@ -23,7 +23,6 @@ class OrdersProvider {
 
   Future<List<Order>> getByStatus(String status) async {
     try {
-      print('SESION TOKEN: ${sessionUser.sessionToken}');
       Uri url = Uri.http(_url, '$_api/findByStatus/$status');
       Map<String, String> headers = {
         'Content-type': 'application/json',

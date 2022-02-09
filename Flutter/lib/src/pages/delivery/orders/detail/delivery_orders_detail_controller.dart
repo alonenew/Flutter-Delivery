@@ -11,7 +11,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DeliveryOrdersDetailController {
-
   BuildContext context;
   Function refresh;
 
@@ -44,15 +43,17 @@ class DeliveryOrdersDetailController {
   }
 
   void updateOrder() async {
-    if (order.status == 'DESPACHADO') {
+    if (order.status == 'กำลังดำเนินการ') {
       ResponseApi responseApi = await _ordersProvider.updateToOnTheWay(order);
-      Fluttertoast.showToast(msg: responseApi.message, toastLength: Toast.LENGTH_LONG);
+      Fluttertoast.showToast(
+          msg: responseApi.message, toastLength: Toast.LENGTH_LONG);
       if (responseApi.success) {
-        Navigator.pushNamed(context, 'delivery/orders/map', arguments: order.toJson());
+        Navigator.pushNamed(context, 'delivery/orders/map',
+            arguments: order.toJson());
       }
-    }
-    else {
-      Navigator.pushNamed(context, 'delivery/orders/map', arguments: order.toJson());
+    } else {
+      Navigator.pushNamed(context, 'delivery/orders/map',
+          arguments: order.toJson());
     }
   }
 
@@ -68,5 +69,4 @@ class DeliveryOrdersDetailController {
     });
     refresh();
   }
-
 }
