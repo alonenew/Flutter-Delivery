@@ -25,7 +25,6 @@ class _RestaurantOrdersDetailPageState
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       _con.init(context, refresh, widget.order);
@@ -36,13 +35,21 @@ class _RestaurantOrdersDetailPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Orden #${_con.order?.id ?? ''}'),
+        backgroundColor: MyColors.primaryColor,
+        iconTheme: IconThemeData(
+          color: MyColors.textColor, //change your color here
+        ),
+        title: Text('Order #${_con.order?.id ?? ''}',
+            style: TextStyle(color: MyColors.textColor)),
         actions: [
           Container(
             margin: EdgeInsets.only(top: 18, right: 15),
             child: Text(
               'รวม: ${_con.total} บาท',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              style: TextStyle(
+                  color: MyColors.textColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
             ),
           )
         ],
@@ -52,14 +59,15 @@ class _RestaurantOrdersDetailPageState
         child: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(height: 10),
               Divider(
-                color: Colors.grey[400],
-                endIndent: 30, // DERECHA
-                indent: 30, //IZQUIERDA
+                color: Colors.black,
+                endIndent: 30,
+                indent: 30,
               ),
               SizedBox(height: 10),
               _textDescription(),
-              SizedBox(height: 15),
+              SizedBox(height: 10),
               _con.order.status != 'รายการสั่งซื้อ'
                   ? _deliveryData()
                   : Container(),
@@ -99,7 +107,7 @@ class _RestaurantOrdersDetailPageState
         _con.order == 'รายการสั่งซื้อ' ? 'มอบหมายคนส่งของ' : 'เลือกพนักงานส่ง',
         style: TextStyle(
             fontStyle: FontStyle.italic,
-            color: MyColors.primaryColor,
+            color: MyColors.textColor,
             fontSize: 16),
       ),
     );
@@ -130,7 +138,7 @@ class _RestaurantOrdersDetailPageState
                   isExpanded: true,
                   hint: Text(
                     'เลือกพนักงานส่ง',
-                    style: TextStyle(color: Colors.grey, fontSize: 16),
+                    style: TextStyle(color: MyColors.textColor, fontSize: 16),
                   ),
                   items: _dropDownItems(users),
                   value: _con.idDelivery,
@@ -154,8 +162,8 @@ class _RestaurantOrdersDetailPageState
       child: Row(
         children: [
           Container(
-            height: 40,
-            width: 40,
+            height: 70,
+            width: 70,
             child: FadeInImage(
               image: _con.order.delivery?.image != null
                   ? NetworkImage(_con.order.delivery.image)
@@ -167,7 +175,9 @@ class _RestaurantOrdersDetailPageState
           ),
           SizedBox(width: 5),
           Text(
-              '${_con.order.delivery?.name ?? ''} ${_con.order.delivery?.lastname ?? ''}')
+            '${_con.order.delivery?.name ?? ''} ${_con.order.delivery?.lastname ?? ''}',
+            style: TextStyle(fontSize: 18),
+          )
         ],
       ),
     );
@@ -206,10 +216,14 @@ class _RestaurantOrdersDetailPageState
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20),
       child: ListTile(
-        title: Text(title),
+        title: Text(
+          title,
+          style: TextStyle(fontSize: 20),
+        ),
         subtitle: Text(
           content,
           maxLines: 2,
+          style: TextStyle(fontSize: 18),
         ),
       ),
     );
@@ -234,7 +248,10 @@ class _RestaurantOrdersDetailPageState
                 alignment: Alignment.center,
                 child: Text(
                   'จัดส่งคำสั่งซื้อ',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: MyColors.textColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -245,7 +262,7 @@ class _RestaurantOrdersDetailPageState
                 height: 30,
                 child: Icon(
                   Icons.check_circle,
-                  color: Colors.white,
+                  color: MyColors.textColor,
                   size: 30,
                 ),
               ),
@@ -268,12 +285,12 @@ class _RestaurantOrdersDetailPageState
             children: [
               Text(
                 product?.name ?? '',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
               Text(
                 'จำนวนสินค้า : ${product.quantity}',
-                style: TextStyle(fontSize: 13),
+                style: TextStyle(fontSize: 18),
               ),
             ],
           ),
@@ -284,9 +301,9 @@ class _RestaurantOrdersDetailPageState
 
   Widget _imageProduct(Product product) {
     return Container(
-      width: 50,
-      height: 50,
-      padding: EdgeInsets.all(5),
+      width: 100,
+      height: 100,
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
           color: Colors.grey[200]),

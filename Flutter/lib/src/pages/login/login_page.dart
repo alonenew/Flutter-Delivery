@@ -31,11 +31,11 @@ class _LoginPageState extends State<LoginPage> {
       width: double.infinity,
       child: Stack(
         children: [
-          Positioned(top: -80, left: -100, child: _circleLogin()),
+          Positioned(top: -80, right: -100, child: _circleLogin()),
           Positioned(
             child: _textLogin(),
             top: 60,
-            left: 25,
+            right: 25,
           ),
           SingleChildScrollView(
             child: Column(
@@ -57,9 +57,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget _lottieAnimation() {
     return Container(
       margin: EdgeInsets.only(
-          top: 150, bottom: MediaQuery.of(context).size.height * 0.17),
+          top: 150, bottom: MediaQuery.of(context).size.height * 0.05),
       child: Lottie.asset('assets/json/delivery.json',
-          width: 350, height: 200, fit: BoxFit.fill),
+          ),
     );
   }
 
@@ -67,9 +67,9 @@ class _LoginPageState extends State<LoginPage> {
     return Text(
       'เข้าสู่ระบบ',
       style: TextStyle(
-          color: Colors.white,
+          color: Colors.brown,
           fontWeight: FontWeight.bold,
-          fontSize: 22,
+          fontSize: 24,
           fontFamily: 'NimbusSans'),
     );
   }
@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
       children: [
         Text(
           'ยังไม่ได้เป็นสมาชิก ?',
-          style: TextStyle(color: MyColors.primaryColor, fontSize: 17),
+          style: TextStyle(color: MyColors.textColor, fontSize: 17),
         ),
         SizedBox(width: 7),
         GestureDetector(
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
             'สมัครสมาชิก',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: MyColors.primaryColor,
+                color: MyColors.textColor,
                 fontSize: 17),
           ),
         ),
@@ -103,7 +103,10 @@ class _LoginPageState extends State<LoginPage> {
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
       child: ElevatedButton(
         onPressed: _con.login,
-        child: Text('เข้าสู่ระบบ'),
+        child: Text(
+          'เข้าสู่ระบบ',
+          style: TextStyle(color: Colors.brown, fontSize: 18),
+        ),
         style: ElevatedButton.styleFrom(
             primary: MyColors.primaryColor,
             shape:
@@ -126,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
             hintText: 'รหัสผ่าน',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
+            hintStyle: TextStyle(color: MyColors.textColor),
             prefixIcon: Icon(
               Icons.lock,
               color: MyColors.primaryColor,
@@ -148,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
             hintText: 'อีเมล',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
+            hintStyle: TextStyle(color: MyColors.textColor),
             prefixIcon: Icon(
               Icons.email,
               color: MyColors.primaryColor,
@@ -159,23 +162,11 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _circleLogin() {
     return Container(
-      width: 240,
-      height: 230,
+      width: 300,
+      height: 210,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
           color: MyColors.primaryColor),
-    );
-  }
-
-  Widget _imageBanner() {
-    return Container(
-      margin: EdgeInsets.only(
-          top: 100, bottom: MediaQuery.of(context).size.height * 0.22),
-      child: Image.asset(
-        'assets/img/delivery.png',
-        width: 200,
-        height: 200,
-      ),
     );
   }
 }

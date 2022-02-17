@@ -32,7 +32,14 @@ class _RestaurantProductsCreatePageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('สินค้าใหม่'),
+        title: Text(
+          'สินค้าใหม่',
+          style: TextStyle(color: Colors.brown),
+        ),
+        iconTheme: IconThemeData(
+          color: MyColors.textColor, //change your color here
+        ),
+        backgroundColor: MyColors.primaryColor,
       ),
       body: ListView(
         children: [
@@ -74,10 +81,10 @@ class _RestaurantProductsCreatePageState
             hintText: 'ชื่อสินค้า',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
+            hintStyle: TextStyle(color: MyColors.textColor),
             suffixIcon: Icon(
               Icons.local_pizza,
-              color: MyColors.primaryColor,
+              color: MyColors.textColor,
             )),
       ),
     );
@@ -98,10 +105,10 @@ class _RestaurantProductsCreatePageState
             hintText: 'ราคา',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
+            hintStyle: TextStyle(color: MyColors.textColor),
             suffixIcon: Icon(
               Icons.monetization_on,
-              color: MyColors.primaryColor,
+              color: MyColors.textColor,
             )),
       ),
     );
@@ -122,12 +129,12 @@ class _RestaurantProductsCreatePageState
                 children: [
                   Icon(
                     Icons.search,
-                    color: MyColors.primaryColor,
+                    color: MyColors.textColor,
                   ),
                   SizedBox(width: 15),
                   Text(
                     'เลือกหมวดสินค้า',
-                    style: TextStyle(color: Colors.grey, fontSize: 16),
+                    style: TextStyle(color: MyColors.textColor, fontSize: 16),
                   )
                 ],
               ),
@@ -138,14 +145,14 @@ class _RestaurantProductsCreatePageState
                     alignment: Alignment.centerRight,
                     child: Icon(
                       Icons.arrow_drop_down_circle,
-                      color: MyColors.primaryColor,
+                      color: MyColors.textColor,
                     ),
                   ),
                   elevation: 3,
                   isExpanded: true,
                   hint: Text(
                     'เลือกหมวดสินค้า',
-                    style: TextStyle(color: Colors.grey, fontSize: 16),
+                    style: TextStyle(color: MyColors.textColor, fontSize: 16),
                   ),
                   items: _dropDownItems(categories),
                   value: _con.idCategory,
@@ -190,10 +197,10 @@ class _RestaurantProductsCreatePageState
           hintText: 'คำอธิบายสินค้า',
           border: InputBorder.none,
           contentPadding: EdgeInsets.all(15),
-          hintStyle: TextStyle(color: MyColors.primaryColorDark),
+          hintStyle: TextStyle(color: MyColors.textColor),
           suffixIcon: Icon(
             Icons.description,
-            color: MyColors.primaryColor,
+            color: MyColors.textColor,
           ),
         ),
       ),
@@ -232,12 +239,15 @@ class _RestaurantProductsCreatePageState
 
   Widget _buttonCreate() {
     return Container(
-      height: 50,
+      height: 60,
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
       child: ElevatedButton(
         onPressed: _con.createProduct,
-        child: Text('เพิ่มสินค้า'),
+        child: Text(
+          'เพิ่มสินค้า',
+          style: TextStyle(color: Colors.brown, fontSize: 20),
+        ),
         style: ElevatedButton.styleFrom(
             primary: MyColors.primaryColor,
             shape:

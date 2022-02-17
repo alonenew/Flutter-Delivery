@@ -33,12 +33,12 @@ class _RegisterPageState extends State<RegisterPage> {
             Positioned(top: -80, left: -100, child: _circle()),
             Positioned(
               child: _textRegister(),
-              top: 65,
+              top: 60,
               left: 27,
             ),
             Positioned(
               child: _iconBack(),
-              top: 51,
+              top: 53,
               left: -5,
             ),
             Container(
@@ -82,15 +82,15 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget _iconBack() {
     return IconButton(
         onPressed: _con.back,
-        icon: Icon(Icons.arrow_back_ios, color: Colors.white));
+        icon: Icon(Icons.arrow_back_ios, color: Colors.brown));
   }
 
   Widget _textRegister() {
     return Text('สมัครสมาชิก',
         style: TextStyle(
-            color: Colors.white,
+            color: Colors.brown,
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontSize: 24,
             fontFamily: 'NimbusSans'));
   }
 
@@ -107,7 +107,7 @@ class _RegisterPageState extends State<RegisterPage> {
             hintText: 'อีเมล',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
+            hintStyle: TextStyle(color: MyColors.textColor),
             prefixIcon: Icon(
               Icons.email,
               color: MyColors.primaryColor,
@@ -128,7 +128,7 @@ class _RegisterPageState extends State<RegisterPage> {
             hintText: 'ชื่อ',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
+            hintStyle: TextStyle(color: MyColors.textColor),
             prefixIcon: Icon(
               Icons.person,
               color: MyColors.primaryColor,
@@ -149,7 +149,7 @@ class _RegisterPageState extends State<RegisterPage> {
             hintText: 'สกุล',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
+            hintStyle: TextStyle(color: MyColors.textColor),
             prefixIcon: Icon(
               Icons.person_outline,
               color: MyColors.primaryColor,
@@ -171,7 +171,7 @@ class _RegisterPageState extends State<RegisterPage> {
             hintText: 'เบอร์โทรศัพท์',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
+            hintStyle: TextStyle(color: MyColors.textColor),
             prefixIcon: Icon(
               Icons.phone,
               color: MyColors.primaryColor,
@@ -193,7 +193,7 @@ class _RegisterPageState extends State<RegisterPage> {
             hintText: 'รหัสผ่าน',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
+            hintStyle: TextStyle(color: MyColors.textColor),
             prefixIcon: Icon(
               Icons.lock,
               color: MyColors.primaryColor,
@@ -215,7 +215,7 @@ class _RegisterPageState extends State<RegisterPage> {
             hintText: 'ยืนยันรหัสผ่าน',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
+            hintStyle: TextStyle(color: MyColors.textColor),
             prefixIcon: Icon(
               Icons.lock_outline,
               color: MyColors.primaryColor,
@@ -232,7 +232,10 @@ class _RegisterPageState extends State<RegisterPage> {
         onPressed: () {
           _con.register();
         },
-        child: Text('ลงทะเบียน'),
+        child: Text(
+          'ลงทะเบียน',
+          style: TextStyle(color: Colors.brown, fontSize: 18),
+        ),
         style: ElevatedButton.styleFrom(
             primary: MyColors.primaryColor,
             shape:
@@ -244,8 +247,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Widget _circle() {
     return Container(
-      width: 240,
-      height: 230,
+      width: 300,
+      height: 210,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
           color: MyColors.primaryColor),

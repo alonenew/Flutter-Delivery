@@ -29,7 +29,14 @@ class _RestaurantCategoriesCreatePageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('สร้างหมวดสินค้า'),
+        title: Text(
+          'สร้างหมวดสินค้า',
+          style: TextStyle(color: MyColors.textColor),
+        ),
+        iconTheme: IconThemeData(
+          color: MyColors.textColor, //change your color here
+        ),
+        backgroundColor: MyColors.primaryColor,
       ),
       body: Column(
         children: [
@@ -54,10 +61,10 @@ class _RestaurantCategoriesCreatePageState
             hintText: 'ชื่อหมวดสินค้า',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
+            hintStyle: TextStyle(color: MyColors.textColor),
             suffixIcon: Icon(
               Icons.list_alt,
-              color: MyColors.primaryColor,
+              color: MyColors.textColor,
             )),
       ),
     );
@@ -78,10 +85,10 @@ class _RestaurantCategoriesCreatePageState
           hintText: 'คำอธิบายหมวดสินค้า',
           border: InputBorder.none,
           contentPadding: EdgeInsets.all(15),
-          hintStyle: TextStyle(color: MyColors.primaryColorDark),
+          hintStyle: TextStyle(color: MyColors.textColor),
           suffixIcon: Icon(
             Icons.description,
-            color: MyColors.primaryColor,
+            color: MyColors.textColor,
           ),
         ),
       ),
@@ -90,12 +97,15 @@ class _RestaurantCategoriesCreatePageState
 
   Widget _buttonCreate() {
     return Container(
-      height: 50,
+      height: 55,
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
       child: ElevatedButton(
         onPressed: _con.createCategory,
-        child: Text('สร้างหมวดหมู่'),
+        child: Text(
+          'สร้างหมวดหมู่',
+          style: TextStyle(color: Colors.brown, fontSize: 18),
+        ),
         style: ElevatedButton.styleFrom(
             primary: MyColors.primaryColor,
             shape:

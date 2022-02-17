@@ -40,7 +40,7 @@ class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
           preferredSize: Size.fromHeight(100),
           child: AppBar(
             automaticallyImplyLeading: false,
-            backgroundColor: Colors.white,
+            backgroundColor: MyColors.primaryColor,
             flexibleSpace: Column(
               children: [
                 SizedBox(height: 20),
@@ -48,9 +48,10 @@ class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
               ],
             ),
             bottom: TabBar(
-              indicatorColor: MyColors.primaryColor,
+              indicatorColor: Colors.black,
+              indicatorWeight: 3,
               labelColor: Colors.black,
-              unselectedLabelColor: Colors.grey[400],
+              unselectedLabelColor: Colors.grey,
               isScrollable: true,
               tabs: List<Widget>.generate(_con.status.length, (index) {
                 return Tab(
@@ -116,10 +117,10 @@ class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
                   width: double.infinity,
                   alignment: Alignment.center,
                   child: Text(
-                    'Orden #${order.id}',
+                    'Order #${order.id}',
                     style: TextStyle(
                         fontSize: 15,
-                        color: Colors.white,
+                        color: Colors.brown,
                         fontFamily: 'NimbusSans'),
                   ),
                 ),
@@ -133,7 +134,7 @@ class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
                       margin: EdgeInsets.symmetric(vertical: 5),
                       width: double.infinity,
                       child: Text(
-                        'เวลาที่สั่งซื้อ : ${RelativeTimeUtil.getRelativeTime(order.timestamp ?? 0)}'),
+                          'เวลาที่สั่งซื้อ : ${RelativeTimeUtil.getRelativeTime(order.timestamp ?? 0)}'),
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
