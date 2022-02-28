@@ -34,7 +34,7 @@ class CategoriesProvider {
         Fluttertoast.showToast(msg: 'Sesion expirada');
         new SharedPref().logout(context, sessionUser.id);
       }
-      final data = json.decode(res.body); // CATEGORIAS
+      final data = json.decode(res.body);
       Category category = Category.fromJsonList(data);
       return category.toList;
     }

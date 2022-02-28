@@ -47,6 +47,7 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
                 _textFieldName(),
                 _textFieldLastName(),
                 _textFieldPhone(),
+                _textFieldPassword(),
               ],
             ),
           )),
@@ -81,7 +82,7 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
             hintText: 'ชื่อ',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
+            hintStyle: TextStyle(color: MyColors.textColor),
             prefixIcon: Icon(
               Icons.person,
               color: MyColors.primaryColor,
@@ -102,7 +103,7 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
             hintText: 'สกุล',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
+            hintStyle: TextStyle(color: MyColors.textColor),
             prefixIcon: Icon(
               Icons.person_outline,
               color: MyColors.primaryColor,
@@ -124,9 +125,30 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
             hintText: 'เบอร์โทรศัพท์',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
-            hintStyle: TextStyle(color: MyColors.primaryColorDark),
+            hintStyle: TextStyle(color: MyColors.textColor),
             prefixIcon: Icon(
               Icons.phone,
+              color: MyColors.primaryColor,
+            )),
+      ),
+    );
+  }
+
+  Widget _textFieldPassword() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 50, vertical: 5),
+      decoration: BoxDecoration(
+          color: MyColors.primaryOpacityColor,
+          borderRadius: BorderRadius.circular(30)),
+      child: TextField(
+        controller: _con.passwordController,
+        decoration: InputDecoration(
+            hintText: 'รหัสผ่าน',
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.all(15),
+            hintStyle: TextStyle(color: MyColors.textColor),
+            prefixIcon: Icon(
+              Icons.lock,
               color: MyColors.primaryColor,
             )),
       ),
@@ -139,7 +161,10 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
       child: ElevatedButton(
         onPressed: _con.isEnable ? _con.update : null,
-        child: Text('อัพเดทข้อมูล',style: TextStyle(fontSize: 20,color: MyColors.textColor),),
+        child: Text(
+          'อัพเดทข้อมูล',
+          style: TextStyle(fontSize: 20, color: MyColors.textColor),
+        ),
         style: ElevatedButton.styleFrom(
             primary: MyColors.primaryColor,
             shape:

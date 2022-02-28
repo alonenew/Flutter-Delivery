@@ -249,15 +249,11 @@ class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
             title: Text('เพิ่มสินค้า'),
             trailing: Icon(Icons.local_pizza),
           ),
-          _con.user != null
-              ? _con.user.roles.length > 1
-                  ? ListTile(
-                      onTap: _con.goToRoles,
-                      title: Text('ตั้งสถานะผู้ใช้'),
-                      trailing: Icon(Icons.person_outline),
-                    )
-                  : Container()
-              : Container(),
+          // ListTile(
+          //   onTap: _con.goToRoles,
+          //   title: Text('ตั้งสถานะผู้ใช้'),
+          //   trailing: Icon(Icons.person_outline),
+          // ),
           ListTile(
             onTap: _con.logout,
             title: Text('ออกจากระบบ'),

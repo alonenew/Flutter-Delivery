@@ -51,8 +51,8 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
       alignment: Alignment.centerLeft,
       margin: EdgeInsets.only(right: 30, left: 30, top: 15),
       child: Text(
-        _con.product?.description ?? '',
-        style: TextStyle(fontSize: 13, color: Colors.grey),
+        ' ${_con.product?.description} ' ?? '',
+        style: TextStyle(fontSize: 16, color: Colors.grey),
       ),
     );
   }
@@ -62,8 +62,8 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
       alignment: Alignment.centerLeft,
       margin: EdgeInsets.only(right: 30, left: 30, top: 30),
       child: Text(
-        _con.product?.name ?? '',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        '${_con.product?.name} ' ?? '',
+        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -87,7 +87,10 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
                 alignment: Alignment.center,
                 child: Text(
                   'ใส่ตะกร้า',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: MyColors.textColor),
                 ),
               ),
             ),
@@ -112,12 +115,12 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
         children: [
           Image.asset(
             'assets/img/delivery.png',
-            height: 17,
+            height: 20,
           ),
           SizedBox(width: 7),
           Text(
             'จัดส่งแบบปกติ',
-            style: TextStyle(fontSize: 12, color: Colors.green),
+            style: TextStyle(fontSize: 16, color: Colors.green),
           )
         ],
       ),
@@ -134,26 +137,26 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
               icon: Icon(
                 Icons.remove_circle_outline,
                 color: Colors.grey,
-                size: 30,
+                size: 35,
               )),
           Text(
-            '${_con.counter}',
+            '  ${_con.counter} ',
             style: TextStyle(
-                fontSize: 17, fontWeight: FontWeight.bold, color: Colors.grey),
+                fontSize: 22, fontWeight: FontWeight.bold, color: Colors.grey),
           ),
           IconButton(
               onPressed: _con.addItem,
               icon: Icon(
                 Icons.add_circle_outline,
                 color: Colors.grey,
-                size: 30,
+                size: 35,
               )),
           Spacer(),
           Container(
             margin: EdgeInsets.only(right: 10),
             child: Text(
-              '${_con.productPrice ?? 0} บาท',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ' ${_con.productPrice ?? 0} บาท ',
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
           )
         ],

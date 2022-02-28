@@ -43,7 +43,8 @@ class ClientAddressListController {
         idClient: user.id, idAddress: a.id, products: selectedProducts);
     ResponseApi responseApi = await _ordersProvider.create(order);
 
-    Navigator.pushNamed(context, 'client/payment/status');
+    Navigator.pushNamed(context, 'client/payments/status');
+    selectedProducts.clear();
   }
 
   void handleRadioValueChange(int value) async {

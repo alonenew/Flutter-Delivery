@@ -25,7 +25,6 @@ class ClientProductsDetailController {
     // _sharedPref.remove('order');
     selectedProducts =
         Product.fromJsonList(await _sharedPref.read('order')).toList;
-
     selectedProducts.forEach((p) {});
 
     refresh();

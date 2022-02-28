@@ -92,6 +92,7 @@ class RegisterController {
           Navigator.pushReplacementNamed(context, 'login');
         });
       } else {
+        Navigator.pushReplacementNamed(context, 'login');
         isEnable = true;
       }
     });

@@ -82,7 +82,7 @@ class OrdersProvider {
         Fluttertoast.showToast(msg: 'Sesion expirada');
         new SharedPref().logout(context, sessionUser.id);
       }
-      final data = json.decode(res.body); // CATEGORIAS
+      final data = json.decode(res.body);
       Order order = Order.fromJsonList(data);
       return order.toList;
     }

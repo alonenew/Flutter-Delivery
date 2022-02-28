@@ -12,11 +12,11 @@ import 'package:image_picker/image_picker.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';
 
 class ClientUpdateController {
-
   BuildContext context;
   TextEditingController nameController = new TextEditingController();
   TextEditingController lastnameController = new TextEditingController();
   TextEditingController phoneController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
 
   UsersProvider usersProvider = new UsersProvider();
 
@@ -42,6 +42,8 @@ class ClientUpdateController {
     nameController.text = user.name;
     lastnameController.text = user.lastname;
     phoneController.text = user.phone;
+    passwordController.text = user.password;
+
     refresh();
   }
 
@@ -49,8 +51,9 @@ class ClientUpdateController {
     String name = nameController.text;
     String lastname = lastnameController.text;
     String phone = phoneController.text.trim();
+    String password = passwordController.text.trim();
 
-    if (name.isEmpty || lastname.isEmpty || phone.isEmpty) {
+    if (name.isEmpty || lastname.isEmpty || phone.isEmpty || password.isEmpty) {
       MySnackbar.show(context, 'กรุณากรอกให้ครบ');
       return;
     }
@@ -63,12 +66,11 @@ class ClientUpdateController {
         name: name,
         lastname: lastname,
         phone: phone,
-        image: user.image
-    );
+        password: password,
+        image: user.image);
 
     Stream stream = await usersProvider.update(myUser, imageFile);
     stream.listen((res) async {
-
       _progressDialog.close();
 
       // ResponseApi responseApi = await usersProvider.create(user);
@@ -76,11 +78,12 @@ class ClientUpdateController {
       Fluttertoast.showToast(msg: responseApi.message);
 
       if (responseApi.success) {
-        user = await usersProvider.getById(myUser.id); // OBTENIENDO EL USUARIO DE LA DB
+        user = await usersProvider
+            .getById(myUser.id); // OBTENIENDO EL USUARIO DE LA DB
         _sharedPref.save('user', user.toJson());
-        Navigator.pushNamedAndRemoveUntil(context, 'client/products/list', (route) => false);
-      }
-      else {
+        Navigator.pushNamedAndRemoveUntil(
+            context, 'client/products/list', (route) => false);
+      } else {
         isEnable = true;
       }
     });
@@ -100,35 +103,27 @@ class ClientUpdateController {
         onPressed: () {
           selectImage(ImageSource.gallery);
         },
-        child: Text('คลังภาพ')
-    );
+        child: Text('คลังภาพ'));
 
     Widget cameraButton = ElevatedButton(
         onPressed: () {
           selectImage(ImageSource.camera);
         },
-        child: Text('กล้อง')
-    );
+        child: Text('กล้อง'));
 
     AlertDialog alertDialog = AlertDialog(
       title: Text('กรุณาเลือกรูป'),
-      actions: [
-        galleryButton,
-        cameraButton
-      ],
+      actions: [galleryButton, cameraButton],
     );
 
     showDialog(
         context: context,
         builder: (BuildContext context) {
           return alertDialog;
-        }
-    );
+        });
   }
 
   void back() {
     Navigator.pop(context);
   }
-
-
 }

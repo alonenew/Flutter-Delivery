@@ -3,6 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:ardear_bakery/src/pages/client/payments/status/client_payments_status_controller.dart';
 import 'package:ardear_bakery/src/utils/my_colors.dart';
+import 'package:lottie/lottie.dart';
 
 class ClientPaymentsStatusPage extends StatefulWidget {
   const ClientPaymentsStatusPage({Key key}) : super(key: key);
@@ -30,7 +31,12 @@ class _ClientPaymentsStatusPageState extends State<ClientPaymentsStatusPage> {
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [_clipPathOval(), _textCardDetail(), _textCardStatus()],
+        children: [
+          _clipPathOval(),
+          _lottieAnimation(),
+          _textCardStatus(),
+          
+        ],
       ),
       bottomNavigationBar: Container(
         height: 100,
@@ -39,24 +45,23 @@ class _ClientPaymentsStatusPageState extends State<ClientPaymentsStatusPage> {
     );
   }
 
-  Widget _textCardDetail() {
+  Widget _lottieAnimation() {
     return Container(
-        width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-        child: Text(
-          ' ได้รับคำสั่งซื้อแล้ว ',
-          style: TextStyle(fontSize: 17),
-          textAlign: TextAlign.center,
-        ));
+      margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).size.height * 0.05, left: 50, top: 50),
+      child: Lottie.asset('assets/json/cooking.json', height: 300),
+    );
   }
 
   Widget _textCardStatus() {
     return Container(
         width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        margin: EdgeInsets.symmetric(
+          horizontal: 30,
+        ),
         child: Text(
-          'ตรวจสอบสถานะการสั่งซื้อ',
-          style: TextStyle(fontSize: 17),
+          'ตรวจสอบสถานะสั่งซื้อ',
+          style: TextStyle(fontSize: 25),
           textAlign: TextAlign.center,
         ));
   }
@@ -65,18 +70,27 @@ class _ClientPaymentsStatusPageState extends State<ClientPaymentsStatusPage> {
     return ClipPath(
       clipper: OvalBottomBorderClipper(),
       child: Container(
+        margin: EdgeInsets.only(top: 30),
         height: 250,
         width: double.infinity,
         color: MyColors.primaryColor,
         child: SafeArea(
           child: Column(
             children: [
+              Icon(
+                Icons.check_circle,
+                color: Colors.green,
+                size: 120,
+              ),
+              SizedBox(
+                height: 10,
+              ),
               Text(
-                'ขอบคุณที่ใช้บริการ',
+                'ได้รับคำสั่งซื้อแล้ว',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: MyColors.textColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: 22),
+                    fontSize: 36),
               )
             ],
           ),
@@ -84,6 +98,8 @@ class _ClientPaymentsStatusPageState extends State<ClientPaymentsStatusPage> {
       ),
     );
   }
+
+  
 
   Widget _buttonNext() {
     return Container(
@@ -104,7 +120,10 @@ class _ClientPaymentsStatusPageState extends State<ClientPaymentsStatusPage> {
                 alignment: Alignment.center,
                 child: Text(
                   'ออกจากหน้านี้',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: MyColors.textColor),
                 ),
               ),
             ),
@@ -115,7 +134,7 @@ class _ClientPaymentsStatusPageState extends State<ClientPaymentsStatusPage> {
                 height: 30,
                 child: Icon(
                   Icons.arrow_forward_ios,
-                  color: Colors.white,
+                  color: MyColors.textColor,
                   size: 30,
                 ),
               ),

@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:ardear_bakery/src/models/product.dart';
@@ -60,7 +57,7 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
                 return _cardProduct(product);
               }).toList(),
             )
-          : NoDataWidget(
+          : NoAddressWidget(
               text: 'ไม่มีสินค้า',
             ),
     );

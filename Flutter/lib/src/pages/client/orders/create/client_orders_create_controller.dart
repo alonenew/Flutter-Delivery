@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:ardear_bakery/src/models/product.dart';
 import 'package:ardear_bakery/src/utils/shared_pref.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class ClientOrdersCreateController {
   BuildContext context;
   Function refresh;
-
-  Product product;
-
-  int counter = 1;
+  SharedPref _sharedPref = new SharedPref();
   double productPrice;
 
-  SharedPref _sharedPref = new SharedPref();
+  
+  Product product;
 
   List<Product> selectedProducts = [];
   double total = 0;
