@@ -262,7 +262,7 @@ class _RestaurantOrdersDetailPageState
                 height: 30,
                 child: Icon(
                   Icons.check_circle,
-                  color: MyColors.textColor,
+                  color: Colors.green,
                   size: 30,
                 ),
               ),

@@ -10,7 +10,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class ClientAddressCreateController {
-
   BuildContext context;
   Function refresh;
 
@@ -38,22 +37,20 @@ class ClientAddressCreateController {
     double lng = refPoint['lng'] ?? 0;
 
     if (addressName.isEmpty || neighborhood.isEmpty || lat == 0 || lng == 0) {
-      MySnackbar.show(context, 'Completa todos los campos');
+      MySnackbar.show(context, 'กรอกข้อมูลให้ครบทุกช่อง');
       return;
     }
 
     Address address = new Address(
-      address: addressName,
-      neighborhood: neighborhood,
-      lat: lat,
-      lng: lng,
-      idUser: user.id
-    );
+        address: addressName,
+        neighborhood: neighborhood,
+        lat: lat,
+        lng: lng,
+        idUser: user.id);
 
     ResponseApi responseApi = await _addressProvider.create(address);
 
     if (responseApi.success) {
-
       address.id = responseApi.data;
       _sharedPref.save('address', address);
 
@@ -67,13 +64,11 @@ class ClientAddressCreateController {
         context: context,
         isDismissible: false,
         enableDrag: false,
-        builder: (context) => ClientAddressMapPage()
-    );
+        builder: (context) => ClientAddressMapPage());
 
     if (refPoint != null) {
       refPointController.text = refPoint['address'];
       refresh();
     }
   }
-
 }

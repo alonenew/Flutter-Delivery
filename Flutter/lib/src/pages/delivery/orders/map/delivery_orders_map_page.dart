@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:ardear_bakery/src/pages/client/address/list/client_address_list_controller.dart';
-import 'package:ardear_bakery/src/pages/client/address/map/client_address_map_controller.dart';
 import 'package:ardear_bakery/src/pages/delivery/orders/map/delivery_orders_map_controller.dart';
 import 'package:ardear_bakery/src/utils/my_colors.dart';
-import 'package:ardear_bakery/src/widgets/no_data_widget.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class DeliveryOrdersMapPage extends StatefulWidget {
@@ -51,7 +48,6 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
             ),
           ),
           Positioned(top: 40, left: 15, child: _iconGoogleMaps()),
-          Positioned(top: 85, left: 15, child: _iconWaze())
         ],
       ),
     );
@@ -76,10 +72,10 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
           ]),
       child: Column(
         children: [
-          _listTileAddress(
-              _con.order?.address?.neighborhood, 'Barrio', Icons.my_location),
-          _listTileAddress(
-              _con.order?.address?.address, 'Direccion', Icons.location_on),
+          _listTileAddress('ที่อยู่ผู้สั่ง', _con.order?.address?.address,
+              Icons.location_on),
+          _listTileAddress('รายละเอียดเพิ่มเติม',
+              _con.order?.address?.neighborhood, Icons.my_location),
           Divider(
             color: Colors.grey[400],
             endIndent: 30,
@@ -112,7 +108,7 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
           Container(
             margin: EdgeInsets.only(left: 10),
             child: Text(
-              '${_con.order?.client?.name ?? ''} ${_con.order?.client?.lastname ?? ''}',
+              '${_con.order?.client?.name ?? ''} ${_con.order?.client?.lastname ?? ''} ${_con.order.client.phone}',
               style: TextStyle(color: Colors.black, fontSize: 16),
               maxLines: 1,
             ),
@@ -140,17 +136,6 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
       onTap: _con.launchGoogleMaps,
       child: Image.asset(
         'assets/img/google_maps.png',
-        height: 35,
-        width: 35,
-      ),
-    );
-  }
-
-  Widget _iconWaze() {
-    return GestureDetector(
-      onTap: _con.launchWaze,
-      child: Image.asset(
-        'assets/img/waze.png',
         height: 35,
         width: 35,
       ),
@@ -190,7 +175,10 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
                 alignment: Alignment.center,
                 child: Text(
                   'ส่งสินค้า',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: MyColors.textColor),
                 ),
               ),
             ),
@@ -201,7 +189,7 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
                 height: 30,
                 child: Icon(
                   Icons.check_circle,
-                  color: Colors.white,
+                  color: Colors.green,
                   size: 30,
                 ),
               ),

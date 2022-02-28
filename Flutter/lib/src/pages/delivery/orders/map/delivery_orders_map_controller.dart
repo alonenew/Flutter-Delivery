@@ -72,7 +72,6 @@ class DeliveryOrdersMapController {
 
     user = User.fromJson(await _sharedPref.read('user'));
     _ordersProvider.init(context, user);
-    print('ORDEN: ${order.toJson()}');
     checkGPS();
   }
 
@@ -223,7 +222,7 @@ class DeliveryOrdersMapController {
           String city = address[0].locality;
           String department = address[0].administrativeArea;
           String country = address[0].country;
-          addressName = '$direction #$street, $city, $department';
+          addressName = '$direction $street, $city, $department';
           addressLatLng = new LatLng(lat, lng);
           // print('LAT: ${addressLatLng.latitude}');
           // print('LNG: ${addressLatLng.longitude}');
@@ -252,11 +251,11 @@ class DeliveryOrdersMapController {
       saveLocation();
 
       animateCameraToPosition(_position.latitude, _position.longitude);
-      addMarker('delivery', _position.latitude, _position.longitude,
-          'Tu posicion', '', deliveryMarker);
+      addMarker('พนักงานส่ง', _position.latitude, _position.longitude,
+          'ตำแหน่งของคุณ', '', deliveryMarker);
 
-      addMarker('home', order.address.lat, order.address.lng,
-          'Lugar de entrega', '', homeMarker);
+      addMarker('ที่อยู่ปลายทาง', order.address.lat, order.address.lng,
+          'ที่อยู่ปลายทาง', '', homeMarker);
 
       LatLng from = new LatLng(_position.latitude, _position.longitude);
       LatLng to = new LatLng(order.address.lat, order.address.lng);
@@ -270,8 +269,8 @@ class DeliveryOrdersMapController {
 
         emitPosition();
 
-        addMarker('delivery', _position.latitude, _position.longitude,
-            'Tu posicion', '', deliveryMarker);
+        addMarker('พนักงานส่ง', _position.latitude, _position.longitude,
+            'ตำแหน่งของคุณ', '', deliveryMarker);
 
         animateCameraToPosition(_position.latitude, _position.longitude);
         isCloseToDeliveryPosition();
@@ -284,7 +283,7 @@ class DeliveryOrdersMapController {
   }
 
   void call() {
-    launch("tel://${order.client.phone}");
+    launch("tel://${order?.client?.name}");
   }
 
   void checkGPS() async {

@@ -27,7 +27,14 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('แก้ไขข้อมูลส่วนตัว'),
+        title: Text(
+          'แก้ไขข้อมูลส่วนตัว',
+          style: TextStyle(color: MyColors.textColor),
+        ),
+        iconTheme: IconThemeData(
+          color: MyColors.textColor,
+        ),
+        backgroundColor: MyColors.primaryColor,
       ),
       body: Container(
           width: double.infinity,
@@ -132,7 +139,7 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
       child: ElevatedButton(
         onPressed: _con.isEnable ? _con.update : null,
-        child: Text('อัพเดทข้อมูล'),
+        child: Text('อัพเดทข้อมูล',style: TextStyle(fontSize: 20,color: MyColors.textColor),),
         style: ElevatedButton.styleFrom(
             primary: MyColors.primaryColor,
             shape:

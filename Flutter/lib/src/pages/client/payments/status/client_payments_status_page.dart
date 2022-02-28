@@ -8,11 +8,11 @@ class ClientPaymentsStatusPage extends StatefulWidget {
   const ClientPaymentsStatusPage({Key key}) : super(key: key);
 
   @override
-  _ClientPaymentsStatusPageState createState() => _ClientPaymentsStatusPageState();
+  _ClientPaymentsStatusPageState createState() =>
+      _ClientPaymentsStatusPageState();
 }
 
 class _ClientPaymentsStatusPageState extends State<ClientPaymentsStatusPage> {
-
   ClientPaymentsStatusController _con = new ClientPaymentsStatusController();
 
   @override
@@ -30,11 +30,7 @@ class _ClientPaymentsStatusPageState extends State<ClientPaymentsStatusPage> {
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _clipPathOval(),
-          _textCardDetail(),
-          _textCardStatus()
-        ],
+        children: [_clipPathOval(), _textCardDetail(), _textCardStatus()],
       ),
       bottomNavigationBar: Container(
         height: 100,
@@ -45,50 +41,28 @@ class _ClientPaymentsStatusPageState extends State<ClientPaymentsStatusPage> {
 
   Widget _textCardDetail() {
     return Container(
-      width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-      child: _con.mercadoPagoPayment?.status == 'approved'
-      ? Text(
-        'ได้รับคำสั่งซื้อแล้ว (${_con.mercadoPagoPayment?.paymentMethodId?.toUpperCase() ?? ''} **** ${_con.mercadoPagoPayment?.card?.lastFourDigits ?? ''})',
-        style: TextStyle(
-          fontSize: 17
-        ),
-        textAlign: TextAlign.center,
-      )
-      : Text(
-        'การชำระเงินของคุณถูกปฏิเสธ',
-        style: TextStyle(
-            fontSize: 17
-        ),
-        textAlign: TextAlign.center,
-      ),
-    );
+        width: double.infinity,
+        margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+        child: Text(
+          ' ได้รับคำสั่งซื้อแล้ว ',
+          style: TextStyle(fontSize: 17),
+          textAlign: TextAlign.center,
+        ));
   }
 
   Widget _textCardStatus() {
     return Container(
-      width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-      child: _con.mercadoPagoPayment?.status == 'approved'
-      ? Text(
-        'ตรวจสอบสถานะการสั่งซื้อ',
-        style: TextStyle(
-          fontSize: 17
-        ),
-        textAlign: TextAlign.center,
-      )
-      : Text(
-        _con.errorMessage ?? '',
-        style: TextStyle(
-            fontSize: 17
-        ),
-        textAlign: TextAlign.center,
-      ),
-    );
+        width: double.infinity,
+        margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        child: Text(
+          'ตรวจสอบสถานะการสั่งซื้อ',
+          style: TextStyle(fontSize: 17),
+          textAlign: TextAlign.center,
+        ));
   }
 
   Widget _clipPathOval() {
-    return  ClipPath(
+    return ClipPath(
       clipper: OvalBottomBorderClipper(),
       child: Container(
         height: 250,
@@ -97,18 +71,12 @@ class _ClientPaymentsStatusPageState extends State<ClientPaymentsStatusPage> {
         child: SafeArea(
           child: Column(
             children: [
-              _con.mercadoPagoPayment?.status == 'approved'
-              ? Icon(Icons.check_circle, color: Colors.green, size: 150)
-              : Icon(Icons.cancel, color: Colors.red, size: 150),
               Text(
-                _con.mercadoPagoPayment?.status == 'approved'
-                ? 'ขอบคุณที่ใช้บริการ'
-                : 'การสั่งซื้อล้มเหลว',
+                'ขอบคุณที่ใช้บริการ',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22
-                ),
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22),
               )
             ],
           ),
@@ -117,7 +85,7 @@ class _ClientPaymentsStatusPageState extends State<ClientPaymentsStatusPage> {
     );
   }
 
-  Widget  _buttonNext(){
+  Widget _buttonNext() {
     return Container(
       margin: EdgeInsets.all(20),
       child: ElevatedButton(
@@ -126,9 +94,7 @@ class _ClientPaymentsStatusPageState extends State<ClientPaymentsStatusPage> {
             primary: MyColors.primaryColor,
             padding: EdgeInsets.symmetric(vertical: 5),
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12)
-            )
-        ),
+                borderRadius: BorderRadius.circular(12))),
         child: Stack(
           children: [
             Align(
@@ -137,11 +103,8 @@ class _ClientPaymentsStatusPageState extends State<ClientPaymentsStatusPage> {
                 height: 50,
                 alignment: Alignment.center,
                 child: Text(
-                  'เช็คเอาท์',
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  ),
+                  'ออกจากหน้านี้',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -157,13 +120,11 @@ class _ClientPaymentsStatusPageState extends State<ClientPaymentsStatusPage> {
                 ),
               ),
             )
-
           ],
         ),
       ),
     );
   }
-
 
   void refresh() {
     setState(() {});

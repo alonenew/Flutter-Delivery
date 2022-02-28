@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -29,7 +31,14 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mi orden'),
+        title: Text(
+          'รายการสั่งซื้อ',
+          style: TextStyle(color: MyColors.textColor),
+        ),
+        iconTheme: IconThemeData(
+          color: MyColors.textColor,
+        ),
+        backgroundColor: MyColors.primaryColor,
       ),
       bottomNavigationBar: Container(
         height: MediaQuery.of(context).size.height * 0.235,
@@ -37,8 +46,8 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
           children: [
             Divider(
               color: Colors.grey[400],
-              endIndent: 30, // DERECHA
-              indent: 30, //IZQUIERDA
+              endIndent: 30,
+              indent: 30,
             ),
             _textTotalPrice(),
             _buttonNext()
@@ -52,7 +61,7 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
               }).toList(),
             )
           : NoDataWidget(
-              text: 'Ningun producto agregado',
+              text: 'ไม่มีสินค้า',
             ),
     );
   }
@@ -75,8 +84,11 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
                 height: 50,
                 alignment: Alignment.center,
                 child: Text(
-                  'CONTINUAR',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  'ดำเนินการต่อ',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: MyColors.textColor),
                 ),
               ),
             ),
@@ -110,7 +122,7 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
             children: [
               Text(
                 product?.name ?? '',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               SizedBox(height: 10),
               _addOrRemoveItem(product)
@@ -143,12 +155,12 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Total:',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+            'รวม :',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
           ),
           Text(
-            '${_con.total}\$',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            '${_con.total} \บาท',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
           )
         ],
       ),
@@ -160,15 +172,16 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
       margin: EdgeInsets.only(top: 10),
       child: Text(
         '${product.price * product.quantity}',
-        style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
       ),
     );
   }
 
   Widget _imageProduct(Product product) {
     return Container(
-      width: 90,
-      height: 90,
+      width: 120,
+      height: 120,
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -204,7 +217,10 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
         Container(
           padding: EdgeInsets.symmetric(horizontal: 12, vertical: 7),
           color: Colors.grey[200],
-          child: Text('${product?.quantity ?? 0}'),
+          child: Text(
+            '${product?.quantity ?? 0}',
+            style: TextStyle(fontSize: 16),
+          ),
         ),
         GestureDetector(
           onTap: () {

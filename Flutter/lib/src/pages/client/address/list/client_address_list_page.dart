@@ -28,7 +28,14 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ที่อยู่'),
+        title: Text(
+          'ที่อยู่',
+          style: TextStyle(color: MyColors.textColor),
+        ),
+        iconTheme: IconThemeData(
+          color: MyColors.textColor,
+        ),
+        backgroundColor: MyColors.primaryColor,
         actions: [_iconAdd()],
       ),
       body: Stack(
@@ -58,10 +65,13 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
     return Container(
       height: 50,
       width: double.infinity,
-      margin: EdgeInsets.symmetric(vertical: 30, horizontal: 130),
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 80),
       child: ElevatedButton(
         onPressed: _con.goToNewAddress,
-        child: Text('เพิ่มที่อยู่'),
+        child: Text(
+          ' เพิ่มที่อยู่ ',
+          style: TextStyle(fontSize: 16),
+        ),
         style: ElevatedButton.styleFrom(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
@@ -77,7 +87,10 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
       margin: EdgeInsets.symmetric(vertical: 30, horizontal: 50),
       child: ElevatedButton(
         onPressed: _con.createOrder,
-        child: Text('ยืนยัน'),
+        child: Text(
+          'ยืนยัน',
+          style: TextStyle(color: MyColors.textColor, fontSize: 20),
+        ),
         style: ElevatedButton.styleFrom(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
@@ -124,12 +137,12 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
                 children: [
                   Text(
                     address?.address ?? '',
-                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     address?.neighborhood ?? '',
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 16,
                     ),
                   )
                 ],
@@ -149,7 +162,7 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
       margin: EdgeInsets.only(top: 30, left: 165),
       child: Text(
         'ที่อยู่รับสินค้า',
-        style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -157,7 +170,7 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
   Widget _iconAdd() {
     return IconButton(
         onPressed: _con.goToNewAddress,
-        icon: Icon(Icons.add, color: Colors.white));
+        icon: Icon(Icons.add, color: MyColors.textColor));
   }
 
   void refresh() {

@@ -42,7 +42,7 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
               children: [
                 SizedBox(height: 15),
                 _menuDrawer(),
-                SizedBox(height: 15),
+                SizedBox(height: 20),
                 _textFieldSearch()
               ],
             ),
@@ -53,7 +53,10 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
               isScrollable: true,
               tabs: List<Widget>.generate(_con.categories.length, (index) {
                 return Tab(
-                  child: Text(_con.categories[index].name ?? ''),
+                  child: Text(
+                    _con.categories[index].name ?? '',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 );
               }),
             ),
@@ -96,7 +99,7 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
         _con.openBottomSheet(product);
       },
       child: Container(
-        height: 250,
+        height: 200,
         child: Card(
           elevation: 3.0,
           shape:
@@ -139,21 +142,21 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
                   ),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 20),
-                    height: 33,
+                    height: 25,
                     child: Text(
                       product.name ?? '',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: 15, fontFamily: 'NimbusSans'),
+                      style: TextStyle(fontSize: 18, fontFamily: 'NimbusSans'),
                     ),
                   ),
                   Spacer(),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     child: Text(
                       '${product.price ?? 0} บาท',
                       style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'NimbusSans'),
                     ),
@@ -218,7 +221,7 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
     return GestureDetector(
       onTap: _con.openDrawer,
       child: Container(
-        margin: EdgeInsets.only(left: 20, top: 25),
+        margin: EdgeInsets.only(left: 20, top: 30),
         alignment: Alignment.centerLeft,
         child: Image.asset('assets/img/menu.png', width: 20, height: 20),
       ),
@@ -238,19 +241,19 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
                   Text(
                     '${_con.user?.name ?? ''} ${_con.user?.lastname ?? ''}',
                     style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
+                        fontSize: 20,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold),
                     maxLines: 1,
                   ),
                   Text(
                     _con.user?.email ?? '',
-                    style: TextStyle(fontSize: 13, color: Colors.grey[200]),
+                    style: TextStyle(fontSize: 16, color: Colors.black),
                     maxLines: 1,
                   ),
                   Text(
                     _con.user?.phone ?? '',
-                    style: TextStyle(fontSize: 13, color: Colors.grey[200]),
+                    style: TextStyle(fontSize: 16, color: Colors.black),
                     maxLines: 1,
                   ),
                   Container(
@@ -278,7 +281,7 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
             trailing: Icon(Icons.shopping_cart_outlined),
           ),
           _con.user != null
-              ? _con.user.roles.length > 1
+              ? _con.user.roles.length == 2
                   ? ListTile(
                       onTap: _con.goToRoles,
                       title: Text('เลือก Role'),

@@ -202,27 +202,27 @@ class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
                   Text(
                     '${_con.user?.name ?? ''} ${_con.user?.lastname ?? ''}',
                     style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
+                        fontSize: 20,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold),
                     maxLines: 1,
                   ),
                   Text(
                     _con.user?.email ?? '',
                     style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey[200],
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic),
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
                     maxLines: 1,
                   ),
                   Text(
                     _con.user?.phone ?? '',
                     style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey[200],
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic),
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
                     maxLines: 1,
                   ),
                   Container(

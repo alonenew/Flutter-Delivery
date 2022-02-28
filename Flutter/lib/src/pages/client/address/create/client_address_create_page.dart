@@ -27,7 +27,14 @@ class _ClientAddressCreatePageState extends State<ClientAddressCreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ที่อยู่ใหม่'),
+        title: Text(
+          'ที่อยู่ใหม่',
+          style: TextStyle(color: MyColors.textColor),
+        ),
+        iconTheme: IconThemeData(
+          color: MyColors.textColor,
+        ),
+        backgroundColor: MyColors.primaryColor,
       ),
       bottomNavigationBar: _buttonAccept(),
       body: Column(
@@ -95,7 +102,7 @@ class _ClientAddressCreatePageState extends State<ClientAddressCreatePage> {
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
       child: Text(
         'รายละเอียดที่อยู่',
-        style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -107,7 +114,10 @@ class _ClientAddressCreatePageState extends State<ClientAddressCreatePage> {
       margin: EdgeInsets.symmetric(vertical: 30, horizontal: 50),
       child: ElevatedButton(
         onPressed: _con.createAddress,
-        child: Text('เพิ่มที่อยู่'),
+        child: Text(
+          ' เพิ่มที่อยู่ ',
+          style: TextStyle(color: MyColors.textColor, fontSize: 20),
+        ),
         style: ElevatedButton.styleFrom(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),

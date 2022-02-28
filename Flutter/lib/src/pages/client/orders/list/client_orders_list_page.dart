@@ -35,12 +35,19 @@ class _ClientOrdersListPageState extends State<ClientOrdersListPage> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(100),
           child: AppBar(
-            title: Text('ประวัติคำสั่งซื้อ'),
+            title: Text(
+              'ประวัติคำสั่งซื้อ',
+              style: TextStyle(color: MyColors.textColor),
+            ),
+            iconTheme: IconThemeData(
+              color: MyColors.textColor,
+            ),
             backgroundColor: MyColors.primaryColor,
             bottom: TabBar(
-              indicatorColor: MyColors.primaryColor,
-              labelColor: Colors.white,
-              unselectedLabelColor: Colors.grey[400],
+              indicatorColor: Colors.black,
+              indicatorWeight: 3,
+              labelColor: Colors.black,
+              unselectedLabelColor: Colors.grey,
               isScrollable: true,
               tabs: List<Widget>.generate(_con.status.length, (index) {
                 return Tab(
@@ -108,7 +115,7 @@ class _ClientOrdersListPageState extends State<ClientOrdersListPage> {
                     'Order #${order.id}',
                     style: TextStyle(
                         fontSize: 15,
-                        color: Colors.white,
+                        color: Colors.black,
                         fontFamily: 'NimbusSans'),
                   ),
                 ),

@@ -12,7 +12,6 @@ import 'package:ardear_bakery/src/utils/shared_pref.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class ClientProductsListController {
-
   BuildContext context;
   SharedPref _sharedPref = new SharedPref();
   GlobalKey<ScaffoldState> key = new GlobalKey<ScaffoldState>();
@@ -28,9 +27,8 @@ class ClientProductsListController {
 
   String productName = '';
 
-  PushNotificationsProvider pushNotificationsProvider = new PushNotificationsProvider();
-
-
+  PushNotificationsProvider pushNotificationsProvider =
+      new PushNotificationsProvider();
 
   Future init(BuildContext context, Function refresh) async {
     this.context = context;
@@ -39,13 +37,14 @@ class ClientProductsListController {
     _categoriesProvider.init(context, user);
     _productsProvider.init(context, user);
 
-
     getCategories();
     refresh();
   }
 
   void onChangeText(String text) {
-    const duration = Duration(milliseconds:800); // set the duration that you want call search() after that.
+    const duration = Duration(
+        milliseconds:
+            800); // set the duration that you want call search() after that.
     if (searchOnStoppedTyping != null) {
       searchOnStoppedTyping.cancel();
       refresh();
@@ -57,12 +56,13 @@ class ClientProductsListController {
     });
   }
 
-  Future<List<Product>> getProducts(String idCategory, String productName) async {
+  Future<List<Product>> getProducts(
+      String idCategory, String productName) async {
     if (productName.isEmpty) {
       return await _productsProvider.getByCategory(idCategory);
-    }
-    else {
-      return await _productsProvider.getByCategoryAndProductName(idCategory, productName);
+    } else {
+      return await _productsProvider.getByCategoryAndProductName(
+          idCategory, productName);
     }
   }
 
@@ -74,8 +74,7 @@ class ClientProductsListController {
   void openBottomSheet(Product product) {
     showMaterialModalBottomSheet(
         context: context,
-        builder: (context) => ClientProductsDetailPage(product: product)
-    );
+        builder: (context) => ClientProductsDetailPage(product: product));
   }
 
   void logout() {
@@ -101,5 +100,4 @@ class ClientProductsListController {
   void goToRoles() {
     Navigator.pushNamedAndRemoveUntil(context, 'roles', (route) => false);
   }
-
 }

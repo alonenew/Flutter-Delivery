@@ -1,3 +1,4 @@
+import 'package:ardear_bakery/src/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:ardear_bakery/src/models/order.dart';
@@ -32,15 +33,25 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Orden #${_con.order?.id ?? ''}'),
+        title: Text(
+          'Order #${_con.order?.id ?? ''}',
+          style: TextStyle(color: Colors.black),
+        ),
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        backgroundColor: MyColors.primaryColor,
         actions: [
           Container(
-            margin: EdgeInsets.only(top: 18, right: 15),
+            margin: EdgeInsets.only(top: 15, right: 15),
             child: Text(
               'รวม : ${_con.total} บาท',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  color: Colors.black),
             ),
-          )
+          ),
         ],
       ),
       bottomNavigationBar: Container(
@@ -50,13 +61,13 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
             children: [
               Divider(
                 color: Colors.grey[400],
-                endIndent: 30, // DERECHA
-                indent: 30, //IZQUIERDA
+                endIndent: 30,
+                indent: 30,
               ),
               SizedBox(height: 10),
               _textData('ลูกค้า :',
                   '${_con.order.client?.name ?? ''} ${_con.order.client?.lastname ?? ''}'),
-              _textData('ผู้ส่ง :', '${_con.order.address?.address ?? ''}'),
+              _textData('ปลายทาง :', '${_con.order.address?.address ?? ''}'),
               _textData('วันที่สั่ง :',
                   '${RelativeTimeUtil.getRelativeTime(_con.order.timestamp ?? 0)}'),
               _con.order.status != 'จัดส่ง' ? _buttonNext() : Container()
@@ -95,8 +106,9 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
       child: ElevatedButton(
         onPressed: _con.updateOrder,
         style: ElevatedButton.styleFrom(
-            primary:
-                _con.order?.status == 'ระหว่างนำส่ง' ? Colors.blue : Colors.green,
+            primary: _con.order?.status == 'ระหว่างนำส่ง'
+                ? Colors.blue
+                : Colors.green,
             padding: EdgeInsets.symmetric(vertical: 5),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12))),
@@ -109,8 +121,8 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
                 alignment: Alignment.center,
                 child: Text(
                   _con.order?.status == 'ระหว่างนำส่ง'
-                      ? 'เริ่มจัดส่ง'
-                      : 'กำลังเดินทาง',
+                      ? 'กำลังเดินทาง'
+                      : 'เริ่มจัดส่ง',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -145,12 +157,12 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
             children: [
               Text(
                 product?.name ?? '',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               SizedBox(height: 10),
               Text(
                 'จำนวน : ${product.quantity}',
-                style: TextStyle(fontSize: 13),
+                style: TextStyle(fontSize: 18),
               ),
             ],
           ),
@@ -161,8 +173,8 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
 
   Widget _imageProduct(Product product) {
     return Container(
-      width: 50,
-      height: 50,
+      width: 100,
+      height: 100,
       padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),

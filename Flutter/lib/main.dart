@@ -7,9 +7,6 @@ import 'package:ardear_bakery/src/pages/client/address/map/client_address_map_pa
 import 'package:ardear_bakery/src/pages/client/orders/create/client_orders_create_page.dart';
 import 'package:ardear_bakery/src/pages/client/orders/list/client_orders_list_page.dart';
 import 'package:ardear_bakery/src/pages/client/orders/map/client_orders_map_page.dart';
-import 'package:ardear_bakery/src/pages/client/payments/create/client_payments_create_page.dart';
-
-import 'package:ardear_bakery/src/pages/client/payments/installments/client_payments_installments_page.dart';
 import 'package:ardear_bakery/src/pages/client/payments/status/client_payments_status_page.dart';
 import 'package:ardear_bakery/src/pages/client/products/list/client_products_list_page.dart';
 import 'package:ardear_bakery/src/pages/client/update/client_update_page.dart';
@@ -24,13 +21,8 @@ import 'package:ardear_bakery/src/pages/roles/roles_page.dart';
 import 'package:ardear_bakery/src/provider/push_notifications_provider.dart';
 import 'package:ardear_bakery/src/utils/my_colors.dart';
 
-
-
-
-
-
-PushNotificationsProvider pushNotificationsProvider = new PushNotificationsProvider();
-
+PushNotificationsProvider pushNotificationsProvider =
+    new PushNotificationsProvider();
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -53,9 +45,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
-
 
   @override
   void initState() {
@@ -68,36 +58,42 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Delivery App Flutter',
+      title: 'Ardear Bakery',
       debugShowCheckedModeBanner: false,
       navigatorKey: navigatorKey,
       initialRoute: 'login',
       routes: {
-        'login' : (BuildContext context) => LoginPage(),
-        'register' : (BuildContext context) => RegisterPage(),
-        'roles' : (BuildContext context) => RolesPage(),
-        'client/products/list' : (BuildContext context) => ClientProductsListPage(),
-        'client/update' : (BuildContext context) => ClientUpdatePage(),
-        'client/orders/create' : (BuildContext context) => ClientOrdersCreatePage(),
-        'client/address/list' : (BuildContext context) => ClientAddressListPage(),
-        'client/address/create' : (BuildContext context) => ClientAddressCreatePage(),
-        'client/address/map' : (BuildContext context) => ClientAddressMapPage(),
-        'client/orders/list' : (BuildContext context) => ClientOrdersListPage(),
-        'client/orders/map' : (BuildContext context) => ClientOrdersMapPage(),
-        'client/payments/create' : (BuildContext context) => ClientPaymentsCreatePage(),
-        'client/payments/installments' : (BuildContext context) => ClientPaymentsInstallmentsPage(),
-        'client/payments/status' : (BuildContext context) => ClientPaymentsStatusPage(),
-        'restaurant/orders/list' : (BuildContext context) => RestaurantOrdersListPage(),
-        'restaurant/categories/create' : (BuildContext context) => RestaurantCategoriesCreatePage(),
-        'restaurant/products/create' : (BuildContext context) => RestaurantProductsCreatePage(),
-        'delivery/orders/list' : (BuildContext context) => DeliveryOrdersListPage(),
-        'delivery/orders/map' : (BuildContext context) => DeliveryOrdersMapPage(),
+        'login': (BuildContext context) => LoginPage(),
+        'register': (BuildContext context) => RegisterPage(),
+        'roles': (BuildContext context) => RolesPage(),
+        'client/products/list': (BuildContext context) =>
+            ClientProductsListPage(),
+        'client/update': (BuildContext context) => ClientUpdatePage(),
+        'client/orders/create': (BuildContext context) =>
+            ClientOrdersCreatePage(),
+        'client/address/list': (BuildContext context) =>
+            ClientAddressListPage(),
+        'client/address/create': (BuildContext context) =>
+            ClientAddressCreatePage(),
+        'client/address/map': (BuildContext context) => ClientAddressMapPage(),
+        'client/orders/list': (BuildContext context) => ClientOrdersListPage(),
+        'client/orders/map': (BuildContext context) => ClientOrdersMapPage(),
+        'client/payments/status': (BuildContext context) =>
+            ClientPaymentsStatusPage(),
+        'restaurant/orders/list': (BuildContext context) =>
+            RestaurantOrdersListPage(),
+        'restaurant/categories/create': (BuildContext context) =>
+            RestaurantCategoriesCreatePage(),
+        'restaurant/products/create': (BuildContext context) =>
+            RestaurantProductsCreatePage(),
+        'delivery/orders/list': (BuildContext context) =>
+            DeliveryOrdersListPage(),
+        'delivery/orders/map': (BuildContext context) =>
+            DeliveryOrdersMapPage(),
       },
       theme: ThemeData(
-        // fontFamily: 'NimbusSans',
-        primaryColor: MyColors.primaryColor,
-        appBarTheme: AppBarTheme(elevation: 0)
-      ),
+          primaryColor: MyColors.primaryColor,
+          appBarTheme: AppBarTheme(elevation: 0)),
     );
   }
 }

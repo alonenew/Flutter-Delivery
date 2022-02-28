@@ -38,13 +38,23 @@ class _ClientOrdersDetailPageState extends State<ClientOrdersDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Orden #${_con.order?.id ?? ''}'),
+        title: Text(
+          'Order #${_con.order?.id ?? ''}',
+          style: TextStyle(color: Colors.black, fontSize: 22),
+        ),
+        iconTheme: IconThemeData(
+          color: MyColors.textColor,
+        ),
+        backgroundColor: MyColors.primaryColor,
         actions: [
           Container(
-            margin: EdgeInsets.only(top: 18, right: 15),
+            margin: EdgeInsets.only(top: 15, right: 15),
             child: Text(
-              'Total: ${_con.total}\$',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              'รวม : ${_con.total} บาท',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  color: Colors.black),
             ),
           )
         ],
@@ -60,11 +70,13 @@ class _ClientOrdersDetailPageState extends State<ClientOrdersDetailPage> {
                 indent: 30, //IZQUIERDA
               ),
               SizedBox(height: 10),
-              _textData('Repartidor:',
-                  '${_con.order?.delivery?.name ?? 'No asignado'} ${_con.order?.delivery?.lastname ?? ''}'),
               _textData(
-                  'Entregar en:', '${_con.order?.address?.address ?? ''}'),
-              _textData('Fecha de pedido:',
+                'พนักงานส่ง :',
+                '${_con.order?.delivery?.name ?? 'กำลังเลือกผู้ส่ง'} ${_con.order?.delivery?.lastname ?? ''}',
+              ),
+              _textData(
+                  'ที่อยู่ปลายทาง :', '${_con.order?.address?.address ?? ''}'),
+              _textData('เวลา/วันที่สั่งอาหาร :',
                   '${RelativeTimeUtil.getRelativeTime(_con.order.timestamp ?? 0)}'),
               _con.order?.status == 'ระหว่างนำส่ง' ? _buttonNext() : Container()
             ],
@@ -78,7 +90,7 @@ class _ClientOrdersDetailPageState extends State<ClientOrdersDetailPage> {
               }).toList(),
             )
           : NoDataWidget(
-              text: 'Ningun producto agregado',
+              text: ' ไม่มีสินค้าเพิ่ม ',
             ),
     );
   }
@@ -114,7 +126,7 @@ class _ClientOrdersDetailPageState extends State<ClientOrdersDetailPage> {
                 height: 40,
                 alignment: Alignment.center,
                 child: Text(
-                  'SEGUIR ENTREGA',
+                  'ติดตามการจัดส่ง',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -149,12 +161,12 @@ class _ClientOrdersDetailPageState extends State<ClientOrdersDetailPage> {
             children: [
               Text(
                 product?.name ?? '',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               SizedBox(height: 10),
               Text(
-                'Cantidad: ${product.quantity}',
-                style: TextStyle(fontSize: 13),
+                'จำนวน : ${product.quantity}',
+                style: TextStyle(fontSize: 18),
               ),
             ],
           ),
@@ -165,8 +177,8 @@ class _ClientOrdersDetailPageState extends State<ClientOrdersDetailPage> {
 
   Widget _imageProduct(Product product) {
     return Container(
-      width: 50,
-      height: 50,
+      width: 100,
+      height: 100,
       padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
