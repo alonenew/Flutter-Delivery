@@ -1,3 +1,4 @@
+import 'package:ardear_bakery/src/utils/my_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:ardear_bakery/src/models/product.dart';
 import 'package:ardear_bakery/src/utils/shared_pref.dart';
@@ -8,7 +9,6 @@ class ClientOrdersCreateController {
   SharedPref _sharedPref = new SharedPref();
   double productPrice;
 
-  
   Product product;
 
   List<Product> selectedProducts = [];
@@ -56,6 +56,11 @@ class ClientOrdersCreateController {
   }
 
   void goToAddress() {
-    Navigator.pushNamed(context, 'client/address/list');
+    if (selectedProducts.length < 1) {
+      MySnackbar.show(context, 'กรุณาเลือกสินค้า');
+      return;
+    } else {
+      Navigator.pushNamed(context, 'client/address/list');
+    }
   }
 }

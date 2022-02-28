@@ -9,7 +9,7 @@ class ClientPaymentsStatusController {
   BuildContext context;
   Function refresh;
   String errorMessage;
-
+  List<Product> selectedProducts = [];
   PushNotificationsProvider pushNotificationsProvider =
       new PushNotificationsProvider();
 
@@ -48,6 +48,9 @@ class ClientPaymentsStatusController {
   }
 
   void finishShopping() {
+    selectedProducts = [];
+    selectedProducts.clear();
+    selectedProducts = [];
     Navigator.pushNamedAndRemoveUntil(
         context, 'client/products/list', (route) => false);
   }

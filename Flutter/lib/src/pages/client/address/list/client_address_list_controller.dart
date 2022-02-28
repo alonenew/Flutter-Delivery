@@ -35,6 +35,38 @@ class ClientAddressListController {
     refresh();
   }
 
+  void showAlertDialog() {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      child: Text("ยกเลิก"),
+      onPressed: back,
+    );
+    Widget continueButton = ElevatedButton(
+      child: Text("ยืนยัน"),
+      onPressed: createOrder,
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("ยืนยันรายการสั่งซื้อ"),
+      content: Text("คุณต้องการสั่งซื้อหรือไม่"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  void back() {
+    Navigator.pop(context);
+  }
+
   void createOrder() async {
     Address a = Address.fromJson(await _sharedPref.read('address') ?? {});
     List<Product> selectedProducts =
@@ -44,7 +76,6 @@ class ClientAddressListController {
     ResponseApi responseApi = await _ordersProvider.create(order);
 
     Navigator.pushNamed(context, 'client/payments/status');
-    selectedProducts.clear();
   }
 
   void handleRadioValueChange(int value) async {

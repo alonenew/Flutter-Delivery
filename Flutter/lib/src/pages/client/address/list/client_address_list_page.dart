@@ -80,13 +80,14 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
     );
   }
 
+
   Widget _buttonAccept() {
     return Container(
       height: 50,
       width: double.infinity,
       margin: EdgeInsets.symmetric(vertical: 30, horizontal: 50),
       child: ElevatedButton(
-        onPressed: _con.createOrder,
+        onPressed: _con.showAlertDialog,
         child: Text(
           'ยืนยัน',
           style: TextStyle(color: MyColors.textColor, fontSize: 20),

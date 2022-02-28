@@ -5,10 +5,8 @@ import 'package:ardear_bakery/src/models/response_api.dart';
 import 'package:ardear_bakery/src/models/user.dart';
 import 'package:ardear_bakery/src/provider/orders_provider.dart';
 import 'package:ardear_bakery/src/provider/users_provider.dart';
-import 'package:ardear_bakery/src/utils/my_snackbar.dart';
 import 'package:ardear_bakery/src/utils/shared_pref.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class DeliveryOrdersDetailController {
   BuildContext context;
