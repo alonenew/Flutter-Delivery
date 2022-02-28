@@ -11,7 +11,6 @@ class ClientOrdersMapPage extends StatefulWidget {
 }
 
 class _ClientOrdersMapPageState extends State<ClientOrdersMapPage> {
-
   ClientOrdersMapController _con = new ClientOrdersMapController();
 
   @override
@@ -36,9 +35,8 @@ class _ClientOrdersMapPageState extends State<ClientOrdersMapPage> {
       body: Stack(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.67,
-              child: _googleMaps()
-          ),
+              height: MediaQuery.of(context).size.height * 0.67,
+              child: _googleMaps()),
           SafeArea(
             child: Column(
               children: [
@@ -58,25 +56,29 @@ class _ClientOrdersMapPageState extends State<ClientOrdersMapPage> {
       height: MediaQuery.of(context).size.height * 0.33,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(20),
-          topLeft: Radius.circular(20),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3)
-          )
-        ]
-      ),
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20),
+            topLeft: Radius.circular(20),
+          ),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3))
+          ]),
       child: Column(
         children: [
-          _listTileAddress(_con.order?.address?.neighborhood, 'Neighborhood', Icons.my_location),
-          _listTileAddress(_con.order?.address?.address, 'address', Icons.location_on),
-          Divider(color: Colors.grey[400], endIndent: 30, indent: 30,),
+          _listTileAddress('ที่อยู่ปลายทาง', _con.order?.address?.address,
+              Icons.location_on),
+          _listTileAddress('รายละเอียดเพิ่มเติ่ม',
+              _con.order?.address?.neighborhood, Icons.my_location),
+          Divider(
+            color: Colors.grey[400],
+            endIndent: 30,
+            indent: 30,
+          ),
           _clientInfo(),
         ],
       ),
@@ -104,29 +106,27 @@ class _ClientOrdersMapPageState extends State<ClientOrdersMapPage> {
             margin: EdgeInsets.only(left: 10),
             child: Text(
               '${_con.order?.delivery?.name ?? ''} ${_con.order?.delivery?.lastname ?? ''}',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16
-              ),
+              style: TextStyle(color: Colors.black, fontSize: 16),
               maxLines: 1,
             ),
           ),
           Spacer(),
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              color: Colors.grey[200]
-            ),
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                color: Colors.grey[200]),
             child: IconButton(
               onPressed: _con.call,
-              icon: Icon(Icons.phone, color: Colors.black,),
+              icon: Icon(
+                Icons.phone,
+                color: Colors.black,
+              ),
             ),
           )
         ],
       ),
     );
   }
-  
 
   Widget _listTileAddress(String title, String subtitle, IconData iconData) {
     return Container(
@@ -134,9 +134,7 @@ class _ClientOrdersMapPageState extends State<ClientOrdersMapPage> {
       child: ListTile(
         title: Text(
           title ?? '',
-          style: TextStyle(
-            fontSize: 13
-          ),
+          style: TextStyle(fontSize: 13),
         ),
         subtitle: Text(subtitle),
         trailing: Icon(iconData),
