@@ -15,7 +15,6 @@ class _ClientOrdersMapPageState extends State<ClientOrdersMapPage> {
 
   @override
   void initState() {
-
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       _con.init(context, refresh);
@@ -24,7 +23,6 @@ class _ClientOrdersMapPageState extends State<ClientOrdersMapPage> {
 
   @override
   void dispose() {
-
     super.dispose();
     _con.dispose();
   }
@@ -70,10 +68,10 @@ class _ClientOrdersMapPageState extends State<ClientOrdersMapPage> {
           ]),
       child: Column(
         children: [
-          _listTileAddress('ที่อยู่ปลายทาง', _con.order?.address?.address,
+          _listTileAddress('ที่อยู่ปลายทาง', _con.order?.address?.address ?? '',
               Icons.location_on),
           _listTileAddress('รายละเอียดเพิ่มเติ่ม',
-              _con.order?.address?.neighborhood, Icons.my_location),
+              _con.order?.address?.neighborhood ?? '', Icons.my_location),
           Divider(
             color: Colors.grey[400],
             endIndent: 30,

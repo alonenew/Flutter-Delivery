@@ -28,8 +28,8 @@ class DeliveryOrdersMapController {
   String addressName;
   LatLng addressLatLng;
 
-  CameraPosition initialPosition =
-      CameraPosition(target: LatLng(1.2125178, -77.2737861), zoom: 14);
+  CameraPosition initialPosition = CameraPosition(
+      target: LatLng(13.557545978622246, 100.82012777485842), zoom: 14);
 
   Completer<GoogleMapController> _mapController = Completer();
 
@@ -281,7 +281,7 @@ class DeliveryOrdersMapController {
   }
 
   void call() {
-    launch("tel://${order?.client?.name}");
+    launch("tel:${order.client.phone}");
   }
 
   void checkGPS() async {

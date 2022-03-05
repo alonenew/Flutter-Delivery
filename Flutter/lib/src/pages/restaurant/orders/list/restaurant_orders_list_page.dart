@@ -1,3 +1,4 @@
+// ignore: unused_import
 import 'package:ardear_bakery/src/pages/restaurant/orders/detail/restaurant_orders_detail_controller.dart';
 import 'package:ardear_bakery/src/utils/relative_time_util.dart';
 import 'package:flutter/material.dart';
@@ -162,6 +163,7 @@ class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
     );
   }
 
+  // ignore: unused_element
   Widget _textData(String title, String content) {
     return Container(
       child: ListTile(

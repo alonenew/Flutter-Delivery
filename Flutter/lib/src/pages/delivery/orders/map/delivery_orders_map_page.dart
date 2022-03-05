@@ -1,3 +1,4 @@
+import 'package:ardear_bakery/src/pages/client/orders/map/client_orders_map_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:ardear_bakery/src/pages/delivery/orders/map/delivery_orders_map_controller.dart';
@@ -16,7 +17,6 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       _con.init(context, refresh);
@@ -25,7 +25,6 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _con.dispose();
   }
@@ -72,10 +71,10 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
           ]),
       child: Column(
         children: [
-          _listTileAddress('ที่อยู่ผู้สั่ง', _con.order?.address?.address,
+          _listTileAddress('ที่อยู่ผู้สั่ง', _con.order?.address?.address ?? '',
               Icons.location_on),
           _listTileAddress('รายละเอียดเพิ่มเติม',
-              _con.order?.address?.neighborhood, Icons.my_location),
+              _con.order?.address?.neighborhood ?? '', Icons.my_location),
           Divider(
             color: Colors.grey[400],
             endIndent: 30,
@@ -108,7 +107,7 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
           Container(
             margin: EdgeInsets.only(left: 10),
             child: Text(
-              '${_con.order?.client?.name ?? ''} ${_con.order?.client?.lastname ?? ''}',
+              '${_con.order.client.name} ${_con.order?.client?.lastname} ${_con.order.client.phone}',
               style: TextStyle(color: Colors.black, fontSize: 16),
               maxLines: 1,
             ),

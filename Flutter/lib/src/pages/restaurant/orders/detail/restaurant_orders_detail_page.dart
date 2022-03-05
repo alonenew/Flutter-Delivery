@@ -24,6 +24,9 @@ class _RestaurantOrdersDetailPageState
   RestaurantOrdersDetailController _con =
       new RestaurantOrdersDetailController();
 
+
+      
+
   @override
   void initState() {
     super.initState();
@@ -69,19 +72,19 @@ class _RestaurantOrdersDetailPageState
               SizedBox(height: 10),
               _textDescription(),
               SizedBox(height: 10),
-              _con.order.status != 'กำลังดำเนินการ'
+              _con.order.status != 'รายการสั่งซื้อ'
                   ? _deliveryData()
                   : Container(),
-              _con.order.status == 'กำลังดำเนินการ'
-                  ? _dropDown(_con.users)
+              _con.order.status == 'รายการสั่งซื้อ'
+                  ? _dropDown(_con.users ?? '')
                   : Container(),
               _textData('ชื่อลูกค้า:',
-                  '${_con.order.client?.name ?? ''} ${_con.order.client?.lastname ?? ''}'),
+                  '${_con.order.client.name ?? ''} ${_con.order.client.lastname ?? ''} '),
               _textData(
-                  'ที่อยู่ลูกค้า : ', '${_con.order.address?.address ?? ''}'),
+                  'ที่อยู่ลูกค้า : ', '${_con.order.address.address ?? ''}'),
               _textData('เวลาที่สั่งซื้อ : ',
                   '${RelativeTimeUtil.getRelativeTime(_con.order.timestamp ?? 0)}'),
-              _con.order.status == 'กำลังดำเนินการ'
+              _con.order.status == 'รายการสั่งซื้อ'
                   ? _buttonNext()
                   : Container()
             ],

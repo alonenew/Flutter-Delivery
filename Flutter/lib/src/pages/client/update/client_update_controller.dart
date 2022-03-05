@@ -17,6 +17,7 @@ class ClientUpdateController {
   TextEditingController lastnameController = new TextEditingController();
   TextEditingController phoneController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
+  
 
   UsersProvider usersProvider = new UsersProvider();
 
@@ -39,8 +40,11 @@ class ClientUpdateController {
 
     usersProvider.init(context, sessionUser: user);
 
+
+
     nameController.text = user.name;
     lastnameController.text = user.lastname;
+    phoneController.text = user.phone;
     phoneController.text = user.phone;
     passwordController.text = user.password;
 

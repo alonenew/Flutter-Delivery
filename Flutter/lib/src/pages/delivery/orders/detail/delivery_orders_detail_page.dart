@@ -45,7 +45,7 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
           Container(
             margin: EdgeInsets.only(top: 15, right: 15),
             child: Text(
-              'รวม : ${_con.total} บาท',
+              'รวม : ${_con.total ?? ''} บาท',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 22,
@@ -123,7 +123,7 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
                   _con.order?.status == 'ระหว่างนำส่ง'
                       ? 'กำลังเดินทาง'
                       : 'เริ่มจัดส่ง',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
             ),

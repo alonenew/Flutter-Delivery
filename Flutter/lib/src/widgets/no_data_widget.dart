@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class NoDataWidget extends StatelessWidget {
   String text;
 
@@ -21,6 +22,7 @@ class NoDataWidget extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class NoAddressWidget extends StatelessWidget {
   String text;
 
