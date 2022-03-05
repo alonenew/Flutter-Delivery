@@ -79,7 +79,7 @@ class DeliveryOrdersMapController {
     Map<String, dynamic> data = {'click_action': 'FLUTTER_NOTIFICATION_CLICK'};
 
     pushNotificationsProvider.sendMessage(tokenDelivery, data,
-        'พนักงานส่งกำลังใกล้ถึงปลายทาง', 'พนักงานส่งอยู่สถานที่จัดส่งแล้ว');
+        'พนักงานส่งกำลังใกล้ถึงปลายทาง', 'กรุณาเตรียมพร้อมรับสินค้า');
   }
 
   void saveLocation() async {
