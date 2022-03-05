@@ -47,8 +47,6 @@ class PushNotificationsProvider {
     });
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('NUEVA NOTIFICACION EN PRIMER PLANO');
-
       RemoteNotification notification = message.notification;
       AndroidNotification android = message.notification?.android;
       if (notification != null && android != null) {
@@ -86,7 +84,7 @@ class PushNotificationsProvider {
         headers: <String, String>{
           'Content-Type': 'application/json',
           'Authorization':
-              'key=AAAAaJGwl2Q:APA91bGmFuT0QFcJd6e7Evg6iaoXWrX1XrgeN3vPRIN535BfxQfR33t1AkFtnYqHyqYbQXL1ANAdRaU3TkuO_C3wJHAcaqUdpU_lsIRZxehcuHQvdVTIk_YNUYNLYUbWfebyMDI0ezXO'
+              'key=AAAABPCjpHE:APA91bH45Sr7hxA3XWrDQxb9dUxlv52CEl7lvIrV0aLa99Hktk6zk9QOcHZWqwaDkunhY6kWi-lmAIZzD1JQSVaHv4utjYPuy76tt4YKGPSOet9huuIiYONwdslxCG2HCJq8aVsGAvjU'
         },
         body: jsonEncode(<String, dynamic>{
           'notification': <String, dynamic>{
@@ -108,7 +106,7 @@ class PushNotificationsProvider {
         headers: <String, String>{
           'Content-Type': 'application/json',
           'Authorization':
-              'key=AAAAaJGwl2Q:APA91bGmFuT0QFcJd6e7Evg6iaoXWrX1XrgeN3vPRIN535BfxQfR33t1AkFtnYqHyqYbQXL1ANAdRaU3TkuO_C3wJHAcaqUdpU_lsIRZxehcuHQvdVTIk_YNUYNLYUbWfebyMDI0ezXO'
+              'key=AAAABPCjpHE:APA91bH45Sr7hxA3XWrDQxb9dUxlv52CEl7lvIrV0aLa99Hktk6zk9QOcHZWqwaDkunhY6kWi-lmAIZzD1JQSVaHv4utjYPuy76tt4YKGPSOet9huuIiYONwdslxCG2HCJq8aVsGAvjU'
         },
         body: jsonEncode(<String, dynamic>{
           'notification': <String, dynamic>{

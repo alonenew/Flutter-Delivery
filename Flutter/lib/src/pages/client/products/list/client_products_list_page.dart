@@ -54,7 +54,7 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
               tabs: List<Widget>.generate(_con.categories.length, (index) {
                 return Tab(
                   child: Text(
-                    _con.categories[index].name ?? '',
+                    ' ' + _con.categories[index].name + ' ',
                     style: TextStyle(fontSize: 16),
                   ),
                 );

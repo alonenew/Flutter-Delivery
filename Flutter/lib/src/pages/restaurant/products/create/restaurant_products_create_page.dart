@@ -174,7 +174,7 @@ class _RestaurantProductsCreatePageState
     List<DropdownMenuItem<String>> list = [];
     categories.forEach((category) {
       list.add(DropdownMenuItem(
-        child: Text(' ' + category.name + ' '),
+        child: Text(' '+category.name+ ' '),
         value: category.id,
       ));
     });
