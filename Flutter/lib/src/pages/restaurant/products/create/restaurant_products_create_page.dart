@@ -152,7 +152,7 @@ class _RestaurantProductsCreatePageState
                   isExpanded: true,
                   hint: Text(
                     'เลือกหมวดสินค้า',
-                    style: TextStyle(color: MyColors.textColor, fontSize: 16),
+                    style: TextStyle(color: MyColors.textColor, fontSize: 15),
                   ),
                   items: _dropDownItems(categories),
                   value: _con.idCategory,
@@ -174,7 +174,7 @@ class _RestaurantProductsCreatePageState
     List<DropdownMenuItem<String>> list = [];
     categories.forEach((category) {
       list.add(DropdownMenuItem(
-        child: Text(category.name),
+        child: Text(' ' + category.name + ' '),
         value: category.id,
       ));
     });
