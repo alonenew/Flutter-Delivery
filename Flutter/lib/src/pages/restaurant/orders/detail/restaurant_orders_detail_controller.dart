@@ -48,7 +48,7 @@ class RestaurantOrdersDetailController {
     Map<String, dynamic> data = {'click_action': 'FLUTTER_NOTIFICATION_CLICK'};
 
     pushNotificationsProvider.sendMessage(tokenDelivery, data,
-        'คำสั่งที่ได้รับมอบหมาย', 'คุณได้รับมอบหมายคำสั่ง');
+        'คุณได้รับออเดอร์', 'คุณได้รับการจัดส่งออเดอร์ใหม่');
   }
 
   void updateOrder() async {

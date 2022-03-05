@@ -60,7 +60,7 @@ class _DeliveryOrdersListPageState extends State<DeliveryOrdersListPage> {
         body: TabBarView(
           children: _con.status.map((String status) {
             return FutureBuilder(
-                future: _con.getOrders(status),
+                future: _con.getOrders(status) ?? '',
                 builder: (context, AsyncSnapshot<List<Order>> snapshot) {
                   if (snapshot.hasData) {
                     if (snapshot.data.length > 0) {

@@ -66,11 +66,11 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
               ),
               SizedBox(height: 10),
               _textData('ลูกค้า :',
-                  '${_con.order.client?.name ?? ''} ${_con.order.client?.lastname ?? ''}'),
-              _textData('ปลายทาง :', '${_con.order.address?.address ?? ''}'),
+                  '${_con.order?.client?.name ?? ''} ${_con.order?.client?.lastname ?? ''}'),
+              _textData('ปลายทาง :', '${_con.order?.address?.address ?? ''}'),
               _textData('วันที่สั่ง :',
-                  '${RelativeTimeUtil.getRelativeTime(_con.order.timestamp ?? 0)}'),
-              _con.order.status != 'จัดส่ง' ? _buttonNext() : Container()
+                  '${RelativeTimeUtil.getRelativeTime(_con.order?.timestamp ?? 0)}'),
+              _con.order?.status != 'เสร็จสิ้น' ? _buttonNext() : Container()
             ],
           ),
         ),

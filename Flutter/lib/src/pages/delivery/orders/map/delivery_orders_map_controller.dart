@@ -103,8 +103,6 @@ class DeliveryOrdersMapController {
     print('-------- DIOSTANCIA ${_distanceBetween} ----------');
 
     if (_distanceBetween <= 200 && !isClose) {
-      print('-------- ESTA CERCA ${_distanceBetween} ----------');
-      print('-------- TOKEN ${order.client.notificationToken} ----------');
       sendNotification(order.client.notificationToken);
       isClose = true;
     }

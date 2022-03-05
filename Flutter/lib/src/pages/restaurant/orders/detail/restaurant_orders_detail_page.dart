@@ -68,10 +68,10 @@ class _RestaurantOrdersDetailPageState
               SizedBox(height: 10),
               _textDescription(),
               SizedBox(height: 10),
-              _con.order.status != 'รายการสั่งซื้อ'
+              _con.order.status != 'กำลังดำเนินการ'
                   ? _deliveryData()
                   : Container(),
-              _con.order.status == 'รายการสั่งซื้อ'
+              _con.order.status == 'กำลังดำเนินการ'
                   ? _dropDown(_con.users)
                   : Container(),
               _textData('ชื่อลูกค้า:',
@@ -80,7 +80,7 @@ class _RestaurantOrdersDetailPageState
                   'ที่อยู่ลูกค้า : ', '${_con.order.address?.address ?? ''}'),
               _textData('เวลาที่สั่งซื้อ : ',
                   '${RelativeTimeUtil.getRelativeTime(_con.order.timestamp ?? 0)}'),
-              _con.order.status == 'รายการสั่งซื้อ'
+              _con.order.status == 'กำลังดำเนินการ'
                   ? _buttonNext()
                   : Container()
             ],

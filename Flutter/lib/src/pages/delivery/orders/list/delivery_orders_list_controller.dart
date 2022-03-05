@@ -29,7 +29,7 @@ class DeliveryOrdersListController {
   }
 
   Future<List<Order>> getOrders(String status) async {
-    return await _ordersProvider.getByDeliveryAndStatus(user.id, status);
+    return await _ordersProvider.getByDeliveryAndStatus(user?.id, status);
   }
 
   void openBottomSheet(Order order) async {

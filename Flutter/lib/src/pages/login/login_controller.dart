@@ -27,7 +27,7 @@ class LoginController {
         Navigator.pushNamedAndRemoveUntil(context, 'roles', (route) => false);
       } else {
         Navigator.pushNamedAndRemoveUntil(
-            context, user.roles[0].route, (route) => false);
+            context, user?.roles[0].route, (route) => false);
       }
     }
   }

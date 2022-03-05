@@ -58,8 +58,9 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       margin: EdgeInsets.only(
           top: 150, bottom: MediaQuery.of(context).size.height * 0.05),
-      child: Lottie.asset('assets/json/delivery.json',
-          ),
+      child: Lottie.asset(
+        'assets/json/delivery.json',
+      ),
     );
   }
 

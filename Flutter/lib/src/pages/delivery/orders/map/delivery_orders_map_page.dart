@@ -108,7 +108,7 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
           Container(
             margin: EdgeInsets.only(left: 10),
             child: Text(
-              '${_con.order?.client?.name ?? ''} ${_con.order?.client?.lastname ?? ''} ${_con.order.client.phone}',
+              '${_con.order?.client?.name ?? ''} ${_con.order?.client?.lastname ?? ''}',
               style: TextStyle(color: Colors.black, fontSize: 16),
               maxLines: 1,
             ),

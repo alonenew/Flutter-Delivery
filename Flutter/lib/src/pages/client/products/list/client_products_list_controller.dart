@@ -44,7 +44,7 @@ class ClientProductsListController {
   void onChangeText(String text) {
     const duration = Duration(
         milliseconds:
-            800); // set the duration that you want call search() after that.
+            800);
     if (searchOnStoppedTyping != null) {
       searchOnStoppedTyping.cancel();
       refresh();
