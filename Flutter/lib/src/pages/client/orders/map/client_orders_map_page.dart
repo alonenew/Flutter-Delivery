@@ -15,7 +15,7 @@ class _ClientOrdersMapPageState extends State<ClientOrdersMapPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       _con.init(context, refresh);
@@ -24,7 +24,7 @@ class _ClientOrdersMapPageState extends State<ClientOrdersMapPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
+
     super.dispose();
     _con.dispose();
   }

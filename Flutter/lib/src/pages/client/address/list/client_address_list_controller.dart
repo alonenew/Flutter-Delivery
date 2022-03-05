@@ -73,6 +73,7 @@ class ClientAddressListController {
         Product.fromJsonList(await _sharedPref.read('order')).toList;
     Order order = new Order(
         idClient: user.id, idAddress: a.id, products: selectedProducts);
+    // ignore: unused_local_variable
     ResponseApi responseApi = await _ordersProvider.create(order);
 
     Navigator.pushNamed(context, 'client/payments/status');

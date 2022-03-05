@@ -19,7 +19,7 @@ class _ClientOrdersListPageState extends State<ClientOrdersListPage>
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
 
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
@@ -28,6 +28,7 @@ class _ClientOrdersListPageState extends State<ClientOrdersListPage>
   }
 
   @override
+  // ignore: must_call_super
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: _con.status?.length,

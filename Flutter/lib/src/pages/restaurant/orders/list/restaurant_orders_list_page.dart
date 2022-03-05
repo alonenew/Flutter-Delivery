@@ -17,12 +17,8 @@ class RestaurantOrdersListPage extends StatefulWidget {
 
 class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
   RestaurantOrdersListController _con = new RestaurantOrdersListController();
-  RestaurantOrdersDetailController _con2 =
-      new RestaurantOrdersDetailController();
-
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {

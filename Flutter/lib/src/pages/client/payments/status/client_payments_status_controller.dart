@@ -22,6 +22,7 @@ class ClientPaymentsStatusController {
     this.context = context;
     this.refresh = refresh;
 
+    // ignore: unused_local_variable
     Map<String, dynamic> arguments =
         ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
 

@@ -5,6 +5,7 @@ import 'package:ardear_bakery/src/pages/client/products/detail/client_products_d
 import 'package:ardear_bakery/src/utils/my_colors.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
+// ignore: must_be_immutable
 class ClientProductsDetailPage extends StatefulWidget {
   Product product;
 
@@ -20,7 +21,7 @@ class _ClientProductsDetailPageState extends State<ClientProductsDetailPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
 
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {

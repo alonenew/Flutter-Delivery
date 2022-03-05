@@ -22,6 +22,7 @@ class ClientAddressMapController {
 
   Completer<GoogleMapController> _mapController = Completer();
 
+  // ignore: missing_return
   Future init(BuildContext context, Function refresh) {
     this.context = context;
     this.refresh = refresh;
@@ -52,6 +53,7 @@ class ClientAddressMapController {
           String street = address[0].subThoroughfare;
           String city = address[0].locality;
           String department = address[0].administrativeArea;
+          // ignore: unused_local_variable
           String country = address[0].country;
           addressName = '$direction #$street, $city, $department';
           addressLatLng = new LatLng(lat, lng);

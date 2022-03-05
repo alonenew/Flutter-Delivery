@@ -8,6 +8,7 @@ import 'package:ardear_bakery/src/utils/my_colors.dart';
 import 'package:ardear_bakery/src/utils/relative_time_util.dart';
 import 'package:ardear_bakery/src/widgets/no_data_widget.dart';
 
+// ignore: must_be_immutable
 class RestaurantOrdersDetailPage extends StatefulWidget {
   Order order;
 

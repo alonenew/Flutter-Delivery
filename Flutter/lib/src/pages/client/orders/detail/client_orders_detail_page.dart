@@ -1,18 +1,13 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:ardear_bakery/src/models/order.dart';
 import 'package:ardear_bakery/src/models/product.dart';
-import 'package:ardear_bakery/src/models/user.dart';
-import 'package:ardear_bakery/src/pages/client/orders/create/client_orders_create_controller.dart';
 import 'package:ardear_bakery/src/pages/client/orders/detail/client_orders_detail_controller.dart';
-import 'package:ardear_bakery/src/pages/delivery/orders/detail/delivery_orders_detail_controller.dart';
-import 'package:ardear_bakery/src/pages/restaurant/orders/detail/restaurant_orders_detail_controller.dart';
 import 'package:ardear_bakery/src/utils/my_colors.dart';
 import 'package:ardear_bakery/src/utils/relative_time_util.dart';
 import 'package:ardear_bakery/src/widgets/no_data_widget.dart';
 
+// ignore: must_be_immutable
 class ClientOrdersDetailPage extends StatefulWidget {
   Order order;
 
@@ -27,7 +22,7 @@ class _ClientOrdersDetailPageState extends State<ClientOrdersDetailPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       _con.init(context, refresh, widget.order);

@@ -7,6 +7,7 @@ import 'package:ardear_bakery/src/pages/delivery/orders/detail/delivery_orders_d
 import 'package:ardear_bakery/src/utils/relative_time_util.dart';
 import 'package:ardear_bakery/src/widgets/no_data_widget.dart';
 
+// ignore: must_be_immutable
 class DeliveryOrdersDetailPage extends StatefulWidget {
   Order order;
 
@@ -22,7 +23,6 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       _con.init(context, refresh, widget.order);

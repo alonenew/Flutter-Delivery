@@ -17,7 +17,7 @@ class _ClientAddressListPageState extends State<ClientAddressListPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       _con.init(context, refresh);

@@ -21,7 +21,6 @@ class _RestaurantProductsCreatePageState
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       _con.init(context, refresh);
@@ -174,7 +173,7 @@ class _RestaurantProductsCreatePageState
     List<DropdownMenuItem<String>> list = [];
     categories.forEach((category) {
       list.add(DropdownMenuItem(
-        child: Text(' '+category.name+ ' '),
+        child: Text(' ' + category.name + ' '),
         value: category.id,
       ));
     });

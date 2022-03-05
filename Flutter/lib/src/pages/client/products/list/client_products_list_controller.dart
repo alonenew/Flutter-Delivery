@@ -21,6 +21,7 @@ class ClientProductsListController {
   ProductsProvider _productsProvider = new ProductsProvider();
   List<Category> categories = [];
   StreamController<String> streamController = StreamController();
+  // ignore: unused_field
   TextEditingController _searchController = new TextEditingController();
 
   Timer searchOnStoppedTyping;

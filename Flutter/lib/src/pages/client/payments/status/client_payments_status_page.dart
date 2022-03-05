@@ -18,7 +18,7 @@ class _ClientPaymentsStatusPageState extends State<ClientPaymentsStatusPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
 
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
