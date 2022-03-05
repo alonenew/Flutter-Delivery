@@ -30,6 +30,12 @@ class ClientPaymentsStatusController {
 
     tokens = await usersProvider.getAdminsNotificationTokens();
     sendNotification();
+    resetValues();
+    refresh();
+  }
+
+  void resetValues() {
+    selectedProducts.clear();
     refresh();
   }
 
