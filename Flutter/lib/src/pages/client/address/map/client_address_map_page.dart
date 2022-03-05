@@ -12,12 +12,10 @@ class ClientAddressMapPage extends StatefulWidget {
 }
 
 class _ClientAddressMapPageState extends State<ClientAddressMapPage> {
-
   ClientAddressMapController _con = new ClientAddressMapController();
 
   @override
   void initState() {
-
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       _con.init(context, refresh);
@@ -59,14 +57,13 @@ class _ClientAddressMapPageState extends State<ClientAddressMapPage> {
       child: ElevatedButton(
         onPressed: _con.selectRefPoint,
         child: Text(
-            'เลือกจุดนี้'
+          'เลือกจุดนี้',
+          style: TextStyle(fontSize: 18,color: MyColors.textColor),
         ),
         style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30)
-            ),
-            primary: MyColors.primaryColor
-        ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            primary: MyColors.primaryColor),
       ),
     );
   }
@@ -75,18 +72,13 @@ class _ClientAddressMapPageState extends State<ClientAddressMapPage> {
     return Container(
       child: Card(
         color: Colors.grey[800],
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20)
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Text(
             _con.addressName ?? '',
             style: TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.bold
-            ),
+                color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
           ),
         ),
       ),

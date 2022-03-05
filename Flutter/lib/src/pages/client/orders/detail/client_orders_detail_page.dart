@@ -22,7 +22,6 @@ class _ClientOrdersDetailPageState extends State<ClientOrdersDetailPage> {
 
   @override
   void initState() {
-
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       _con.init(context, refresh, widget.order);
@@ -72,7 +71,7 @@ class _ClientOrdersDetailPageState extends State<ClientOrdersDetailPage> {
               _textData(
                   'ที่อยู่ปลายทาง :', '${_con.order?.address?.address ?? ''}'),
               _textData('เวลา/วันที่สั่งอาหาร :',
-                  '${RelativeTimeUtil.getRelativeTime(_con.order.timestamp ?? 0)}'),
+                  '${RelativeTimeUtil.getRelativeTime(_con.order?.timestamp ?? 0)}'),
               _con.order?.status == 'ระหว่างนำส่ง' ? _buttonNext() : Container()
             ],
           ),
