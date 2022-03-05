@@ -114,16 +114,21 @@ class _ClientOrdersCreatePageState extends State<ClientOrdersCreatePage> {
         children: [
           _imageProduct(product),
           SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                product?.name ?? '',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-              SizedBox(height: 10),
-              _addOrRemoveItem(product)
-            ],
+          Expanded(
+            flex: 10,
+            child: Container(
+              child: (Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    product?.name ?? '',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  SizedBox(height: 10),
+                  _addOrRemoveItem(product)
+                ],
+              )),
+            ),
           ),
           Spacer(),
           Column(

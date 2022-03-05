@@ -5,12 +5,12 @@ class RelativeTimeUtil {
   static String getRelativeTime(int timestamp) {
     Intl.defaultLocale = "th";
     initializeDateFormatting();
-    var now = new DateTime.now();
+    // var now = new DateTime.now();
     var format = new DateFormat('HH:mm dd/MM/yyyy');
     var date = DateTime.fromMillisecondsSinceEpoch(timestamp);
     // var date = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
     // var date = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
-    var diff = now.difference(date);
+    // var diff = now.difference(date);
     var time = format.format(date);
     // if (diff.inSeconds <= 0 ||
     //     diff.inSeconds > 0 && diff.inMinutes == 0 ||

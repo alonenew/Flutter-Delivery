@@ -13,7 +13,8 @@ class ClientOrdersListPage extends StatefulWidget {
   _ClientOrdersListPageState createState() => _ClientOrdersListPageState();
 }
 
-class _ClientOrdersListPageState extends State<ClientOrdersListPage> {
+class _ClientOrdersListPageState extends State<ClientOrdersListPage>
+    with AutomaticKeepAliveClientMixin<ClientOrdersListPage> {
   ClientOrdersListController _con = new ClientOrdersListController();
 
   @override
@@ -83,6 +84,9 @@ class _ClientOrdersListPageState extends State<ClientOrdersListPage> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => false;
 
   Widget _cardOrder(Order order) {
     return GestureDetector(
