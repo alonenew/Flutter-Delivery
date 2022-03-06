@@ -30,7 +30,6 @@ class ClientOrdersCreateController {
     selectedProducts.forEach((product) {
       total = total + (product.quantity * product.price);
     });
-    refresh();
   }
 
   void addItem(Product product) {
@@ -51,6 +50,12 @@ class ClientOrdersCreateController {
 
   void deleteItem(Product product) {
     selectedProducts.removeWhere((p) => p.id == product.id);
+    _sharedPref.save('order', selectedProducts);
+    getTotal();
+  }
+
+  void clearItem(Product product) {
+    selectedProducts.clear();
     _sharedPref.save('order', selectedProducts);
     getTotal();
   }

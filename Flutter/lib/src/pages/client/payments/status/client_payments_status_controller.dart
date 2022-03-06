@@ -1,4 +1,5 @@
 import 'package:ardear_bakery/src/models/product.dart';
+import 'package:ardear_bakery/src/pages/client/orders/create/client_orders_create_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:ardear_bakery/src/models/user.dart';
 import 'package:ardear_bakery/src/provider/push_notifications_provider.dart';
@@ -12,6 +13,8 @@ class ClientPaymentsStatusController {
   List<Product> selectedProducts = [];
   PushNotificationsProvider pushNotificationsProvider =
       new PushNotificationsProvider();
+
+  ClientOrdersCreateController product = new ClientOrdersCreateController();
 
   User user;
   SharedPref _sharedPref = new SharedPref();
@@ -31,12 +34,7 @@ class ClientPaymentsStatusController {
 
     tokens = await usersProvider.getAdminsNotificationTokens();
     sendNotification();
-    resetValues();
-    refresh();
-  }
 
-  void resetValues() {
-    selectedProducts.clear();
     refresh();
   }
 
@@ -47,7 +45,7 @@ class ClientPaymentsStatusController {
         registration_id.add(t);
       }
     });
- 
+
     Map<String, dynamic> data = {'click_action': 'FLUTTER_NOTIFICATION_CLICK'};
 
     pushNotificationsProvider.sendMessageMultiple(
@@ -55,9 +53,7 @@ class ClientPaymentsStatusController {
   }
 
   void finishShopping() {
-    selectedProducts = [];
-    selectedProducts.clear();
-    selectedProducts = [];
+    product.clearItem(product.product);
     Navigator.pushNamedAndRemoveUntil(
         context, 'client/products/list', (route) => false);
   }

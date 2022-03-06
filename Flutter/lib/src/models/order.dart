@@ -18,24 +18,26 @@ class Order {
   List<Product> products = [];
   List<Order> toList = [];
   User client;
-  User user;
   User delivery;
   Address address;
+  User user;
 
-  Order(
-      {this.id,
-      this.idClient,
-      this.idDelivery,
-      this.idAddress,
-      this.status,
-      this.lat,
-      this.lng,
-      this.timestamp,
-      this.products,
-      this.client,
-      this.delivery,
-      this.address,
-      this.user});
+  Order({
+    this.id,
+    this.idClient,
+    this.idDelivery,
+    this.idAddress,
+    this.status,
+    this.lat,
+    this.lng,
+    this.timestamp,
+    this.products,
+    this.toList,
+    this.client,
+    this.delivery,
+    this.address,
+    this.user,
+  });
 
   factory Order.fromJson(Map<String, dynamic> json) => Order(
         id: json["id"] is int ? json["id"].toString() : json['id'],
@@ -53,16 +55,16 @@ class Order {
                     model is Product ? model : Product.fromJson(model))) ??
                 []
             : [],
-        client: json['user'] is String
-            ? userFromJson(json['user'])
-            : json['user'] is User
-                ? json['user']
-                : User.fromJson(json['user'] ?? {}),
-        delivery: json['user'] is String
-            ? userFromJson(json['user'])
-            : json['user'] is User
-                ? json['user']
-                : User.fromJson(json['user'] ?? {}),
+        client: json['client'] is String
+            ? userFromJson(json['client'])
+            : json['client'] is User
+                ? json['client']
+                : User.fromJson(json['client'] ?? {}),
+        delivery: json['delivery'] is String
+            ? userFromJson(json['delivery'])
+            : json['delivery'] is User
+                ? json['delivery']
+                : User.fromJson(json['delivery'] ?? {}),
         address: json['address'] is String
             ? addressFromJson(json['address'])
             : json['address'] is Address
