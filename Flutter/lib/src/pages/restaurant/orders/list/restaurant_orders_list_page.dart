@@ -21,9 +21,10 @@ class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
   @override
   void initState() {
     super.initState();
-
+    refresh();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       _con.init(context, refresh);
+      refresh();
     });
   }
 
@@ -66,13 +67,16 @@ class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
                 builder: (context, AsyncSnapshot<List<Order>> snapshot) {
                   if (snapshot.hasData) {
                     if (snapshot.data.length > 0) {
-                      return ListView.builder(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 20),
-                          itemCount: snapshot.data?.length ?? 0,
-                          itemBuilder: (_, index) {
-                            return _cardOrder(snapshot.data[index]);
-                          });
+                      return RefreshIndicator(
+                        child: ListView.builder(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 20),
+                            itemCount: snapshot.data?.length ?? 0,
+                            itemBuilder: (_, index) {
+                              return _cardOrder(snapshot.data[index]);
+                            }),
+                        onRefresh: _getData,
+                      );
                     } else {
                       return NoDataWidget(text: 'ไม่มีคำสั่งซื้อ');
                     }
@@ -82,8 +86,19 @@ class _RestaurantOrdersListPageState extends State<RestaurantOrdersListPage> {
                 });
           }).toList(),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: refresh,
+          tooltip: 'refresh',
+          child: Icon(Icons.refresh),
+        ),
       ),
     );
+  }
+
+  Future<void> _getData() async {
+    setState(() {
+      _cardOrder;
+    });
   }
 
   Widget _cardOrder(Order order) {

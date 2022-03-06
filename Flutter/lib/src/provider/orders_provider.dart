@@ -10,7 +10,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 class OrdersProvider {
-
   String _url = Environment.API_DELIVERY;
   String _api = '/api/orders';
   BuildContext context;
@@ -38,17 +37,18 @@ class OrdersProvider {
       final data = json.decode(res.body); // CATEGORIAS
       Order order = Order.fromJsonList(data);
       return order.toList;
-    }
-    catch(e) {
+    } catch (e) {
       print('Error: $e');
       return [];
     }
   }
 
-  Future<List<Order>> getByDeliveryAndStatus(String idDelivery, String status) async {
+  Future<List<Order>> getByDeliveryAndStatus(
+      String idDelivery, String status) async {
     try {
       print('SESION TOKEN: ${sessionUser.sessionToken}');
-      Uri url = Uri.http(_url, '$_api/findByDeliveryAndStatus/$idDelivery/$status');
+      Uri url =
+          Uri.http(_url, '$_api/findByDeliveryAndStatus/$idDelivery/$status');
       Map<String, String> headers = {
         'Content-type': 'application/json',
         'Authorization': sessionUser.sessionToken
@@ -62,14 +62,14 @@ class OrdersProvider {
       final data = json.decode(res.body); // CATEGORIAS
       Order order = Order.fromJsonList(data);
       return order.toList;
-    }
-    catch(e) {
+    } catch (e) {
       print('Error: $e');
       return [];
     }
   }
 
-  Future<List<Order>> getByClientAndStatus(String idClient, String status) async {
+  Future<List<Order>> getByClientAndStatus(
+      String idClient, String status) async {
     try {
       print('SESION TOKEN: ${sessionUser.sessionToken}');
       Uri url = Uri.http(_url, '$_api/findByClientAndStatus/$idClient/$status');
@@ -85,12 +85,13 @@ class OrdersProvider {
       }
       final data = json.decode(res.body);
       Order order = Order.fromJsonList(data);
+      
       return order.toList;
-    }
-    catch(e) {
+    } catch (e) {
       print('Error: $e');
       return [];
     }
+    
   }
 
   Future<ResponseApi> create(Order order) async {
@@ -111,8 +112,7 @@ class OrdersProvider {
       final data = json.decode(res.body);
       ResponseApi responseApi = ResponseApi.fromJson(data);
       return responseApi;
-    }
-    catch(e) {
+    } catch (e) {
       print('Error: $e');
       return null;
     }
@@ -136,8 +136,7 @@ class OrdersProvider {
       final data = json.decode(res.body);
       ResponseApi responseApi = ResponseApi.fromJson(data);
       return responseApi;
-    }
-    catch(e) {
+    } catch (e) {
       print('Error: $e');
       return null;
     }
@@ -161,8 +160,7 @@ class OrdersProvider {
       final data = json.decode(res.body);
       ResponseApi responseApi = ResponseApi.fromJson(data);
       return responseApi;
-    }
-    catch(e) {
+    } catch (e) {
       print('Error: $e');
       return null;
     }
@@ -186,8 +184,7 @@ class OrdersProvider {
       final data = json.decode(res.body);
       ResponseApi responseApi = ResponseApi.fromJson(data);
       return responseApi;
-    }
-    catch(e) {
+    } catch (e) {
       print('Error: $e');
       return null;
     }
@@ -211,11 +208,9 @@ class OrdersProvider {
       final data = json.decode(res.body);
       ResponseApi responseApi = ResponseApi.fromJson(data);
       return responseApi;
-    }
-    catch(e) {
+    } catch (e) {
       print('Error: $e');
       return null;
     }
   }
-
 }

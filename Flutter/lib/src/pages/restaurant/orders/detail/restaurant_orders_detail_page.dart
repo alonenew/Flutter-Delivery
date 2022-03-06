@@ -24,9 +24,6 @@ class _RestaurantOrdersDetailPageState
   RestaurantOrdersDetailController _con =
       new RestaurantOrdersDetailController();
 
-
-      
-
   @override
   void initState() {
     super.initState();
@@ -72,18 +69,18 @@ class _RestaurantOrdersDetailPageState
               SizedBox(height: 10),
               _textDescription(),
               SizedBox(height: 10),
-              _con.order.status != 'รายการสั่งซื้อ'
+              _con.order?.status != 'รายการสั่งซื้อ'
                   ? _deliveryData()
                   : Container(),
-              _con.order.status == 'รายการสั่งซื้อ'
+              _con.order?.status == 'รายการสั่งซื้อ'
                   ? _dropDown(_con.users ?? '')
                   : Container(),
               _textData('ชื่อลูกค้า:',
-                  '${_con.order.client.name ?? ''} ${_con.order.client.lastname ?? ''} '),
+                  '${_con.order?.client?.name ?? ''} ${_con.order?.client?.lastname ?? ''} '),
               _textData(
-                  'ที่อยู่ลูกค้า : ', '${_con.order.address.address ?? ''}'),
+                  'ที่อยู่ลูกค้า : ', '${_con.order?.address?.address ?? ''}'),
               _textData('เวลาที่สั่งซื้อ : ',
-                  '${RelativeTimeUtil.getRelativeTime(_con.order.timestamp ?? 0)}'),
+                  '${RelativeTimeUtil.getRelativeTime(_con.order?.timestamp ?? 0)}'),
               _con.order.status == 'รายการสั่งซื้อ'
                   ? _buttonNext()
                   : Container()
@@ -169,8 +166,8 @@ class _RestaurantOrdersDetailPageState
             height: 70,
             width: 70,
             child: FadeInImage(
-              image: _con.order.delivery?.image != null
-                  ? NetworkImage(_con.order.delivery.image)
+              image: _con.order?.delivery?.image != null
+                  ? NetworkImage(_con.order?.delivery?.image)
                   : AssetImage('assets/img/no-image.png'),
               fit: BoxFit.cover,
               fadeInDuration: Duration(milliseconds: 50),
@@ -179,7 +176,7 @@ class _RestaurantOrdersDetailPageState
           ),
           SizedBox(width: 5),
           Text(
-            '${_con.order.delivery?.name ?? ''} ${_con.order.delivery?.lastname ?? ''}',
+            '${_con.order?.delivery?.name ?? ''} ${_con.order?.delivery?.lastname ?? ''}',
             style: TextStyle(fontSize: 18),
           )
         ],

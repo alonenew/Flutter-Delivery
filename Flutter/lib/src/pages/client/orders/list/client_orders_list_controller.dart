@@ -33,7 +33,8 @@ class ClientOrdersListController {
   }
 
   Future<List<Order>> getOrders(String status) async {
-    return await _ordersProvider.getByClientAndStatus(user.id, status);
+    return await _ordersProvider.getByClientAndStatus(
+        user.id ?? '', status ?? '');
   }
 
   void openBottomSheet(Order order) async {

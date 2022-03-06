@@ -20,6 +20,7 @@ class _ClientOrdersListPageState extends State<ClientOrdersListPage>
   @override
   void initState() {
     super.initState();
+    refresh();
 
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       _con.init(context, refresh);
@@ -65,13 +66,16 @@ class _ClientOrdersListPageState extends State<ClientOrdersListPage>
                 builder: (context, AsyncSnapshot<List<Order>> snapshot) {
                   if (snapshot.hasData) {
                     if (snapshot.data.length > 0) {
-                      return ListView.builder(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 20),
-                          itemCount: snapshot.data?.length ?? 0,
-                          itemBuilder: (_, index) {
-                            return _cardOrder(snapshot.data[index]);
-                          });
+                      return RefreshIndicator(
+                        child: ListView.builder(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 20),
+                            itemCount: snapshot.data?.length ?? 0,
+                            itemBuilder: (_, index) {
+                              return _cardOrder(snapshot.data[index]);
+                            }),
+                        onRefresh: _getData,
+                      );
                     } else {
                       return NoDataWidget(text: 'ไม่มีประวัติ');
                     }
@@ -81,12 +85,23 @@ class _ClientOrdersListPageState extends State<ClientOrdersListPage>
                 });
           }).toList(),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: refresh,
+          tooltip: 'refresh',
+          child: Icon(Icons.refresh),
+        ),
       ),
     );
   }
 
   @override
   bool get wantKeepAlive => false;
+
+  Future<void> _getData() async {
+    setState(() {
+      _cardOrder;
+    });
+  }
 
   Widget _cardOrder(Order order) {
     return GestureDetector(

@@ -64,13 +64,16 @@ class _DeliveryOrdersListPageState extends State<DeliveryOrdersListPage> {
                 builder: (context, AsyncSnapshot<List<Order>> snapshot) {
                   if (snapshot.hasData) {
                     if (snapshot.data.length > 0) {
-                      return ListView.builder(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 20),
-                          itemCount: snapshot.data?.length ?? 0,
-                          itemBuilder: (_, index) {
-                            return _cardOrder(snapshot.data[index]);
-                          });
+                      return RefreshIndicator(
+                        child: ListView.builder(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 20),
+                            itemCount: snapshot.data?.length ?? 0,
+                            itemBuilder: (_, index) {
+                              return _cardOrder(snapshot.data[index]);
+                            }),
+                        onRefresh: _getData,
+                      );
                     } else {
                       return NoDataWidget(text: 'ไม่มีสินค้า');
                     }
@@ -80,8 +83,19 @@ class _DeliveryOrdersListPageState extends State<DeliveryOrdersListPage> {
                 });
           }).toList(),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: refresh,
+          tooltip: 'refresh',
+          child: Icon(Icons.refresh),
+        ),
       ),
     );
+  }
+
+  Future<void> _getData() async {
+    setState(() {
+      _cardOrder;
+    });
   }
 
   Widget _cardOrder(Order order) {

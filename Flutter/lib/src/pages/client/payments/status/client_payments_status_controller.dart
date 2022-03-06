@@ -47,7 +47,7 @@ class ClientPaymentsStatusController {
         registration_id.add(t);
       }
     });
-
+ 
     Map<String, dynamic> data = {'click_action': 'FLUTTER_NOTIFICATION_CLICK'};
 
     pushNotificationsProvider.sendMessageMultiple(

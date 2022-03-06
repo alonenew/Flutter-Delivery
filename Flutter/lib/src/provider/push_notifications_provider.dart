@@ -98,8 +98,7 @@ class PushNotificationsProvider {
         }));
   }
 
-  Future<void> sendMessageMultiple(
-    List<String> toList,
+  Future<void> sendMessageMultiple(List<String> toList,
       Map<String, dynamic> data, String title, String body) async {
     Uri url = Uri.https('fcm.googleapis.com', '/fcm/send');
 

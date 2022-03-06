@@ -38,41 +38,42 @@ class Order {
       this.user});
 
   factory Order.fromJson(Map<String, dynamic> json) => Order(
-      id: json["id"] is int ? json["id"].toString() : json['id'],
-      idClient: json["id_client"],
-      idDelivery: json["id_delivery"],
-      idAddress: json["id_address"],
-      status: json["status"],
-      lat: json["lat"] is String ? double.parse(json["lat"]) : json["lat"],
-      lng: json["lng"] is String ? double.parse(json["lng"]) : json["lng"],
-      timestamp: json["timestamp"] is String
-          ? int.parse(json["timestamp"])
-          : json["timestamp"],
-      products: json["products"] != null
-          ? List<Product>.from(json["products"].map((model) =>
-                  model is Product ? model : Product.fromJson(model))) ??
-              []
-          : [],
-      client: json['client'] is String
-          ? userFromJson(json['client'])
-          : json['client'] is User
-              ? json['client']
-              : User.fromJson(json['client'] ?? {}),
-      user: json['user'] is String
-          ? userFromJson(json['user'])
-          : json['user'] is User
-              ? json['user']
-              : User.fromJson(json['user'] ?? {}),
-      delivery: json['delivery'] is String
-          ? userFromJson(json['delivery'])
-          : json['delivery'] is User
-              ? json['delivery']
-              : User.fromJson(json['delivery'] ?? {}),
-      address: json['address'] is String
-          ? addressFromJson(json['address'])
-          : json['address'] is Address
-              ? json['address']
-              : Address.fromJson(json['address'] ?? {}));
+        id: json["id"] is int ? json["id"].toString() : json['id'],
+        idClient: json["id_client"],
+        idDelivery: json["id_delivery"],
+        idAddress: json["id_address"],
+        status: json["status"],
+        lat: json["lat"] is String ? double.parse(json["lat"]) : json["lat"],
+        lng: json["lng"] is String ? double.parse(json["lng"]) : json["lng"],
+        timestamp: json["timestamp"] is String
+            ? int.parse(json["timestamp"])
+            : json["timestamp"],
+        products: json["products"] != null
+            ? List<Product>.from(json["products"].map((model) =>
+                    model is Product ? model : Product.fromJson(model))) ??
+                []
+            : [],
+        client: json['client'] is String
+            ? userFromJson(json['client'])
+            : json['client'] is User
+                ? json['client']
+                : User.fromJson(json['client'] ?? {}),
+        delivery: json['delivery'] is String
+            ? userFromJson(json['delivery'])
+            : json['delivery'] is User
+                ? json['delivery']
+                : User.fromJson(json['delivery'] ?? {}),
+        address: json['address'] is String
+            ? addressFromJson(json['address'])
+            : json['address'] is Address
+                ? json['address']
+                : Address.fromJson(json['address'] ?? {}),
+        user: json['user'] is String
+            ? userFromJson(json['user'])
+            : json['user'] is User
+                ? json['user']
+                : User.fromJson(json['user'] ?? {}),
+      );
 
   Order.fromJsonList(List<dynamic> jsonList) {
     if (jsonList == null) return;

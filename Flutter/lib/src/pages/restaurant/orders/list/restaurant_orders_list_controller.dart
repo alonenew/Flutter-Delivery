@@ -42,7 +42,7 @@ class RestaurantOrdersListController {
         context: context,
         builder: (context) => RestaurantOrdersDetailPage(order: order));
 
-    if (isUpdated) {
+    if (isUpdated == true) {
       refresh();
     }
   }

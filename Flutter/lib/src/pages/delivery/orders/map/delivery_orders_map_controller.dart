@@ -52,6 +52,7 @@ class DeliveryOrdersMapController {
       new PushNotificationsProvider();
 
   bool isClose = false;
+  bool isCloseuser = false;
 
   IO.Socket socket;
 
@@ -107,31 +108,12 @@ class DeliveryOrdersMapController {
     _distanceBetween = Geolocator.distanceBetween(_position.latitude,
         _position.longitude, order.address.lat, order.address.lng);
 
-    print('-------- DIOSTANCIA ${_distanceBetween} ----------');
-
-    if (_distanceBetween <= 200 && !isClose)  {
+    print('-------- ระยะทาง ${_distanceBetween} ----------');
+    if (_distanceBetween <= 200 && !isClose) {
       sendNotification200(order.client.notificationToken);
       isClose = true;
-    }
-    if (order.status == 'เสร็จสิ้น') {
+    } else if (order.status == 'เสร็จสิ้น') {
       sendNotificationEnd(order.client.notificationToken);
-      isClose = true;
-    }
-  }
-
-  void launchWaze() async {
-    var url =
-        'waze://?ll=${order.address.lat.toString()},${order.address.lng.toString()}';
-    var fallbackUrl =
-        'https://waze.com/ul?ll=${order.address.lat.toString()},${order.address.lng.toString()}&navigate=yes';
-    try {
-      bool launched =
-          await launch(url, forceSafariVC: false, forceWebView: false);
-      if (!launched) {
-        await launch(fallbackUrl, forceSafariVC: false, forceWebView: false);
-      }
-    } catch (e) {
-      await launch(fallbackUrl, forceSafariVC: false, forceWebView: false);
     }
   }
 
@@ -230,7 +212,6 @@ class DeliveryOrdersMapController {
           String street = address[0].subThoroughfare;
           String city = address[0].locality;
           String department = address[0].administrativeArea;
-          String country = address[0].country;
           addressName = '$direction $street, $city, $department';
           addressLatLng = new LatLng(lat, lng);
           // print('LAT: ${addressLatLng.latitude}');

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:ardear_bakery/src/provider/push_notifications_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:ardear_bakery/src/api/environment.dart';
 import 'package:ardear_bakery/src/models/order.dart';
@@ -23,8 +24,8 @@ class ClientOrdersMapController {
   String addressName;
   LatLng addressLatLng;
 
-  CameraPosition initialPosition =
-      CameraPosition(target: LatLng(1.2125178, -77.2737861), zoom: 14);
+  CameraPosition initialPosition = CameraPosition(
+      target: LatLng(13.557545978622246, 100.82012777485842), zoom: 14);
 
   Completer<GoogleMapController> _mapController = Completer();
 
@@ -42,6 +43,8 @@ class ClientOrdersMapController {
   SharedPref _sharedPref = new SharedPref();
 
   double _distanceBetween;
+  PushNotificationsProvider pushNotificationsProvider =
+      new PushNotificationsProvider();
   IO.Socket socket;
 
   Future init(BuildContext context, Function refresh) async {
@@ -68,8 +71,10 @@ class ClientOrdersMapController {
 
     user = User.fromJson(await _sharedPref.read('user'));
     _ordersProvider.init(context, user);
-    print('ORDEN: ${order.toJson()}');
+    print('ORDER: ${order.toJson()}');
     checkGPS();
+
+
   }
 
   void isCloseToDeliveryPosition() {
@@ -77,6 +82,13 @@ class ClientOrdersMapController {
         _position.longitude, order.address.lat, order.address.lng);
 
     print('-------- DISTANCIA ${_distanceBetween} ----------');
+  }
+
+  void sendNotificationEnd(String tokenDelivery) {
+    Map<String, dynamic> data = {'click_action': 'FLUTTER_NOTIFICATION_CLICK'};
+
+    pushNotificationsProvider.sendMessage(tokenDelivery, data,
+        'คำสั่งซื้อสำเร็จ', 'พนักงานจัดส่งออเดอร์เสร็จสิ้น');
   }
 
   Future<void> setPolylines(LatLng from, LatLng to) async {
@@ -221,26 +233,27 @@ class ClientOrdersMapController {
           CameraPosition(target: LatLng(lat, lng), zoom: 13, bearing: 0)));
     }
   }
+
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      return Future.error('ตำแหน่งถูกปิดใช้งาน');
+      return Future.error('Location services are disabled.');
     }
 
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return Future.error('การขออนุญาตตำแหน่งถูกปฏิเสธ');
+        return Future.error('Location permissions are denied');
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
       return Future.error(
-          'การอนุญาตตำแหน่งถูกปฏิเสธอย่างถาวร เราไม่สามารถขออนุญาตได้');
+          'Location permissions are permanently denied, we cannot request permissions.');
     }
 
     return await Geolocator.getCurrentPosition();
