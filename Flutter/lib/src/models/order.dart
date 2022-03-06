@@ -1,11 +1,9 @@
 import 'dart:convert';
-
 import 'package:ardear_bakery/src/models/address.dart';
 import 'package:ardear_bakery/src/models/product.dart';
 import 'package:ardear_bakery/src/models/user.dart';
 
 Order orderFromJson(String str) => Order.fromJson(json.decode(str));
-
 String orderToJson(Order data) => json.encode(data.toJson());
 
 class Order {
@@ -83,8 +81,6 @@ class Order {
       toList.add(order);
     });
   }
-
-  
 
   Map<String, dynamic> toJson() => {
         "id": id,

@@ -75,11 +75,18 @@ class DeliveryOrdersMapController {
     checkGPS();
   }
 
-  void sendNotification(String tokenDelivery) {
+  void sendNotification200(String tokenDelivery) {
     Map<String, dynamic> data = {'click_action': 'FLUTTER_NOTIFICATION_CLICK'};
 
     pushNotificationsProvider.sendMessage(tokenDelivery, data,
         'พนักงานส่งกำลังใกล้ถึงปลายทาง', 'กรุณาเตรียมพร้อมรับสินค้า');
+  }
+
+  void sendNotificationEnd(String tokenDelivery) {
+    Map<String, dynamic> data = {'click_action': 'FLUTTER_NOTIFICATION_CLICK'};
+
+    pushNotificationsProvider.sendMessage(tokenDelivery, data,
+        'คำสั่งซื้อสำเร็จ', 'พนักงานจัดส่งออเดอร์เสร็จสิ้น');
   }
 
   void saveLocation() async {
@@ -102,8 +109,12 @@ class DeliveryOrdersMapController {
 
     print('-------- DIOSTANCIA ${_distanceBetween} ----------');
 
-    if (_distanceBetween <= 200 && !isClose) {
-      sendNotification(order.client.notificationToken);
+    if (_distanceBetween <= 200 && !isClose)  {
+      sendNotification200(order.client.notificationToken);
+      isClose = true;
+    }
+    if (order.status == 'เสร็จสิ้น') {
+      sendNotificationEnd(order.client.notificationToken);
       isClose = true;
     }
   }
@@ -244,8 +255,8 @@ class DeliveryOrdersMapController {
 
   void updateLocation() async {
     try {
-      await _determinePosition(); // OBTENER LA POSICION ACTUAL Y TAMBIEN SOLICITAR LOS PERMISOS
-      _position = await Geolocator.getLastKnownPosition(); // LAT Y LNG
+      await _determinePosition();
+      _position = await Geolocator.getLastKnownPosition();
       saveLocation();
 
       animateCameraToPosition(_position.latitude, _position.longitude);

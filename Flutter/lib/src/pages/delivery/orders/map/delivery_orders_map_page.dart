@@ -1,4 +1,3 @@
-import 'package:ardear_bakery/src/pages/client/orders/map/client_orders_map_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:ardear_bakery/src/pages/delivery/orders/map/delivery_orders_map_controller.dart';
@@ -107,7 +106,7 @@ class _DeliveryOrdersMapPageState extends State<DeliveryOrdersMapPage> {
           Container(
             margin: EdgeInsets.only(left: 10),
             child: Text(
-              '${_con.order.client.name} ${_con.order?.client?.lastname} ${_con.order.client.phone}',
+              '${_con.order.client.phone}',
               style: TextStyle(color: Colors.black, fontSize: 16),
               maxLines: 1,
             ),

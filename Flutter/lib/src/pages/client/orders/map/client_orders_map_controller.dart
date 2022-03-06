@@ -23,8 +23,8 @@ class ClientOrdersMapController {
   String addressName;
   LatLng addressLatLng;
 
-  CameraPosition initialPosition = CameraPosition(
-      target: LatLng(13.557545978622246, 100.82012777485842), zoom: 14);
+  CameraPosition initialPosition =
+      CameraPosition(target: LatLng(1.2125178, -77.2737861), zoom: 14);
 
   Completer<GoogleMapController> _mapController = Completer();
 
@@ -62,7 +62,7 @@ class ClientOrdersMapController {
     socket.on('position/${order.id}', (data) {
       print('DATA EMITIDA: ${data}');
 
-      addMarker('delivery', data['lat'], data['lng'], 'คนส่งของของคุณ', '',
+      addMarker('delivery', data['lat'], data['lng'], 'Tu repartidor', '',
           deliveryMarker);
     });
 
@@ -145,7 +145,7 @@ class ClientOrdersMapController {
           String city = address[0].locality;
           String department = address[0].administrativeArea;
           String country = address[0].country;
-          addressName = '$direction $street, $city, $department';
+          addressName = '$direction #$street, $city, $department';
           addressLatLng = new LatLng(lat, lng);
           // print('LAT: ${addressLatLng.latitude}');
           // print('LNG: ${addressLatLng.longitude}');
@@ -180,11 +180,11 @@ class ClientOrdersMapController {
       // );
 
       animateCameraToPosition(order.lat, order.lng);
-      addMarker('พนักงานสุ่ง', order.lat, order.lng, 'ตำแหน่งของคุณ', '',
+      addMarker('delivery', order.lat, order.lng, 'Tu repartidor', '',
           deliveryMarker);
 
-      addMarker('ที่อยู่ปลายทาง', order.address.lat, order.address.lng,
-          'ที่อยู่ปลายทาง', '', homeMarker);
+      addMarker('home', order.address.lat, order.address.lng,
+          'Lugar de entrega', '', homeMarker);
 
       LatLng from = new LatLng(order.lat, order.lng);
       LatLng to = new LatLng(order.address.lat, order.address.lng);
@@ -198,7 +198,7 @@ class ClientOrdersMapController {
   }
 
   void call() {
-    launch("tel://${user.phone}");
+    launch("tel://${order.client.phone}");
   }
 
   void checkGPS() async {
@@ -221,7 +221,6 @@ class ClientOrdersMapController {
           CameraPosition(target: LatLng(lat, lng), zoom: 13, bearing: 0)));
     }
   }
-
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
