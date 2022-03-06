@@ -53,16 +53,16 @@ class Order {
                     model is Product ? model : Product.fromJson(model))) ??
                 []
             : [],
-        client: json['client'] is String
-            ? userFromJson(json['client'])
-            : json['client'] is User
-                ? json['client']
-                : User.fromJson(json['client'] ?? {}),
-        delivery: json['delivery'] is String
-            ? userFromJson(json['delivery'])
-            : json['delivery'] is User
-                ? json['delivery']
-                : User.fromJson(json['delivery'] ?? {}),
+        client: json['user'] is String
+            ? userFromJson(json['user'])
+            : json['user'] is User
+                ? json['user']
+                : User.fromJson(json['user'] ?? {}),
+        delivery: json['user'] is String
+            ? userFromJson(json['user'])
+            : json['user'] is User
+                ? json['user']
+                : User.fromJson(json['user'] ?? {}),
         address: json['address'] is String
             ? addressFromJson(json['address'])
             : json['address'] is Address
@@ -96,5 +96,6 @@ class Order {
         "client": client,
         "delivery": delivery,
         "address": address,
+        "user": user,
       };
 }
