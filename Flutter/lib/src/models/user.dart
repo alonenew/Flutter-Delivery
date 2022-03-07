@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:ardear_bakery/src/models/rol.dart';
 
 User userFromJson(String str) => User.fromJson(json.decode(str));
-
 String userToJson(User data) => json.encode(data.toJson());
 
 class User {

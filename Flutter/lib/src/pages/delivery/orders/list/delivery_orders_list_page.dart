@@ -18,7 +18,6 @@ class _DeliveryOrdersListPageState extends State<DeliveryOrdersListPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {

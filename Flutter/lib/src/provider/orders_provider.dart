@@ -71,7 +71,6 @@ class OrdersProvider {
   Future<List<Order>> getByClientAndStatus(
       String idClient, String status) async {
     try {
-      print('SESION TOKEN: ${sessionUser.sessionToken}');
       Uri url = Uri.http(_url, '$_api/findByClientAndStatus/$idClient/$status');
       Map<String, String> headers = {
         'Content-type': 'application/json',

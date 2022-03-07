@@ -42,6 +42,7 @@ class ClientOrdersMapController {
   User user;
   SharedPref _sharedPref = new SharedPref();
 
+  // ignore: unused_field
   double _distanceBetween;
   PushNotificationsProvider pushNotificationsProvider =
       new PushNotificationsProvider();
@@ -73,15 +74,11 @@ class ClientOrdersMapController {
     _ordersProvider.init(context, user);
     print('ORDER: ${order.toJson()}');
     checkGPS();
-
-
   }
 
   void isCloseToDeliveryPosition() {
     _distanceBetween = Geolocator.distanceBetween(_position.latitude,
         _position.longitude, order.address.lat, order.address.lng);
-
-    print('-------- DISTANCIA ${_distanceBetween} ----------');
   }
 
   void sendNotificationEnd(String tokenDelivery) {
@@ -156,7 +153,6 @@ class ClientOrdersMapController {
           String street = address[0].subThoroughfare;
           String city = address[0].locality;
           String department = address[0].administrativeArea;
-          String country = address[0].country;
           addressName = '$direction #$street, $city, $department';
           addressLatLng = new LatLng(lat, lng);
           // print('LAT: ${addressLatLng.latitude}');
@@ -180,16 +176,7 @@ class ClientOrdersMapController {
 
   void updateLocation() async {
     try {
-      await _determinePosition(); // OBTENER LA POSICION ACTUAL Y TAMBIEN SOLICITAR LOS PERMISOS
-
-      // addMarker(
-      //     'delivery',
-      //     _position.latitude,
-      //     _position.longitude,
-      //     'Tu posicion',
-      //     '',
-      //     deliveryMarker
-      // );
+      await _determinePosition();
 
       animateCameraToPosition(order.lat, order.lng);
       addMarker('delivery', order.lat, order.lng, 'Tu repartidor', '',
@@ -210,7 +197,7 @@ class ClientOrdersMapController {
   }
 
   void call() {
-    launch("tel://${order.client.phone}");
+    launch("tel://${order.delivery.phone}");
   }
 
   void checkGPS() async {
